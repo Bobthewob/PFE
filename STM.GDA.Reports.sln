@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2008
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "STM.GDA.Reports", "STM.GDA.Reports\STM.GDA.Reports.rptproj", "{1F2510AA-2E6C-42BA-A083-E4042EFFF6EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F2510AA-2E6C-42BA-A083-E4042EFFF6EC}.Debug|Default.ActiveCfg = Debug
+		{1F2510AA-2E6C-42BA-A083-E4042EFFF6EC}.Debug|Default.Build.0 = Debug
+		{1F2510AA-2E6C-42BA-A083-E4042EFFF6EC}.Debug|Default.Deploy.0 = Debug
+		{1F2510AA-2E6C-42BA-A083-E4042EFFF6EC}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{1F2510AA-2E6C-42BA-A083-E4042EFFF6EC}.DebugLocal|Default.Build.0 = DebugLocal
+		{1F2510AA-2E6C-42BA-A083-E4042EFFF6EC}.DebugLocal|Default.Deploy.0 = DebugLocal
+		{1F2510AA-2E6C-42BA-A083-E4042EFFF6EC}.Release|Default.ActiveCfg = Release
+		{1F2510AA-2E6C-42BA-A083-E4042EFFF6EC}.Release|Default.Build.0 = Release
+		{1F2510AA-2E6C-42BA-A083-E4042EFFF6EC}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5D70C703-E8F8-41AB-8147-7389B5C0B066}
+	EndGlobalSection
+EndGlobal

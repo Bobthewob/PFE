@@ -1,2 +1,9 @@
-﻿
+﻿@using STM.GDA.Web.Models
+@model List<ComposantListeModel>
+
 <h2>Liste des applications et services</h2>
+
+@for (var i = 0; i < Model.Count; i++)
+{
+   @Html.ValueFor(m => m[i].Nom) <br/>
+}

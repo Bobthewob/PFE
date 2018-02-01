@@ -145,13 +145,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="BL\TestBL.cs" />
+    <Compile Include="BL\ComposantBL.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ComposantController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Composant.cs" />
+    <Compile Include="Models\ComposantListeModel.cs" />
+    <Compile Include="Models\DependanceModel.cs" />
+    <Compile Include="Models\TechnologieModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

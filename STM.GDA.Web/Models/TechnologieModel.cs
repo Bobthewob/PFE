@@ -5,7 +5,10 @@ using System.Web;
 
 namespace STM.GDA.Web.Models
 {
-    public class Composant
-    {
-    }
+   public class TechnologieModel
+   {
+      public int Id { get; set; }
+
+      public string Nom { get; set; }
+   }
 }

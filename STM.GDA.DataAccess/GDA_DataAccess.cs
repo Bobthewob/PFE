@@ -51,6 +51,9 @@ namespace STM.GDA.DataAccess
     partial void InsertComposantResponsable(ComposantResponsable instance);
     partial void UpdateComposantResponsable(ComposantResponsable instance);
     partial void DeleteComposantResponsable(ComposantResponsable instance);
+    partial void InsertComposantTechnologie(ComposantTechnologie instance);
+    partial void UpdateComposantTechnologie(ComposantTechnologie instance);
+    partial void DeleteComposantTechnologie(ComposantTechnologie instance);
     partial void InsertComposantType(ComposantType instance);
     partial void UpdateComposantType(ComposantType instance);
     partial void DeleteComposantType(ComposantType instance);
@@ -69,6 +72,9 @@ namespace STM.GDA.DataAccess
     partial void InsertResponsable(Responsable instance);
     partial void UpdateResponsable(Responsable instance);
     partial void DeleteResponsable(Responsable instance);
+    partial void InsertTechnologie(Technologie instance);
+    partial void UpdateTechnologie(Technologie instance);
+    partial void DeleteTechnologie(Technologie instance);
     #endregion
 		
 		public GDA_Context(string connection) : 
@@ -151,6 +157,14 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
+		public System.Data.Linq.Table<ComposantTechnologie> ComposantTechnologies
+		{
+			get
+			{
+				return this.GetTable<ComposantTechnologie>();
+			}
+		}
+		
 		public System.Data.Linq.Table<ComposantType> ComposantTypes
 		{
 			get
@@ -196,6 +210,14 @@ namespace STM.GDA.DataAccess
 			get
 			{
 				return this.GetTable<Responsable>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Technologie> Technologies
+		{
+			get
+			{
+				return this.GetTable<Technologie>();
 			}
 		}
 	}
@@ -354,7 +376,7 @@ namespace STM.GDA.DataAccess
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _ID;
+		private int _Id;
 		
 		private string _Abreviation;
 		
@@ -372,7 +394,11 @@ namespace STM.GDA.DataAccess
 		
 		private System.DateTime _DerniereMAJ;
 		
-		private int _ComposantTypeID;
+		private System.DateTime _DateCreation;
+		
+		private System.Nullable<System.DateTime> _DateSuppression;
+		
+		private int _ComposantTypeId;
 		
 		private EntityRef<ComposantType> _ComposantType;
 		
@@ -384,6 +410,8 @@ namespace STM.GDA.DataAccess
 		
 		private EntitySet<ComposantResponsable> _ComposantResponsables;
 		
+		private EntitySet<ComposantTechnologie> _ComposantTechnologies;
+		
 		private EntitySet<Dependance> _Dependances;
 		
 		private EntitySet<Deploiement> _Deploiements;
@@ -392,8 +420,8 @@ namespace STM.GDA.DataAccess
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
     partial void OnAbreviationChanging(string value);
     partial void OnAbreviationChanged();
     partial void OnNomChanging(string value);
@@ -410,8 +438,12 @@ namespace STM.GDA.DataAccess
     partial void OnBWChanged();
     partial void OnDerniereMAJChanging(System.DateTime value);
     partial void OnDerniereMAJChanged();
-    partial void OnComposantTypeIDChanging(int value);
-    partial void OnComposantTypeIDChanged();
+    partial void OnDateCreationChanging(System.DateTime value);
+    partial void OnDateCreationChanged();
+    partial void OnDateSuppressionChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateSuppressionChanged();
+    partial void OnComposantTypeIdChanging(int value);
+    partial void OnComposantTypeIdChanged();
     #endregion
 		
 		public Composant()
@@ -421,27 +453,28 @@ namespace STM.GDA.DataAccess
 			this._ComposantDependances = new EntitySet<ComposantDependance>(new Action<ComposantDependance>(this.attach_ComposantDependances), new Action<ComposantDependance>(this.detach_ComposantDependances));
 			this._ComposantEnvironnements = new EntitySet<ComposantEnvironnement>(new Action<ComposantEnvironnement>(this.attach_ComposantEnvironnements), new Action<ComposantEnvironnement>(this.detach_ComposantEnvironnements));
 			this._ComposantResponsables = new EntitySet<ComposantResponsable>(new Action<ComposantResponsable>(this.attach_ComposantResponsables), new Action<ComposantResponsable>(this.detach_ComposantResponsables));
+			this._ComposantTechnologies = new EntitySet<ComposantTechnologie>(new Action<ComposantTechnologie>(this.attach_ComposantTechnologies), new Action<ComposantTechnologie>(this.detach_ComposantTechnologies));
 			this._Dependances = new EntitySet<Dependance>(new Action<Dependance>(this.attach_Dependances), new Action<Dependance>(this.detach_Dependances));
 			this._Deploiements = new EntitySet<Deploiement>(new Action<Deploiement>(this.attach_Deploiements), new Action<Deploiement>(this.detach_Deploiements));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
 		{
 			get
 			{
-				return this._ID;
+				return this._Id;
 			}
 			set
 			{
-				if ((this._ID != value))
+				if ((this._Id != value))
 				{
-					this.OnIDChanging(value);
+					this.OnIdChanging(value);
 					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
 				}
 			}
 		}
@@ -606,31 +639,71 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComposantTypeID", DbType="Int NOT NULL")]
-		public int ComposantTypeID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateCreation", DbType="DateTime NOT NULL")]
+		public System.DateTime DateCreation
 		{
 			get
 			{
-				return this._ComposantTypeID;
+				return this._DateCreation;
 			}
 			set
 			{
-				if ((this._ComposantTypeID != value))
+				if ((this._DateCreation != value))
+				{
+					this.OnDateCreationChanging(value);
+					this.SendPropertyChanging();
+					this._DateCreation = value;
+					this.SendPropertyChanged("DateCreation");
+					this.OnDateCreationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateSuppression", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DateSuppression
+		{
+			get
+			{
+				return this._DateSuppression;
+			}
+			set
+			{
+				if ((this._DateSuppression != value))
+				{
+					this.OnDateSuppressionChanging(value);
+					this.SendPropertyChanging();
+					this._DateSuppression = value;
+					this.SendPropertyChanged("DateSuppression");
+					this.OnDateSuppressionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComposantTypeId", DbType="Int NOT NULL")]
+		public int ComposantTypeId
+		{
+			get
+			{
+				return this._ComposantTypeId;
+			}
+			set
+			{
+				if ((this._ComposantTypeId != value))
 				{
 					if (this._ComposantType.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnComposantTypeIDChanging(value);
+					this.OnComposantTypeIdChanging(value);
 					this.SendPropertyChanging();
-					this._ComposantTypeID = value;
-					this.SendPropertyChanged("ComposantTypeID");
-					this.OnComposantTypeIDChanged();
+					this._ComposantTypeId = value;
+					this.SendPropertyChanged("ComposantTypeId");
+					this.OnComposantTypeIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Composant_ComposantType", Storage="_ComposantType", ThisKey="ComposantTypeID", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Composant_ComposantType", Storage="_ComposantType", ThisKey="ComposantTypeId", OtherKey="Id", IsForeignKey=true)]
 		public ComposantType ComposantType
 		{
 			get
@@ -653,18 +726,18 @@ namespace STM.GDA.DataAccess
 					if ((value != null))
 					{
 						value.Composants.Add(this);
-						this._ComposantTypeID = value.Id;
+						this._ComposantTypeId = value.Id;
 					}
 					else
 					{
-						this._ComposantTypeID = default(int);
+						this._ComposantTypeId = default(int);
 					}
 					this.SendPropertyChanged("ComposantType");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantClient_Composant", Storage="_ComposantClients", ThisKey="ID", OtherKey="ComposantId", DeleteRule="NO ACTION")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantClient_Composant", Storage="_ComposantClients", ThisKey="Id", OtherKey="ComposantId", DeleteRule="NO ACTION")]
 		public EntitySet<ComposantClient> ComposantClients
 		{
 			get
@@ -677,7 +750,7 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantDependance_Composant", Storage="_ComposantDependances", ThisKey="ID", OtherKey="ComposantId", DeleteRule="NO ACTION")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantDependance_Composant", Storage="_ComposantDependances", ThisKey="Id", OtherKey="ComposantId", DeleteRule="NO ACTION")]
 		public EntitySet<ComposantDependance> ComposantDependances
 		{
 			get
@@ -690,7 +763,7 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantEnvironnement_Composant", Storage="_ComposantEnvironnements", ThisKey="ID", OtherKey="ComposantId", DeleteRule="NO ACTION")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantEnvironnement_Composant", Storage="_ComposantEnvironnements", ThisKey="Id", OtherKey="ComposantId", DeleteRule="NO ACTION")]
 		public EntitySet<ComposantEnvironnement> ComposantEnvironnements
 		{
 			get
@@ -703,7 +776,7 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantResponsable_Composant", Storage="_ComposantResponsables", ThisKey="ID", OtherKey="ComposantId", DeleteRule="NO ACTION")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantResponsable_Composant", Storage="_ComposantResponsables", ThisKey="Id", OtherKey="ComposantId", DeleteRule="NO ACTION")]
 		public EntitySet<ComposantResponsable> ComposantResponsables
 		{
 			get
@@ -716,7 +789,20 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Dependance_Composant", Storage="_Dependances", ThisKey="ID", OtherKey="ComposantID", DeleteRule="NO ACTION")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantTechnologie_Composant", Storage="_ComposantTechnologies", ThisKey="Id", OtherKey="ComposantId", DeleteRule="NO ACTION")]
+		public EntitySet<ComposantTechnologie> ComposantTechnologies
+		{
+			get
+			{
+				return this._ComposantTechnologies;
+			}
+			set
+			{
+				this._ComposantTechnologies.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Dependance_Composant", Storage="_Dependances", ThisKey="Id", OtherKey="ComposantId", DeleteRule="NO ACTION")]
 		public EntitySet<Dependance> Dependances
 		{
 			get
@@ -729,7 +815,7 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Deploiement_Composant", Storage="_Deploiements", ThisKey="ID", OtherKey="ComposantId", DeleteRule="NO ACTION")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Deploiement_Composant", Storage="_Deploiements", ThisKey="Id", OtherKey="ComposantId", DeleteRule="NO ACTION")]
 		public EntitySet<Deploiement> Deploiements
 		{
 			get
@@ -805,6 +891,18 @@ namespace STM.GDA.DataAccess
 		}
 		
 		private void detach_ComposantResponsables(ComposantResponsable entity)
+		{
+			this.SendPropertyChanging();
+			entity.Composant = null;
+		}
+		
+		private void attach_ComposantTechnologies(ComposantTechnologie entity)
+		{
+			this.SendPropertyChanging();
+			entity.Composant = this;
+		}
+		
+		private void detach_ComposantTechnologies(ComposantTechnologie entity)
 		{
 			this.SendPropertyChanging();
 			entity.Composant = null;
@@ -914,7 +1012,7 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantClient_Composant", Storage="_Composant", ThisKey="ComposantId", OtherKey="ID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantClient_Composant", Storage="_Composant", ThisKey="ComposantId", OtherKey="Id", IsForeignKey=true)]
 		public Composant Composant
 		{
 			get
@@ -937,7 +1035,7 @@ namespace STM.GDA.DataAccess
 					if ((value != null))
 					{
 						value.ComposantClients.Add(this);
-						this._ComposantId = value.ID;
+						this._ComposantId = value.Id;
 					}
 					else
 					{
@@ -1113,7 +1211,7 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantDependance_Composant", Storage="_Composant", ThisKey="ComposantId", OtherKey="ID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantDependance_Composant", Storage="_Composant", ThisKey="ComposantId", OtherKey="Id", IsForeignKey=true)]
 		public Composant Composant
 		{
 			get
@@ -1136,7 +1234,7 @@ namespace STM.GDA.DataAccess
 					if ((value != null))
 					{
 						value.ComposantDependances.Add(this);
-						this._ComposantId = value.ID;
+						this._ComposantId = value.Id;
 					}
 					else
 					{
@@ -1147,7 +1245,7 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantDependance_Dependance", Storage="_Dependance", ThisKey="DependanceId", OtherKey="ID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantDependance_Dependance", Storage="_Dependance", ThisKey="DependanceId", OtherKey="Id", IsForeignKey=true)]
 		public Dependance Dependance
 		{
 			get
@@ -1170,7 +1268,7 @@ namespace STM.GDA.DataAccess
 					if ((value != null))
 					{
 						value.ComposantDependances.Add(this);
-						this._DependanceId = value.ID;
+						this._DependanceId = value.Id;
 					}
 					else
 					{
@@ -1181,7 +1279,7 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantDependance_Environnement", Storage="_Environnement", ThisKey="EnvironnementId", OtherKey="ID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantDependance_Environnement", Storage="_Environnement", ThisKey="EnvironnementId", OtherKey="Id", IsForeignKey=true)]
 		public Environnement Environnement
 		{
 			get
@@ -1204,7 +1302,7 @@ namespace STM.GDA.DataAccess
 					if ((value != null))
 					{
 						value.ComposantDependances.Add(this);
-						this._EnvironnementId = value.ID;
+						this._EnvironnementId = value.Id;
 					}
 					else
 					{
@@ -1342,7 +1440,7 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantEnvironnement_Composant", Storage="_Composant", ThisKey="ComposantId", OtherKey="ID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantEnvironnement_Composant", Storage="_Composant", ThisKey="ComposantId", OtherKey="Id", IsForeignKey=true)]
 		public Composant Composant
 		{
 			get
@@ -1365,7 +1463,7 @@ namespace STM.GDA.DataAccess
 					if ((value != null))
 					{
 						value.ComposantEnvironnements.Add(this);
-						this._ComposantId = value.ID;
+						this._ComposantId = value.Id;
 					}
 					else
 					{
@@ -1376,7 +1474,7 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantEnvironnement_Environnement", Storage="_Environnement", ThisKey="EnvironnementId", OtherKey="ID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantEnvironnement_Environnement", Storage="_Environnement", ThisKey="EnvironnementId", OtherKey="Id", IsForeignKey=true)]
 		public Environnement Environnement
 		{
 			get
@@ -1399,7 +1497,7 @@ namespace STM.GDA.DataAccess
 					if ((value != null))
 					{
 						value.ComposantEnvironnements.Add(this);
-						this._EnvironnementId = value.ID;
+						this._EnvironnementId = value.Id;
 					}
 					else
 					{
@@ -1535,7 +1633,7 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantResponsable_Composant", Storage="_Composant", ThisKey="ComposantId", OtherKey="ID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantResponsable_Composant", Storage="_Composant", ThisKey="ComposantId", OtherKey="Id", IsForeignKey=true)]
 		public Composant Composant
 		{
 			get
@@ -1558,7 +1656,7 @@ namespace STM.GDA.DataAccess
 					if ((value != null))
 					{
 						value.ComposantResponsables.Add(this);
-						this._ComposantId = value.ID;
+						this._ComposantId = value.Id;
 					}
 					else
 					{
@@ -1599,6 +1697,174 @@ namespace STM.GDA.DataAccess
 						this._ResponsableId = default(int);
 					}
 					this.SendPropertyChanged("Responsable");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ComposantTechnologie")]
+	public partial class ComposantTechnologie : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ComposantId;
+		
+		private int _TechnologieId;
+		
+		private EntityRef<Composant> _Composant;
+		
+		private EntityRef<Technologie> _Technologie;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnComposantIdChanging(int value);
+    partial void OnComposantIdChanged();
+    partial void OnTechnologieIdChanging(int value);
+    partial void OnTechnologieIdChanged();
+    #endregion
+		
+		public ComposantTechnologie()
+		{
+			this._Composant = default(EntityRef<Composant>);
+			this._Technologie = default(EntityRef<Technologie>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComposantId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ComposantId
+		{
+			get
+			{
+				return this._ComposantId;
+			}
+			set
+			{
+				if ((this._ComposantId != value))
+				{
+					if (this._Composant.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnComposantIdChanging(value);
+					this.SendPropertyChanging();
+					this._ComposantId = value;
+					this.SendPropertyChanged("ComposantId");
+					this.OnComposantIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TechnologieId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int TechnologieId
+		{
+			get
+			{
+				return this._TechnologieId;
+			}
+			set
+			{
+				if ((this._TechnologieId != value))
+				{
+					if (this._Technologie.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTechnologieIdChanging(value);
+					this.SendPropertyChanging();
+					this._TechnologieId = value;
+					this.SendPropertyChanged("TechnologieId");
+					this.OnTechnologieIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantTechnologie_Composant", Storage="_Composant", ThisKey="ComposantId", OtherKey="Id", IsForeignKey=true)]
+		public Composant Composant
+		{
+			get
+			{
+				return this._Composant.Entity;
+			}
+			set
+			{
+				Composant previousValue = this._Composant.Entity;
+				if (((previousValue != value) 
+							|| (this._Composant.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Composant.Entity = null;
+						previousValue.ComposantTechnologies.Remove(this);
+					}
+					this._Composant.Entity = value;
+					if ((value != null))
+					{
+						value.ComposantTechnologies.Add(this);
+						this._ComposantId = value.Id;
+					}
+					else
+					{
+						this._ComposantId = default(int);
+					}
+					this.SendPropertyChanged("Composant");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantTechnologie_Technologie", Storage="_Technologie", ThisKey="TechnologieId", OtherKey="Id", IsForeignKey=true)]
+		public Technologie Technologie
+		{
+			get
+			{
+				return this._Technologie.Entity;
+			}
+			set
+			{
+				Technologie previousValue = this._Technologie.Entity;
+				if (((previousValue != value) 
+							|| (this._Technologie.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Technologie.Entity = null;
+						previousValue.ComposantTechnologies.Remove(this);
+					}
+					this._Technologie.Entity = value;
+					if ((value != null))
+					{
+						value.ComposantTechnologies.Add(this);
+						this._TechnologieId = value.Id;
+					}
+					else
+					{
+						this._TechnologieId = default(int);
+					}
+					this.SendPropertyChanged("Technologie");
 				}
 			}
 		}
@@ -1692,7 +1958,7 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Composant_ComposantType", Storage="_Composants", ThisKey="Id", OtherKey="ComposantTypeID", DeleteRule="NO ACTION")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Composant_ComposantType", Storage="_Composants", ThisKey="Id", OtherKey="ComposantTypeId", DeleteRule="NO ACTION")]
 		public EntitySet<Composant> Composants
 		{
 			get
@@ -1744,13 +2010,13 @@ namespace STM.GDA.DataAccess
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _ID;
+		private int _Id;
 		
-		private int _DependanceTypeID;
+		private int _DependanceTypeId;
 		
 		private string _Nom;
 		
-		private System.Nullable<int> _ComposantID;
+		private System.Nullable<int> _ComposantId;
 		
 		private EntitySet<ComposantDependance> _ComposantDependances;
 		
@@ -1762,14 +2028,14 @@ namespace STM.GDA.DataAccess
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnDependanceTypeIDChanging(int value);
-    partial void OnDependanceTypeIDChanged();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnDependanceTypeIdChanging(int value);
+    partial void OnDependanceTypeIdChanged();
     partial void OnNomChanging(string value);
     partial void OnNomChanged();
-    partial void OnComposantIDChanging(System.Nullable<int> value);
-    partial void OnComposantIDChanged();
+    partial void OnComposantIdChanging(System.Nullable<int> value);
+    partial void OnComposantIdChanged();
     #endregion
 		
 		public Dependance()
@@ -1780,46 +2046,46 @@ namespace STM.GDA.DataAccess
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
 		{
 			get
 			{
-				return this._ID;
+				return this._Id;
 			}
 			set
 			{
-				if ((this._ID != value))
+				if ((this._Id != value))
 				{
-					this.OnIDChanging(value);
+					this.OnIdChanging(value);
 					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DependanceTypeID", DbType="Int NOT NULL")]
-		public int DependanceTypeID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DependanceTypeId", DbType="Int NOT NULL")]
+		public int DependanceTypeId
 		{
 			get
 			{
-				return this._DependanceTypeID;
+				return this._DependanceTypeId;
 			}
 			set
 			{
-				if ((this._DependanceTypeID != value))
+				if ((this._DependanceTypeId != value))
 				{
 					if (this._DependanceType.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnDependanceTypeIDChanging(value);
+					this.OnDependanceTypeIdChanging(value);
 					this.SendPropertyChanging();
-					this._DependanceTypeID = value;
-					this.SendPropertyChanged("DependanceTypeID");
-					this.OnDependanceTypeIDChanged();
+					this._DependanceTypeId = value;
+					this.SendPropertyChanged("DependanceTypeId");
+					this.OnDependanceTypeIdChanged();
 				}
 			}
 		}
@@ -1844,31 +2110,31 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComposantID", DbType="Int")]
-		public System.Nullable<int> ComposantID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComposantId", DbType="Int")]
+		public System.Nullable<int> ComposantId
 		{
 			get
 			{
-				return this._ComposantID;
+				return this._ComposantId;
 			}
 			set
 			{
-				if ((this._ComposantID != value))
+				if ((this._ComposantId != value))
 				{
 					if (this._Composant.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnComposantIDChanging(value);
+					this.OnComposantIdChanging(value);
 					this.SendPropertyChanging();
-					this._ComposantID = value;
-					this.SendPropertyChanged("ComposantID");
-					this.OnComposantIDChanged();
+					this._ComposantId = value;
+					this.SendPropertyChanged("ComposantId");
+					this.OnComposantIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantDependance_Dependance", Storage="_ComposantDependances", ThisKey="ID", OtherKey="DependanceId", DeleteRule="NO ACTION")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantDependance_Dependance", Storage="_ComposantDependances", ThisKey="Id", OtherKey="DependanceId", DeleteRule="NO ACTION")]
 		public EntitySet<ComposantDependance> ComposantDependances
 		{
 			get
@@ -1881,7 +2147,7 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Dependance_Composant", Storage="_Composant", ThisKey="ComposantID", OtherKey="ID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Dependance_Composant", Storage="_Composant", ThisKey="ComposantId", OtherKey="Id", IsForeignKey=true)]
 		public Composant Composant
 		{
 			get
@@ -1904,18 +2170,18 @@ namespace STM.GDA.DataAccess
 					if ((value != null))
 					{
 						value.Dependances.Add(this);
-						this._ComposantID = value.ID;
+						this._ComposantId = value.Id;
 					}
 					else
 					{
-						this._ComposantID = default(Nullable<int>);
+						this._ComposantId = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Composant");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Dependance_DependanceType", Storage="_DependanceType", ThisKey="DependanceTypeID", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Dependance_DependanceType", Storage="_DependanceType", ThisKey="DependanceTypeId", OtherKey="Id", IsForeignKey=true)]
 		public DependanceType DependanceType
 		{
 			get
@@ -1938,11 +2204,11 @@ namespace STM.GDA.DataAccess
 					if ((value != null))
 					{
 						value.Dependances.Add(this);
-						this._DependanceTypeID = value.Id;
+						this._DependanceTypeId = value.Id;
 					}
 					else
 					{
-						this._DependanceTypeID = default(int);
+						this._DependanceTypeId = default(int);
 					}
 					this.SendPropertyChanged("DependanceType");
 				}
@@ -2050,7 +2316,7 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Dependance_DependanceType", Storage="_Dependances", ThisKey="Id", OtherKey="DependanceTypeID", DeleteRule="NO ACTION")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Dependance_DependanceType", Storage="_Dependances", ThisKey="Id", OtherKey="DependanceTypeId", DeleteRule="NO ACTION")]
 		public EntitySet<Dependance> Dependances
 		{
 			get
@@ -2535,7 +2801,7 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Deploiement_Composant", Storage="_Composant", ThisKey="ComposantId", OtherKey="ID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Deploiement_Composant", Storage="_Composant", ThisKey="ComposantId", OtherKey="Id", IsForeignKey=true)]
 		public Composant Composant
 		{
 			get
@@ -2558,7 +2824,7 @@ namespace STM.GDA.DataAccess
 					if ((value != null))
 					{
 						value.Deploiements.Add(this);
-						this._ComposantId = value.ID;
+						this._ComposantId = value.Id;
 					}
 					else
 					{
@@ -2632,7 +2898,7 @@ namespace STM.GDA.DataAccess
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _ID;
+		private int _Id;
 		
 		private string _Nom;
 		
@@ -2648,8 +2914,8 @@ namespace STM.GDA.DataAccess
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
     partial void OnNomChanging(string value);
     partial void OnNomChanged();
     partial void OnOrdreChanging(int value);
@@ -2665,22 +2931,22 @@ namespace STM.GDA.DataAccess
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
 		{
 			get
 			{
-				return this._ID;
+				return this._Id;
 			}
 			set
 			{
-				if ((this._ID != value))
+				if ((this._Id != value))
 				{
-					this.OnIDChanging(value);
+					this.OnIdChanging(value);
 					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
 				}
 			}
 		}
@@ -2745,7 +3011,7 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantDependance_Environnement", Storage="_ComposantDependances", ThisKey="ID", OtherKey="EnvironnementId", DeleteRule="NO ACTION")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantDependance_Environnement", Storage="_ComposantDependances", ThisKey="Id", OtherKey="EnvironnementId", DeleteRule="NO ACTION")]
 		public EntitySet<ComposantDependance> ComposantDependances
 		{
 			get
@@ -2758,7 +3024,7 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantEnvironnement_Environnement", Storage="_ComposantEnvironnements", ThisKey="ID", OtherKey="EnvironnementId", DeleteRule="NO ACTION")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantEnvironnement_Environnement", Storage="_ComposantEnvironnements", ThisKey="Id", OtherKey="EnvironnementId", DeleteRule="NO ACTION")]
 		public EntitySet<ComposantEnvironnement> ComposantEnvironnements
 		{
 			get
@@ -2955,6 +3221,120 @@ namespace STM.GDA.DataAccess
 		{
 			this.SendPropertyChanging();
 			entity.Responsable = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Technologie")]
+	public partial class Technologie : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Nom;
+		
+		private EntitySet<ComposantTechnologie> _ComposantTechnologies;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNomChanging(string value);
+    partial void OnNomChanged();
+    #endregion
+		
+		public Technologie()
+		{
+			this._ComposantTechnologies = new EntitySet<ComposantTechnologie>(new Action<ComposantTechnologie>(this.attach_ComposantTechnologies), new Action<ComposantTechnologie>(this.detach_ComposantTechnologies));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nom", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Nom
+		{
+			get
+			{
+				return this._Nom;
+			}
+			set
+			{
+				if ((this._Nom != value))
+				{
+					this.OnNomChanging(value);
+					this.SendPropertyChanging();
+					this._Nom = value;
+					this.SendPropertyChanged("Nom");
+					this.OnNomChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantTechnologie_Technologie", Storage="_ComposantTechnologies", ThisKey="Id", OtherKey="TechnologieId", DeleteRule="NO ACTION")]
+		public EntitySet<ComposantTechnologie> ComposantTechnologies
+		{
+			get
+			{
+				return this._ComposantTechnologies;
+			}
+			set
+			{
+				this._ComposantTechnologies.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ComposantTechnologies(ComposantTechnologie entity)
+		{
+			this.SendPropertyChanging();
+			entity.Technologie = this;
+		}
+		
+		private void detach_ComposantTechnologies(ComposantTechnologie entity)
+		{
+			this.SendPropertyChanging();
+			entity.Technologie = null;
 		}
 	}
 }

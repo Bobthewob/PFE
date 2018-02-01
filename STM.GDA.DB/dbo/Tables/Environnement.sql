@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Environnement]
+(
+	[Id] INT	IDENTITY (1, 1) NOT NULL,
+	[Nom] VARCHAR (25) NOT NULL,
+	[Ordre] INT NOT NULL,
+	[EstDefault] BIT NOT NULL,
+	CONSTRAINT [PK_Envrionnement] PRIMARY KEY CLUSTERED ([Id] ASC) WITH (FILLFACTOR = 90)
+)

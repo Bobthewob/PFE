@@ -30,9 +30,45 @@ namespace STM.GDA.DataAccess
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertApp(App instance);
-    partial void UpdateApp(App instance);
-    partial void DeleteApp(App instance);
+    partial void Insert__RefactorLog(__RefactorLog instance);
+    partial void Update__RefactorLog(__RefactorLog instance);
+    partial void Delete__RefactorLog(__RefactorLog instance);
+    partial void InsertClient(Client instance);
+    partial void UpdateClient(Client instance);
+    partial void DeleteClient(Client instance);
+    partial void InsertComposant(Composant instance);
+    partial void UpdateComposant(Composant instance);
+    partial void DeleteComposant(Composant instance);
+    partial void InsertComposantClient(ComposantClient instance);
+    partial void UpdateComposantClient(ComposantClient instance);
+    partial void DeleteComposantClient(ComposantClient instance);
+    partial void InsertComposantDependance(ComposantDependance instance);
+    partial void UpdateComposantDependance(ComposantDependance instance);
+    partial void DeleteComposantDependance(ComposantDependance instance);
+    partial void InsertComposantEnvironnement(ComposantEnvironnement instance);
+    partial void UpdateComposantEnvironnement(ComposantEnvironnement instance);
+    partial void DeleteComposantEnvironnement(ComposantEnvironnement instance);
+    partial void InsertComposantResponsable(ComposantResponsable instance);
+    partial void UpdateComposantResponsable(ComposantResponsable instance);
+    partial void DeleteComposantResponsable(ComposantResponsable instance);
+    partial void InsertComposantType(ComposantType instance);
+    partial void UpdateComposantType(ComposantType instance);
+    partial void DeleteComposantType(ComposantType instance);
+    partial void InsertDependance(Dependance instance);
+    partial void UpdateDependance(Dependance instance);
+    partial void DeleteDependance(Dependance instance);
+    partial void InsertDependanceType(DependanceType instance);
+    partial void UpdateDependanceType(DependanceType instance);
+    partial void DeleteDependanceType(DependanceType instance);
+    partial void InsertDeploiement(Deploiement instance);
+    partial void UpdateDeploiement(Deploiement instance);
+    partial void DeleteDeploiement(Deploiement instance);
+    partial void InsertEnvironnement(Environnement instance);
+    partial void UpdateEnvironnement(Environnement instance);
+    partial void DeleteEnvironnement(Environnement instance);
+    partial void InsertResponsable(Responsable instance);
+    partial void UpdateResponsable(Responsable instance);
+    partial void DeleteResponsable(Responsable instance);
     #endregion
 		
 		public GDA_Context(string connection) : 
@@ -59,100 +95,148 @@ namespace STM.GDA.DataAccess
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<App> Apps
+		public System.Data.Linq.Table<@__RefactorLog> @__RefactorLogs
 		{
 			get
 			{
-				return this.GetTable<App>();
+				return this.GetTable<@__RefactorLog>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Client> Clients
+		{
+			get
+			{
+				return this.GetTable<Client>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Composant> Composants
+		{
+			get
+			{
+				return this.GetTable<Composant>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ComposantClient> ComposantClients
+		{
+			get
+			{
+				return this.GetTable<ComposantClient>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ComposantDependance> ComposantDependances
+		{
+			get
+			{
+				return this.GetTable<ComposantDependance>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ComposantEnvironnement> ComposantEnvironnements
+		{
+			get
+			{
+				return this.GetTable<ComposantEnvironnement>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ComposantResponsable> ComposantResponsables
+		{
+			get
+			{
+				return this.GetTable<ComposantResponsable>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ComposantType> ComposantTypes
+		{
+			get
+			{
+				return this.GetTable<ComposantType>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Dependance> Dependances
+		{
+			get
+			{
+				return this.GetTable<Dependance>();
+			}
+		}
+		
+		public System.Data.Linq.Table<DependanceType> DependanceTypes
+		{
+			get
+			{
+				return this.GetTable<DependanceType>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Deploiement> Deploiements
+		{
+			get
+			{
+				return this.GetTable<Deploiement>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Environnement> Environnements
+		{
+			get
+			{
+				return this.GetTable<Environnement>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Responsable> Responsables
+		{
+			get
+			{
+				return this.GetTable<Responsable>();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.App")]
-	public partial class App : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.__RefactorLog")]
+	public partial class @__RefactorLog : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _Id;
-		
-		private System.Guid _Guid;
-		
-		private string _Descr;
+		private System.Guid _OperationKey;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnGuidChanging(System.Guid value);
-    partial void OnGuidChanged();
-    partial void OnDescrChanging(string value);
-    partial void OnDescrChanged();
+    partial void OnOperationKeyChanging(System.Guid value);
+    partial void OnOperationKeyChanged();
     #endregion
 		
-		public App()
+		public @__RefactorLog()
 		{
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="id", Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OperationKey", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid OperationKey
 		{
 			get
 			{
-				return this._Id;
+				return this._OperationKey;
 			}
 			set
 			{
-				if ((this._Id != value))
+				if ((this._OperationKey != value))
 				{
-					this.OnIdChanging(value);
+					this.OnOperationKeyChanging(value);
 					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="guid", Storage="_Guid", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid Guid
-		{
-			get
-			{
-				return this._Guid;
-			}
-			set
-			{
-				if ((this._Guid != value))
-				{
-					this.OnGuidChanging(value);
-					this.SendPropertyChanging();
-					this._Guid = value;
-					this.SendPropertyChanged("Guid");
-					this.OnGuidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="descr", Storage="_Descr", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Descr
-		{
-			get
-			{
-				return this._Descr;
-			}
-			set
-			{
-				if ((this._Descr != value))
-				{
-					this.OnDescrChanging(value);
-					this.SendPropertyChanging();
-					this._Descr = value;
-					this.SendPropertyChanged("Descr");
-					this.OnDescrChanged();
+					this._OperationKey = value;
+					this.SendPropertyChanged("OperationKey");
+					this.OnOperationKeyChanged();
 				}
 			}
 		}
@@ -175,6 +259,2702 @@ namespace STM.GDA.DataAccess
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Client")]
+	public partial class Client : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Nom;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNomChanging(string value);
+    partial void OnNomChanged();
+    #endregion
+		
+		public Client()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nom", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Nom
+		{
+			get
+			{
+				return this._Nom;
+			}
+			set
+			{
+				if ((this._Nom != value))
+				{
+					this.OnNomChanging(value);
+					this.SendPropertyChanging();
+					this._Nom = value;
+					this.SendPropertyChanged("Nom");
+					this.OnNomChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Composant")]
+	public partial class Composant : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _Abreviation;
+		
+		private string _Nom;
+		
+		private string _Version;
+		
+		private string _Description;
+		
+		private string _NomBD;
+		
+		private string _BC;
+		
+		private string _BW;
+		
+		private System.DateTime _DerniereMAJ;
+		
+		private int _ComposantTypeID;
+		
+		private EntityRef<ComposantType> _ComposantType;
+		
+		private EntitySet<ComposantClient> _ComposantClients;
+		
+		private EntitySet<ComposantDependance> _ComposantDependances;
+		
+		private EntitySet<ComposantEnvironnement> _ComposantEnvironnements;
+		
+		private EntitySet<ComposantResponsable> _ComposantResponsables;
+		
+		private EntitySet<Dependance> _Dependances;
+		
+		private EntitySet<Deploiement> _Deploiements;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnAbreviationChanging(string value);
+    partial void OnAbreviationChanged();
+    partial void OnNomChanging(string value);
+    partial void OnNomChanged();
+    partial void OnVersionChanging(string value);
+    partial void OnVersionChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnNomBDChanging(string value);
+    partial void OnNomBDChanged();
+    partial void OnBCChanging(string value);
+    partial void OnBCChanged();
+    partial void OnBWChanging(string value);
+    partial void OnBWChanged();
+    partial void OnDerniereMAJChanging(System.DateTime value);
+    partial void OnDerniereMAJChanged();
+    partial void OnComposantTypeIDChanging(int value);
+    partial void OnComposantTypeIDChanged();
+    #endregion
+		
+		public Composant()
+		{
+			this._ComposantType = default(EntityRef<ComposantType>);
+			this._ComposantClients = new EntitySet<ComposantClient>(new Action<ComposantClient>(this.attach_ComposantClients), new Action<ComposantClient>(this.detach_ComposantClients));
+			this._ComposantDependances = new EntitySet<ComposantDependance>(new Action<ComposantDependance>(this.attach_ComposantDependances), new Action<ComposantDependance>(this.detach_ComposantDependances));
+			this._ComposantEnvironnements = new EntitySet<ComposantEnvironnement>(new Action<ComposantEnvironnement>(this.attach_ComposantEnvironnements), new Action<ComposantEnvironnement>(this.detach_ComposantEnvironnements));
+			this._ComposantResponsables = new EntitySet<ComposantResponsable>(new Action<ComposantResponsable>(this.attach_ComposantResponsables), new Action<ComposantResponsable>(this.detach_ComposantResponsables));
+			this._Dependances = new EntitySet<Dependance>(new Action<Dependance>(this.attach_Dependances), new Action<Dependance>(this.detach_Dependances));
+			this._Deploiements = new EntitySet<Deploiement>(new Action<Deploiement>(this.attach_Deploiements), new Action<Deploiement>(this.detach_Deploiements));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Abreviation", DbType="VarChar(25)")]
+		public string Abreviation
+		{
+			get
+			{
+				return this._Abreviation;
+			}
+			set
+			{
+				if ((this._Abreviation != value))
+				{
+					this.OnAbreviationChanging(value);
+					this.SendPropertyChanging();
+					this._Abreviation = value;
+					this.SendPropertyChanged("Abreviation");
+					this.OnAbreviationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nom", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Nom
+		{
+			get
+			{
+				return this._Nom;
+			}
+			set
+			{
+				if ((this._Nom != value))
+				{
+					this.OnNomChanging(value);
+					this.SendPropertyChanging();
+					this._Nom = value;
+					this.SendPropertyChanged("Nom");
+					this.OnNomChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Version", DbType="VarChar(10)")]
+		public string Version
+		{
+			get
+			{
+				return this._Version;
+			}
+			set
+			{
+				if ((this._Version != value))
+				{
+					this.OnVersionChanging(value);
+					this.SendPropertyChanging();
+					this._Version = value;
+					this.SendPropertyChanged("Version");
+					this.OnVersionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NomBD", DbType="VarChar(25)")]
+		public string NomBD
+		{
+			get
+			{
+				return this._NomBD;
+			}
+			set
+			{
+				if ((this._NomBD != value))
+				{
+					this.OnNomBDChanging(value);
+					this.SendPropertyChanging();
+					this._NomBD = value;
+					this.SendPropertyChanged("NomBD");
+					this.OnNomBDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BC", DbType="VarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string BC
+		{
+			get
+			{
+				return this._BC;
+			}
+			set
+			{
+				if ((this._BC != value))
+				{
+					this.OnBCChanging(value);
+					this.SendPropertyChanging();
+					this._BC = value;
+					this.SendPropertyChanged("BC");
+					this.OnBCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BW", DbType="VarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string BW
+		{
+			get
+			{
+				return this._BW;
+			}
+			set
+			{
+				if ((this._BW != value))
+				{
+					this.OnBWChanging(value);
+					this.SendPropertyChanging();
+					this._BW = value;
+					this.SendPropertyChanged("BW");
+					this.OnBWChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DerniereMAJ", DbType="DateTime NOT NULL")]
+		public System.DateTime DerniereMAJ
+		{
+			get
+			{
+				return this._DerniereMAJ;
+			}
+			set
+			{
+				if ((this._DerniereMAJ != value))
+				{
+					this.OnDerniereMAJChanging(value);
+					this.SendPropertyChanging();
+					this._DerniereMAJ = value;
+					this.SendPropertyChanged("DerniereMAJ");
+					this.OnDerniereMAJChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComposantTypeID", DbType="Int NOT NULL")]
+		public int ComposantTypeID
+		{
+			get
+			{
+				return this._ComposantTypeID;
+			}
+			set
+			{
+				if ((this._ComposantTypeID != value))
+				{
+					if (this._ComposantType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnComposantTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._ComposantTypeID = value;
+					this.SendPropertyChanged("ComposantTypeID");
+					this.OnComposantTypeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Composant_ComposantType", Storage="_ComposantType", ThisKey="ComposantTypeID", OtherKey="Id", IsForeignKey=true)]
+		public ComposantType ComposantType
+		{
+			get
+			{
+				return this._ComposantType.Entity;
+			}
+			set
+			{
+				ComposantType previousValue = this._ComposantType.Entity;
+				if (((previousValue != value) 
+							|| (this._ComposantType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ComposantType.Entity = null;
+						previousValue.Composants.Remove(this);
+					}
+					this._ComposantType.Entity = value;
+					if ((value != null))
+					{
+						value.Composants.Add(this);
+						this._ComposantTypeID = value.Id;
+					}
+					else
+					{
+						this._ComposantTypeID = default(int);
+					}
+					this.SendPropertyChanged("ComposantType");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantClient_Composant", Storage="_ComposantClients", ThisKey="ID", OtherKey="ComposantId", DeleteRule="NO ACTION")]
+		public EntitySet<ComposantClient> ComposantClients
+		{
+			get
+			{
+				return this._ComposantClients;
+			}
+			set
+			{
+				this._ComposantClients.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantDependance_Composant", Storage="_ComposantDependances", ThisKey="ID", OtherKey="ComposantId", DeleteRule="NO ACTION")]
+		public EntitySet<ComposantDependance> ComposantDependances
+		{
+			get
+			{
+				return this._ComposantDependances;
+			}
+			set
+			{
+				this._ComposantDependances.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantEnvironnement_Composant", Storage="_ComposantEnvironnements", ThisKey="ID", OtherKey="ComposantId", DeleteRule="NO ACTION")]
+		public EntitySet<ComposantEnvironnement> ComposantEnvironnements
+		{
+			get
+			{
+				return this._ComposantEnvironnements;
+			}
+			set
+			{
+				this._ComposantEnvironnements.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantResponsable_Composant", Storage="_ComposantResponsables", ThisKey="ID", OtherKey="ComposantId", DeleteRule="NO ACTION")]
+		public EntitySet<ComposantResponsable> ComposantResponsables
+		{
+			get
+			{
+				return this._ComposantResponsables;
+			}
+			set
+			{
+				this._ComposantResponsables.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Dependance_Composant", Storage="_Dependances", ThisKey="ID", OtherKey="ComposantID", DeleteRule="NO ACTION")]
+		public EntitySet<Dependance> Dependances
+		{
+			get
+			{
+				return this._Dependances;
+			}
+			set
+			{
+				this._Dependances.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Deploiement_Composant", Storage="_Deploiements", ThisKey="ID", OtherKey="ComposantId", DeleteRule="NO ACTION")]
+		public EntitySet<Deploiement> Deploiements
+		{
+			get
+			{
+				return this._Deploiements;
+			}
+			set
+			{
+				this._Deploiements.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ComposantClients(ComposantClient entity)
+		{
+			this.SendPropertyChanging();
+			entity.Composant = this;
+		}
+		
+		private void detach_ComposantClients(ComposantClient entity)
+		{
+			this.SendPropertyChanging();
+			entity.Composant = null;
+		}
+		
+		private void attach_ComposantDependances(ComposantDependance entity)
+		{
+			this.SendPropertyChanging();
+			entity.Composant = this;
+		}
+		
+		private void detach_ComposantDependances(ComposantDependance entity)
+		{
+			this.SendPropertyChanging();
+			entity.Composant = null;
+		}
+		
+		private void attach_ComposantEnvironnements(ComposantEnvironnement entity)
+		{
+			this.SendPropertyChanging();
+			entity.Composant = this;
+		}
+		
+		private void detach_ComposantEnvironnements(ComposantEnvironnement entity)
+		{
+			this.SendPropertyChanging();
+			entity.Composant = null;
+		}
+		
+		private void attach_ComposantResponsables(ComposantResponsable entity)
+		{
+			this.SendPropertyChanging();
+			entity.Composant = this;
+		}
+		
+		private void detach_ComposantResponsables(ComposantResponsable entity)
+		{
+			this.SendPropertyChanging();
+			entity.Composant = null;
+		}
+		
+		private void attach_Dependances(Dependance entity)
+		{
+			this.SendPropertyChanging();
+			entity.Composant = this;
+		}
+		
+		private void detach_Dependances(Dependance entity)
+		{
+			this.SendPropertyChanging();
+			entity.Composant = null;
+		}
+		
+		private void attach_Deploiements(Deploiement entity)
+		{
+			this.SendPropertyChanging();
+			entity.Composant = this;
+		}
+		
+		private void detach_Deploiements(Deploiement entity)
+		{
+			this.SendPropertyChanging();
+			entity.Composant = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ComposantClient")]
+	public partial class ComposantClient : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ComposantId;
+		
+		private int _ClientId;
+		
+		private EntityRef<Composant> _Composant;
+		
+		private EntityRef<Responsable> _Responsable;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnComposantIdChanging(int value);
+    partial void OnComposantIdChanged();
+    partial void OnClientIdChanging(int value);
+    partial void OnClientIdChanged();
+    #endregion
+		
+		public ComposantClient()
+		{
+			this._Composant = default(EntityRef<Composant>);
+			this._Responsable = default(EntityRef<Responsable>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComposantId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ComposantId
+		{
+			get
+			{
+				return this._ComposantId;
+			}
+			set
+			{
+				if ((this._ComposantId != value))
+				{
+					if (this._Composant.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnComposantIdChanging(value);
+					this.SendPropertyChanging();
+					this._ComposantId = value;
+					this.SendPropertyChanged("ComposantId");
+					this.OnComposantIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClientId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ClientId
+		{
+			get
+			{
+				return this._ClientId;
+			}
+			set
+			{
+				if ((this._ClientId != value))
+				{
+					if (this._Responsable.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnClientIdChanging(value);
+					this.SendPropertyChanging();
+					this._ClientId = value;
+					this.SendPropertyChanged("ClientId");
+					this.OnClientIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantClient_Composant", Storage="_Composant", ThisKey="ComposantId", OtherKey="ID", IsForeignKey=true)]
+		public Composant Composant
+		{
+			get
+			{
+				return this._Composant.Entity;
+			}
+			set
+			{
+				Composant previousValue = this._Composant.Entity;
+				if (((previousValue != value) 
+							|| (this._Composant.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Composant.Entity = null;
+						previousValue.ComposantClients.Remove(this);
+					}
+					this._Composant.Entity = value;
+					if ((value != null))
+					{
+						value.ComposantClients.Add(this);
+						this._ComposantId = value.ID;
+					}
+					else
+					{
+						this._ComposantId = default(int);
+					}
+					this.SendPropertyChanged("Composant");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantClient_Responsable", Storage="_Responsable", ThisKey="ClientId", OtherKey="Id", IsForeignKey=true)]
+		public Responsable Responsable
+		{
+			get
+			{
+				return this._Responsable.Entity;
+			}
+			set
+			{
+				Responsable previousValue = this._Responsable.Entity;
+				if (((previousValue != value) 
+							|| (this._Responsable.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Responsable.Entity = null;
+						previousValue.ComposantClients.Remove(this);
+					}
+					this._Responsable.Entity = value;
+					if ((value != null))
+					{
+						value.ComposantClients.Add(this);
+						this._ClientId = value.Id;
+					}
+					else
+					{
+						this._ClientId = default(int);
+					}
+					this.SendPropertyChanged("Responsable");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ComposantDependance")]
+	public partial class ComposantDependance : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ComposantId;
+		
+		private int _EnvironnementId;
+		
+		private int _DependanceId;
+		
+		private EntityRef<Composant> _Composant;
+		
+		private EntityRef<Dependance> _Dependance;
+		
+		private EntityRef<Environnement> _Environnement;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnComposantIdChanging(int value);
+    partial void OnComposantIdChanged();
+    partial void OnEnvironnementIdChanging(int value);
+    partial void OnEnvironnementIdChanged();
+    partial void OnDependanceIdChanging(int value);
+    partial void OnDependanceIdChanged();
+    #endregion
+		
+		public ComposantDependance()
+		{
+			this._Composant = default(EntityRef<Composant>);
+			this._Dependance = default(EntityRef<Dependance>);
+			this._Environnement = default(EntityRef<Environnement>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComposantId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ComposantId
+		{
+			get
+			{
+				return this._ComposantId;
+			}
+			set
+			{
+				if ((this._ComposantId != value))
+				{
+					if (this._Composant.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnComposantIdChanging(value);
+					this.SendPropertyChanging();
+					this._ComposantId = value;
+					this.SendPropertyChanged("ComposantId");
+					this.OnComposantIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EnvironnementId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int EnvironnementId
+		{
+			get
+			{
+				return this._EnvironnementId;
+			}
+			set
+			{
+				if ((this._EnvironnementId != value))
+				{
+					if (this._Environnement.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEnvironnementIdChanging(value);
+					this.SendPropertyChanging();
+					this._EnvironnementId = value;
+					this.SendPropertyChanged("EnvironnementId");
+					this.OnEnvironnementIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DependanceId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int DependanceId
+		{
+			get
+			{
+				return this._DependanceId;
+			}
+			set
+			{
+				if ((this._DependanceId != value))
+				{
+					if (this._Dependance.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDependanceIdChanging(value);
+					this.SendPropertyChanging();
+					this._DependanceId = value;
+					this.SendPropertyChanged("DependanceId");
+					this.OnDependanceIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantDependance_Composant", Storage="_Composant", ThisKey="ComposantId", OtherKey="ID", IsForeignKey=true)]
+		public Composant Composant
+		{
+			get
+			{
+				return this._Composant.Entity;
+			}
+			set
+			{
+				Composant previousValue = this._Composant.Entity;
+				if (((previousValue != value) 
+							|| (this._Composant.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Composant.Entity = null;
+						previousValue.ComposantDependances.Remove(this);
+					}
+					this._Composant.Entity = value;
+					if ((value != null))
+					{
+						value.ComposantDependances.Add(this);
+						this._ComposantId = value.ID;
+					}
+					else
+					{
+						this._ComposantId = default(int);
+					}
+					this.SendPropertyChanged("Composant");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantDependance_Dependance", Storage="_Dependance", ThisKey="DependanceId", OtherKey="ID", IsForeignKey=true)]
+		public Dependance Dependance
+		{
+			get
+			{
+				return this._Dependance.Entity;
+			}
+			set
+			{
+				Dependance previousValue = this._Dependance.Entity;
+				if (((previousValue != value) 
+							|| (this._Dependance.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Dependance.Entity = null;
+						previousValue.ComposantDependances.Remove(this);
+					}
+					this._Dependance.Entity = value;
+					if ((value != null))
+					{
+						value.ComposantDependances.Add(this);
+						this._DependanceId = value.ID;
+					}
+					else
+					{
+						this._DependanceId = default(int);
+					}
+					this.SendPropertyChanged("Dependance");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantDependance_Environnement", Storage="_Environnement", ThisKey="EnvironnementId", OtherKey="ID", IsForeignKey=true)]
+		public Environnement Environnement
+		{
+			get
+			{
+				return this._Environnement.Entity;
+			}
+			set
+			{
+				Environnement previousValue = this._Environnement.Entity;
+				if (((previousValue != value) 
+							|| (this._Environnement.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Environnement.Entity = null;
+						previousValue.ComposantDependances.Remove(this);
+					}
+					this._Environnement.Entity = value;
+					if ((value != null))
+					{
+						value.ComposantDependances.Add(this);
+						this._EnvironnementId = value.ID;
+					}
+					else
+					{
+						this._EnvironnementId = default(int);
+					}
+					this.SendPropertyChanged("Environnement");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ComposantEnvironnement")]
+	public partial class ComposantEnvironnement : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ComposantId;
+		
+		private int _EnvironnementId;
+		
+		private int _Ordre;
+		
+		private EntityRef<Composant> _Composant;
+		
+		private EntityRef<Environnement> _Environnement;
+		
+		private EntitySet<Deploiement> _Deploiements;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnComposantIdChanging(int value);
+    partial void OnComposantIdChanged();
+    partial void OnEnvironnementIdChanging(int value);
+    partial void OnEnvironnementIdChanged();
+    partial void OnOrdreChanging(int value);
+    partial void OnOrdreChanged();
+    #endregion
+		
+		public ComposantEnvironnement()
+		{
+			this._Composant = default(EntityRef<Composant>);
+			this._Environnement = default(EntityRef<Environnement>);
+			this._Deploiements = new EntitySet<Deploiement>(new Action<Deploiement>(this.attach_Deploiements), new Action<Deploiement>(this.detach_Deploiements));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComposantId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ComposantId
+		{
+			get
+			{
+				return this._ComposantId;
+			}
+			set
+			{
+				if ((this._ComposantId != value))
+				{
+					if (this._Composant.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnComposantIdChanging(value);
+					this.SendPropertyChanging();
+					this._ComposantId = value;
+					this.SendPropertyChanged("ComposantId");
+					this.OnComposantIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EnvironnementId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int EnvironnementId
+		{
+			get
+			{
+				return this._EnvironnementId;
+			}
+			set
+			{
+				if ((this._EnvironnementId != value))
+				{
+					if (this._Environnement.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEnvironnementIdChanging(value);
+					this.SendPropertyChanging();
+					this._EnvironnementId = value;
+					this.SendPropertyChanged("EnvironnementId");
+					this.OnEnvironnementIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ordre", DbType="Int NOT NULL")]
+		public int Ordre
+		{
+			get
+			{
+				return this._Ordre;
+			}
+			set
+			{
+				if ((this._Ordre != value))
+				{
+					this.OnOrdreChanging(value);
+					this.SendPropertyChanging();
+					this._Ordre = value;
+					this.SendPropertyChanged("Ordre");
+					this.OnOrdreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantEnvironnement_Composant", Storage="_Composant", ThisKey="ComposantId", OtherKey="ID", IsForeignKey=true)]
+		public Composant Composant
+		{
+			get
+			{
+				return this._Composant.Entity;
+			}
+			set
+			{
+				Composant previousValue = this._Composant.Entity;
+				if (((previousValue != value) 
+							|| (this._Composant.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Composant.Entity = null;
+						previousValue.ComposantEnvironnements.Remove(this);
+					}
+					this._Composant.Entity = value;
+					if ((value != null))
+					{
+						value.ComposantEnvironnements.Add(this);
+						this._ComposantId = value.ID;
+					}
+					else
+					{
+						this._ComposantId = default(int);
+					}
+					this.SendPropertyChanged("Composant");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantEnvironnement_Environnement", Storage="_Environnement", ThisKey="EnvironnementId", OtherKey="ID", IsForeignKey=true)]
+		public Environnement Environnement
+		{
+			get
+			{
+				return this._Environnement.Entity;
+			}
+			set
+			{
+				Environnement previousValue = this._Environnement.Entity;
+				if (((previousValue != value) 
+							|| (this._Environnement.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Environnement.Entity = null;
+						previousValue.ComposantEnvironnements.Remove(this);
+					}
+					this._Environnement.Entity = value;
+					if ((value != null))
+					{
+						value.ComposantEnvironnements.Add(this);
+						this._EnvironnementId = value.ID;
+					}
+					else
+					{
+						this._EnvironnementId = default(int);
+					}
+					this.SendPropertyChanged("Environnement");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Deploiement_ComposantEnvironnement", Storage="_Deploiements", ThisKey="ComposantId,EnvironnementId", OtherKey="ComposantId,EnvironnementId", DeleteRule="NO ACTION")]
+		public EntitySet<Deploiement> Deploiements
+		{
+			get
+			{
+				return this._Deploiements;
+			}
+			set
+			{
+				this._Deploiements.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Deploiements(Deploiement entity)
+		{
+			this.SendPropertyChanging();
+			entity.ComposantEnvironnement = this;
+		}
+		
+		private void detach_Deploiements(Deploiement entity)
+		{
+			this.SendPropertyChanging();
+			entity.ComposantEnvironnement = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ComposantResponsable")]
+	public partial class ComposantResponsable : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ComposantId;
+		
+		private int _ResponsableId;
+		
+		private EntityRef<Composant> _Composant;
+		
+		private EntityRef<Responsable> _Responsable;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnComposantIdChanging(int value);
+    partial void OnComposantIdChanged();
+    partial void OnResponsableIdChanging(int value);
+    partial void OnResponsableIdChanged();
+    #endregion
+		
+		public ComposantResponsable()
+		{
+			this._Composant = default(EntityRef<Composant>);
+			this._Responsable = default(EntityRef<Responsable>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComposantId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ComposantId
+		{
+			get
+			{
+				return this._ComposantId;
+			}
+			set
+			{
+				if ((this._ComposantId != value))
+				{
+					if (this._Composant.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnComposantIdChanging(value);
+					this.SendPropertyChanging();
+					this._ComposantId = value;
+					this.SendPropertyChanged("ComposantId");
+					this.OnComposantIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResponsableId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ResponsableId
+		{
+			get
+			{
+				return this._ResponsableId;
+			}
+			set
+			{
+				if ((this._ResponsableId != value))
+				{
+					if (this._Responsable.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnResponsableIdChanging(value);
+					this.SendPropertyChanging();
+					this._ResponsableId = value;
+					this.SendPropertyChanged("ResponsableId");
+					this.OnResponsableIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantResponsable_Composant", Storage="_Composant", ThisKey="ComposantId", OtherKey="ID", IsForeignKey=true)]
+		public Composant Composant
+		{
+			get
+			{
+				return this._Composant.Entity;
+			}
+			set
+			{
+				Composant previousValue = this._Composant.Entity;
+				if (((previousValue != value) 
+							|| (this._Composant.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Composant.Entity = null;
+						previousValue.ComposantResponsables.Remove(this);
+					}
+					this._Composant.Entity = value;
+					if ((value != null))
+					{
+						value.ComposantResponsables.Add(this);
+						this._ComposantId = value.ID;
+					}
+					else
+					{
+						this._ComposantId = default(int);
+					}
+					this.SendPropertyChanged("Composant");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantResponsable_Responsable", Storage="_Responsable", ThisKey="ResponsableId", OtherKey="Id", IsForeignKey=true)]
+		public Responsable Responsable
+		{
+			get
+			{
+				return this._Responsable.Entity;
+			}
+			set
+			{
+				Responsable previousValue = this._Responsable.Entity;
+				if (((previousValue != value) 
+							|| (this._Responsable.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Responsable.Entity = null;
+						previousValue.ComposantResponsables.Remove(this);
+					}
+					this._Responsable.Entity = value;
+					if ((value != null))
+					{
+						value.ComposantResponsables.Add(this);
+						this._ResponsableId = value.Id;
+					}
+					else
+					{
+						this._ResponsableId = default(int);
+					}
+					this.SendPropertyChanged("Responsable");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ComposantType")]
+	public partial class ComposantType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Nom;
+		
+		private EntitySet<Composant> _Composants;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNomChanging(string value);
+    partial void OnNomChanged();
+    #endregion
+		
+		public ComposantType()
+		{
+			this._Composants = new EntitySet<Composant>(new Action<Composant>(this.attach_Composants), new Action<Composant>(this.detach_Composants));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nom", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Nom
+		{
+			get
+			{
+				return this._Nom;
+			}
+			set
+			{
+				if ((this._Nom != value))
+				{
+					this.OnNomChanging(value);
+					this.SendPropertyChanging();
+					this._Nom = value;
+					this.SendPropertyChanged("Nom");
+					this.OnNomChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Composant_ComposantType", Storage="_Composants", ThisKey="Id", OtherKey="ComposantTypeID", DeleteRule="NO ACTION")]
+		public EntitySet<Composant> Composants
+		{
+			get
+			{
+				return this._Composants;
+			}
+			set
+			{
+				this._Composants.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Composants(Composant entity)
+		{
+			this.SendPropertyChanging();
+			entity.ComposantType = this;
+		}
+		
+		private void detach_Composants(Composant entity)
+		{
+			this.SendPropertyChanging();
+			entity.ComposantType = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Dependance")]
+	public partial class Dependance : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private int _DependanceTypeID;
+		
+		private string _Nom;
+		
+		private System.Nullable<int> _ComposantID;
+		
+		private EntitySet<ComposantDependance> _ComposantDependances;
+		
+		private EntityRef<Composant> _Composant;
+		
+		private EntityRef<DependanceType> _DependanceType;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnDependanceTypeIDChanging(int value);
+    partial void OnDependanceTypeIDChanged();
+    partial void OnNomChanging(string value);
+    partial void OnNomChanged();
+    partial void OnComposantIDChanging(System.Nullable<int> value);
+    partial void OnComposantIDChanged();
+    #endregion
+		
+		public Dependance()
+		{
+			this._ComposantDependances = new EntitySet<ComposantDependance>(new Action<ComposantDependance>(this.attach_ComposantDependances), new Action<ComposantDependance>(this.detach_ComposantDependances));
+			this._Composant = default(EntityRef<Composant>);
+			this._DependanceType = default(EntityRef<DependanceType>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DependanceTypeID", DbType="Int NOT NULL")]
+		public int DependanceTypeID
+		{
+			get
+			{
+				return this._DependanceTypeID;
+			}
+			set
+			{
+				if ((this._DependanceTypeID != value))
+				{
+					if (this._DependanceType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDependanceTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._DependanceTypeID = value;
+					this.SendPropertyChanged("DependanceTypeID");
+					this.OnDependanceTypeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nom", DbType="VarChar(50)")]
+		public string Nom
+		{
+			get
+			{
+				return this._Nom;
+			}
+			set
+			{
+				if ((this._Nom != value))
+				{
+					this.OnNomChanging(value);
+					this.SendPropertyChanging();
+					this._Nom = value;
+					this.SendPropertyChanged("Nom");
+					this.OnNomChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComposantID", DbType="Int")]
+		public System.Nullable<int> ComposantID
+		{
+			get
+			{
+				return this._ComposantID;
+			}
+			set
+			{
+				if ((this._ComposantID != value))
+				{
+					if (this._Composant.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnComposantIDChanging(value);
+					this.SendPropertyChanging();
+					this._ComposantID = value;
+					this.SendPropertyChanged("ComposantID");
+					this.OnComposantIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantDependance_Dependance", Storage="_ComposantDependances", ThisKey="ID", OtherKey="DependanceId", DeleteRule="NO ACTION")]
+		public EntitySet<ComposantDependance> ComposantDependances
+		{
+			get
+			{
+				return this._ComposantDependances;
+			}
+			set
+			{
+				this._ComposantDependances.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Dependance_Composant", Storage="_Composant", ThisKey="ComposantID", OtherKey="ID", IsForeignKey=true)]
+		public Composant Composant
+		{
+			get
+			{
+				return this._Composant.Entity;
+			}
+			set
+			{
+				Composant previousValue = this._Composant.Entity;
+				if (((previousValue != value) 
+							|| (this._Composant.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Composant.Entity = null;
+						previousValue.Dependances.Remove(this);
+					}
+					this._Composant.Entity = value;
+					if ((value != null))
+					{
+						value.Dependances.Add(this);
+						this._ComposantID = value.ID;
+					}
+					else
+					{
+						this._ComposantID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Composant");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Dependance_DependanceType", Storage="_DependanceType", ThisKey="DependanceTypeID", OtherKey="Id", IsForeignKey=true)]
+		public DependanceType DependanceType
+		{
+			get
+			{
+				return this._DependanceType.Entity;
+			}
+			set
+			{
+				DependanceType previousValue = this._DependanceType.Entity;
+				if (((previousValue != value) 
+							|| (this._DependanceType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DependanceType.Entity = null;
+						previousValue.Dependances.Remove(this);
+					}
+					this._DependanceType.Entity = value;
+					if ((value != null))
+					{
+						value.Dependances.Add(this);
+						this._DependanceTypeID = value.Id;
+					}
+					else
+					{
+						this._DependanceTypeID = default(int);
+					}
+					this.SendPropertyChanged("DependanceType");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ComposantDependances(ComposantDependance entity)
+		{
+			this.SendPropertyChanging();
+			entity.Dependance = this;
+		}
+		
+		private void detach_ComposantDependances(ComposantDependance entity)
+		{
+			this.SendPropertyChanging();
+			entity.Dependance = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DependanceType")]
+	public partial class DependanceType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Nom;
+		
+		private EntitySet<Dependance> _Dependances;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNomChanging(string value);
+    partial void OnNomChanged();
+    #endregion
+		
+		public DependanceType()
+		{
+			this._Dependances = new EntitySet<Dependance>(new Action<Dependance>(this.attach_Dependances), new Action<Dependance>(this.detach_Dependances));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nom", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Nom
+		{
+			get
+			{
+				return this._Nom;
+			}
+			set
+			{
+				if ((this._Nom != value))
+				{
+					this.OnNomChanging(value);
+					this.SendPropertyChanging();
+					this._Nom = value;
+					this.SendPropertyChanged("Nom");
+					this.OnNomChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Dependance_DependanceType", Storage="_Dependances", ThisKey="Id", OtherKey="DependanceTypeID", DeleteRule="NO ACTION")]
+		public EntitySet<Dependance> Dependances
+		{
+			get
+			{
+				return this._Dependances;
+			}
+			set
+			{
+				this._Dependances.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Dependances(Dependance entity)
+		{
+			this.SendPropertyChanging();
+			entity.DependanceType = this;
+		}
+		
+		private void detach_Dependances(Dependance entity)
+		{
+			this.SendPropertyChanging();
+			entity.DependanceType = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Deploiement")]
+	public partial class Deploiement : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _ComposantId;
+		
+		private int _EnvironnementId;
+		
+		private string _NomApplication;
+		
+		private System.DateTime _Date;
+		
+		private string _BrancheTag;
+		
+		private string _URLDestination;
+		
+		private string _PortailGroupe;
+		
+		private string _PortailDescription;
+		
+		private string _Details;
+		
+		private System.DateTime _DerniereMAJ;
+		
+		private bool _PremierDeploiement;
+		
+		private bool _Web;
+		
+		private bool _BD;
+		
+		private bool _Rapport;
+		
+		private bool _Interface;
+		
+		private bool _Job;
+		
+		private EntityRef<Composant> _Composant;
+		
+		private EntityRef<ComposantEnvironnement> _ComposantEnvironnement;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnComposantIdChanging(int value);
+    partial void OnComposantIdChanged();
+    partial void OnEnvironnementIdChanging(int value);
+    partial void OnEnvironnementIdChanged();
+    partial void OnNomApplicationChanging(string value);
+    partial void OnNomApplicationChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnBrancheTagChanging(string value);
+    partial void OnBrancheTagChanged();
+    partial void OnURLDestinationChanging(string value);
+    partial void OnURLDestinationChanged();
+    partial void OnPortailGroupeChanging(string value);
+    partial void OnPortailGroupeChanged();
+    partial void OnPortailDescriptionChanging(string value);
+    partial void OnPortailDescriptionChanged();
+    partial void OnDetailsChanging(string value);
+    partial void OnDetailsChanged();
+    partial void OnDerniereMAJChanging(System.DateTime value);
+    partial void OnDerniereMAJChanged();
+    partial void OnPremierDeploiementChanging(bool value);
+    partial void OnPremierDeploiementChanged();
+    partial void OnWebChanging(bool value);
+    partial void OnWebChanged();
+    partial void OnBDChanging(bool value);
+    partial void OnBDChanged();
+    partial void OnRapportChanging(bool value);
+    partial void OnRapportChanged();
+    partial void OnInterfaceChanging(bool value);
+    partial void OnInterfaceChanged();
+    partial void OnJobChanging(bool value);
+    partial void OnJobChanged();
+    #endregion
+		
+		public Deploiement()
+		{
+			this._Composant = default(EntityRef<Composant>);
+			this._ComposantEnvironnement = default(EntityRef<ComposantEnvironnement>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComposantId", DbType="Int NOT NULL")]
+		public int ComposantId
+		{
+			get
+			{
+				return this._ComposantId;
+			}
+			set
+			{
+				if ((this._ComposantId != value))
+				{
+					if ((this._Composant.HasLoadedOrAssignedValue || this._ComposantEnvironnement.HasLoadedOrAssignedValue))
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnComposantIdChanging(value);
+					this.SendPropertyChanging();
+					this._ComposantId = value;
+					this.SendPropertyChanged("ComposantId");
+					this.OnComposantIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EnvironnementId", DbType="Int NOT NULL")]
+		public int EnvironnementId
+		{
+			get
+			{
+				return this._EnvironnementId;
+			}
+			set
+			{
+				if ((this._EnvironnementId != value))
+				{
+					if (this._ComposantEnvironnement.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEnvironnementIdChanging(value);
+					this.SendPropertyChanging();
+					this._EnvironnementId = value;
+					this.SendPropertyChanged("EnvironnementId");
+					this.OnEnvironnementIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NomApplication", DbType="VarChar(100)")]
+		public string NomApplication
+		{
+			get
+			{
+				return this._NomApplication;
+			}
+			set
+			{
+				if ((this._NomApplication != value))
+				{
+					this.OnNomApplicationChanging(value);
+					this.SendPropertyChanging();
+					this._NomApplication = value;
+					this.SendPropertyChanged("NomApplication");
+					this.OnNomApplicationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime NOT NULL")]
+		public System.DateTime Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this.OnDateChanging(value);
+					this.SendPropertyChanging();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BrancheTag", DbType="VarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string BrancheTag
+		{
+			get
+			{
+				return this._BrancheTag;
+			}
+			set
+			{
+				if ((this._BrancheTag != value))
+				{
+					this.OnBrancheTagChanging(value);
+					this.SendPropertyChanging();
+					this._BrancheTag = value;
+					this.SendPropertyChanged("BrancheTag");
+					this.OnBrancheTagChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URLDestination", DbType="VarChar(100)")]
+		public string URLDestination
+		{
+			get
+			{
+				return this._URLDestination;
+			}
+			set
+			{
+				if ((this._URLDestination != value))
+				{
+					this.OnURLDestinationChanging(value);
+					this.SendPropertyChanging();
+					this._URLDestination = value;
+					this.SendPropertyChanged("URLDestination");
+					this.OnURLDestinationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PortailGroupe", DbType="VarChar(100)")]
+		public string PortailGroupe
+		{
+			get
+			{
+				return this._PortailGroupe;
+			}
+			set
+			{
+				if ((this._PortailGroupe != value))
+				{
+					this.OnPortailGroupeChanging(value);
+					this.SendPropertyChanging();
+					this._PortailGroupe = value;
+					this.SendPropertyChanged("PortailGroupe");
+					this.OnPortailGroupeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PortailDescription", DbType="VarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string PortailDescription
+		{
+			get
+			{
+				return this._PortailDescription;
+			}
+			set
+			{
+				if ((this._PortailDescription != value))
+				{
+					this.OnPortailDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._PortailDescription = value;
+					this.SendPropertyChanged("PortailDescription");
+					this.OnPortailDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Details", DbType="VarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Details
+		{
+			get
+			{
+				return this._Details;
+			}
+			set
+			{
+				if ((this._Details != value))
+				{
+					this.OnDetailsChanging(value);
+					this.SendPropertyChanging();
+					this._Details = value;
+					this.SendPropertyChanged("Details");
+					this.OnDetailsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DerniereMAJ", DbType="DateTime NOT NULL")]
+		public System.DateTime DerniereMAJ
+		{
+			get
+			{
+				return this._DerniereMAJ;
+			}
+			set
+			{
+				if ((this._DerniereMAJ != value))
+				{
+					this.OnDerniereMAJChanging(value);
+					this.SendPropertyChanging();
+					this._DerniereMAJ = value;
+					this.SendPropertyChanged("DerniereMAJ");
+					this.OnDerniereMAJChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PremierDeploiement", DbType="Bit NOT NULL")]
+		public bool PremierDeploiement
+		{
+			get
+			{
+				return this._PremierDeploiement;
+			}
+			set
+			{
+				if ((this._PremierDeploiement != value))
+				{
+					this.OnPremierDeploiementChanging(value);
+					this.SendPropertyChanging();
+					this._PremierDeploiement = value;
+					this.SendPropertyChanged("PremierDeploiement");
+					this.OnPremierDeploiementChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Web", DbType="Bit NOT NULL")]
+		public bool Web
+		{
+			get
+			{
+				return this._Web;
+			}
+			set
+			{
+				if ((this._Web != value))
+				{
+					this.OnWebChanging(value);
+					this.SendPropertyChanging();
+					this._Web = value;
+					this.SendPropertyChanged("Web");
+					this.OnWebChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BD", DbType="Bit NOT NULL")]
+		public bool BD
+		{
+			get
+			{
+				return this._BD;
+			}
+			set
+			{
+				if ((this._BD != value))
+				{
+					this.OnBDChanging(value);
+					this.SendPropertyChanging();
+					this._BD = value;
+					this.SendPropertyChanged("BD");
+					this.OnBDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rapport", DbType="Bit NOT NULL")]
+		public bool Rapport
+		{
+			get
+			{
+				return this._Rapport;
+			}
+			set
+			{
+				if ((this._Rapport != value))
+				{
+					this.OnRapportChanging(value);
+					this.SendPropertyChanging();
+					this._Rapport = value;
+					this.SendPropertyChanged("Rapport");
+					this.OnRapportChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Interface", DbType="Bit NOT NULL")]
+		public bool Interface
+		{
+			get
+			{
+				return this._Interface;
+			}
+			set
+			{
+				if ((this._Interface != value))
+				{
+					this.OnInterfaceChanging(value);
+					this.SendPropertyChanging();
+					this._Interface = value;
+					this.SendPropertyChanged("Interface");
+					this.OnInterfaceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Job", DbType="Bit NOT NULL")]
+		public bool Job
+		{
+			get
+			{
+				return this._Job;
+			}
+			set
+			{
+				if ((this._Job != value))
+				{
+					this.OnJobChanging(value);
+					this.SendPropertyChanging();
+					this._Job = value;
+					this.SendPropertyChanged("Job");
+					this.OnJobChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Deploiement_Composant", Storage="_Composant", ThisKey="ComposantId", OtherKey="ID", IsForeignKey=true)]
+		public Composant Composant
+		{
+			get
+			{
+				return this._Composant.Entity;
+			}
+			set
+			{
+				Composant previousValue = this._Composant.Entity;
+				if (((previousValue != value) 
+							|| (this._Composant.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Composant.Entity = null;
+						previousValue.Deploiements.Remove(this);
+					}
+					this._Composant.Entity = value;
+					if ((value != null))
+					{
+						value.Deploiements.Add(this);
+						this._ComposantId = value.ID;
+					}
+					else
+					{
+						this._ComposantId = default(int);
+					}
+					this.SendPropertyChanged("Composant");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Deploiement_ComposantEnvironnement", Storage="_ComposantEnvironnement", ThisKey="ComposantId,EnvironnementId", OtherKey="ComposantId,EnvironnementId", IsForeignKey=true)]
+		public ComposantEnvironnement ComposantEnvironnement
+		{
+			get
+			{
+				return this._ComposantEnvironnement.Entity;
+			}
+			set
+			{
+				ComposantEnvironnement previousValue = this._ComposantEnvironnement.Entity;
+				if (((previousValue != value) 
+							|| (this._ComposantEnvironnement.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ComposantEnvironnement.Entity = null;
+						previousValue.Deploiements.Remove(this);
+					}
+					this._ComposantEnvironnement.Entity = value;
+					if ((value != null))
+					{
+						value.Deploiements.Add(this);
+						this._ComposantId = value.ComposantId;
+						this._EnvironnementId = value.EnvironnementId;
+					}
+					else
+					{
+						this._ComposantId = default(int);
+						this._EnvironnementId = default(int);
+					}
+					this.SendPropertyChanged("ComposantEnvironnement");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Environnement")]
+	public partial class Environnement : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _Nom;
+		
+		private int _Ordre;
+		
+		private bool _EstDefault;
+		
+		private EntitySet<ComposantDependance> _ComposantDependances;
+		
+		private EntitySet<ComposantEnvironnement> _ComposantEnvironnements;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnNomChanging(string value);
+    partial void OnNomChanged();
+    partial void OnOrdreChanging(int value);
+    partial void OnOrdreChanged();
+    partial void OnEstDefaultChanging(bool value);
+    partial void OnEstDefaultChanged();
+    #endregion
+		
+		public Environnement()
+		{
+			this._ComposantDependances = new EntitySet<ComposantDependance>(new Action<ComposantDependance>(this.attach_ComposantDependances), new Action<ComposantDependance>(this.detach_ComposantDependances));
+			this._ComposantEnvironnements = new EntitySet<ComposantEnvironnement>(new Action<ComposantEnvironnement>(this.attach_ComposantEnvironnements), new Action<ComposantEnvironnement>(this.detach_ComposantEnvironnements));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nom", DbType="VarChar(25) NOT NULL", CanBeNull=false)]
+		public string Nom
+		{
+			get
+			{
+				return this._Nom;
+			}
+			set
+			{
+				if ((this._Nom != value))
+				{
+					this.OnNomChanging(value);
+					this.SendPropertyChanging();
+					this._Nom = value;
+					this.SendPropertyChanged("Nom");
+					this.OnNomChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ordre", DbType="Int NOT NULL")]
+		public int Ordre
+		{
+			get
+			{
+				return this._Ordre;
+			}
+			set
+			{
+				if ((this._Ordre != value))
+				{
+					this.OnOrdreChanging(value);
+					this.SendPropertyChanging();
+					this._Ordre = value;
+					this.SendPropertyChanged("Ordre");
+					this.OnOrdreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EstDefault", DbType="Bit NOT NULL")]
+		public bool EstDefault
+		{
+			get
+			{
+				return this._EstDefault;
+			}
+			set
+			{
+				if ((this._EstDefault != value))
+				{
+					this.OnEstDefaultChanging(value);
+					this.SendPropertyChanging();
+					this._EstDefault = value;
+					this.SendPropertyChanged("EstDefault");
+					this.OnEstDefaultChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantDependance_Environnement", Storage="_ComposantDependances", ThisKey="ID", OtherKey="EnvironnementId", DeleteRule="NO ACTION")]
+		public EntitySet<ComposantDependance> ComposantDependances
+		{
+			get
+			{
+				return this._ComposantDependances;
+			}
+			set
+			{
+				this._ComposantDependances.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantEnvironnement_Environnement", Storage="_ComposantEnvironnements", ThisKey="ID", OtherKey="EnvironnementId", DeleteRule="NO ACTION")]
+		public EntitySet<ComposantEnvironnement> ComposantEnvironnements
+		{
+			get
+			{
+				return this._ComposantEnvironnements;
+			}
+			set
+			{
+				this._ComposantEnvironnements.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ComposantDependances(ComposantDependance entity)
+		{
+			this.SendPropertyChanging();
+			entity.Environnement = this;
+		}
+		
+		private void detach_ComposantDependances(ComposantDependance entity)
+		{
+			this.SendPropertyChanging();
+			entity.Environnement = null;
+		}
+		
+		private void attach_ComposantEnvironnements(ComposantEnvironnement entity)
+		{
+			this.SendPropertyChanging();
+			entity.Environnement = this;
+		}
+		
+		private void detach_ComposantEnvironnements(ComposantEnvironnement entity)
+		{
+			this.SendPropertyChanging();
+			entity.Environnement = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Responsable")]
+	public partial class Responsable : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Nom;
+		
+		private EntitySet<ComposantClient> _ComposantClients;
+		
+		private EntitySet<ComposantResponsable> _ComposantResponsables;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNomChanging(string value);
+    partial void OnNomChanged();
+    #endregion
+		
+		public Responsable()
+		{
+			this._ComposantClients = new EntitySet<ComposantClient>(new Action<ComposantClient>(this.attach_ComposantClients), new Action<ComposantClient>(this.detach_ComposantClients));
+			this._ComposantResponsables = new EntitySet<ComposantResponsable>(new Action<ComposantResponsable>(this.attach_ComposantResponsables), new Action<ComposantResponsable>(this.detach_ComposantResponsables));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nom", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Nom
+		{
+			get
+			{
+				return this._Nom;
+			}
+			set
+			{
+				if ((this._Nom != value))
+				{
+					this.OnNomChanging(value);
+					this.SendPropertyChanging();
+					this._Nom = value;
+					this.SendPropertyChanged("Nom");
+					this.OnNomChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantClient_Responsable", Storage="_ComposantClients", ThisKey="Id", OtherKey="ClientId", DeleteRule="NO ACTION")]
+		public EntitySet<ComposantClient> ComposantClients
+		{
+			get
+			{
+				return this._ComposantClients;
+			}
+			set
+			{
+				this._ComposantClients.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantResponsable_Responsable", Storage="_ComposantResponsables", ThisKey="Id", OtherKey="ResponsableId", DeleteRule="NO ACTION")]
+		public EntitySet<ComposantResponsable> ComposantResponsables
+		{
+			get
+			{
+				return this._ComposantResponsables;
+			}
+			set
+			{
+				this._ComposantResponsables.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ComposantClients(ComposantClient entity)
+		{
+			this.SendPropertyChanging();
+			entity.Responsable = this;
+		}
+		
+		private void detach_ComposantClients(ComposantClient entity)
+		{
+			this.SendPropertyChanging();
+			entity.Responsable = null;
+		}
+		
+		private void attach_ComposantResponsables(ComposantResponsable entity)
+		{
+			this.SendPropertyChanging();
+			entity.Responsable = this;
+		}
+		
+		private void detach_ComposantResponsables(ComposantResponsable entity)
+		{
+			this.SendPropertyChanging();
+			entity.Responsable = null;
 		}
 	}
 }

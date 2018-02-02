@@ -244,7 +244,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51706</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://windows:55670/</IISUrl>
+          <IISUrl>http://localhost:55670/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -6,6 +6,7 @@
 	[Version] VARCHAR(10) NULL,
 	[Description] VARCHAR(MAX) NULL,
 	[NomBD] VARCHAR(25) NULL,
+	[SourceControlPath] VARCHAR(25) NULL,
 	[BC] VARCHAR(MAX) NULL,
 	[BW] VARCHAR(MAX) NULL,
 	[DerniereMAJ] DATETIME NOT NULL,

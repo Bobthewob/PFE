@@ -294,6 +294,8 @@ namespace STM.GDA.DataAccess
 		
 		private string _Nom;
 		
+		private EntitySet<ComposantClient> _ComposantClients;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -306,6 +308,7 @@ namespace STM.GDA.DataAccess
 		
 		public Client()
 		{
+			this._ComposantClients = new EntitySet<ComposantClient>(new Action<ComposantClient>(this.attach_ComposantClients), new Action<ComposantClient>(this.detach_ComposantClients));
 			OnCreated();
 		}
 		
@@ -349,6 +352,19 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantClient_Client", Storage="_ComposantClients", ThisKey="Id", OtherKey="ClientId", DeleteRule="NO ACTION")]
+		public EntitySet<ComposantClient> ComposantClients
+		{
+			get
+			{
+				return this._ComposantClients;
+			}
+			set
+			{
+				this._ComposantClients.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -367,6 +383,18 @@ namespace STM.GDA.DataAccess
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_ComposantClients(ComposantClient entity)
+		{
+			this.SendPropertyChanging();
+			entity.Client = this;
+		}
+		
+		private void detach_ComposantClients(ComposantClient entity)
+		{
+			this.SendPropertyChanging();
+			entity.Client = null;
 		}
 	}
 	
@@ -387,6 +415,8 @@ namespace STM.GDA.DataAccess
 		private string _Description;
 		
 		private string _NomBD;
+		
+		private string _SourceControlPath;
 		
 		private string _BC;
 		
@@ -432,6 +462,8 @@ namespace STM.GDA.DataAccess
     partial void OnDescriptionChanged();
     partial void OnNomBDChanging(string value);
     partial void OnNomBDChanged();
+    partial void OnSourceControlPathChanging(string value);
+    partial void OnSourceControlPathChanged();
     partial void OnBCChanging(string value);
     partial void OnBCChanged();
     partial void OnBWChanging(string value);
@@ -575,6 +607,26 @@ namespace STM.GDA.DataAccess
 					this._NomBD = value;
 					this.SendPropertyChanged("NomBD");
 					this.OnNomBDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SourceControlPath", DbType="VarChar(25)")]
+		public string SourceControlPath
+		{
+			get
+			{
+				return this._SourceControlPath;
+			}
+			set
+			{
+				if ((this._SourceControlPath != value))
+				{
+					this.OnSourceControlPathChanging(value);
+					this.SendPropertyChanging();
+					this._SourceControlPath = value;
+					this.SendPropertyChanged("SourceControlPath");
+					this.OnSourceControlPathChanged();
 				}
 			}
 		}
@@ -943,9 +995,9 @@ namespace STM.GDA.DataAccess
 		
 		private int _ClientId;
 		
-		private EntityRef<Composant> _Composant;
+		private EntityRef<Client> _Client;
 		
-		private EntityRef<Responsable> _Responsable;
+		private EntityRef<Composant> _Composant;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -959,8 +1011,8 @@ namespace STM.GDA.DataAccess
 		
 		public ComposantClient()
 		{
+			this._Client = default(EntityRef<Client>);
 			this._Composant = default(EntityRef<Composant>);
-			this._Responsable = default(EntityRef<Responsable>);
 			OnCreated();
 		}
 		
@@ -999,7 +1051,7 @@ namespace STM.GDA.DataAccess
 			{
 				if ((this._ClientId != value))
 				{
-					if (this._Responsable.HasLoadedOrAssignedValue)
+					if (this._Client.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1008,6 +1060,40 @@ namespace STM.GDA.DataAccess
 					this._ClientId = value;
 					this.SendPropertyChanged("ClientId");
 					this.OnClientIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantClient_Client", Storage="_Client", ThisKey="ClientId", OtherKey="Id", IsForeignKey=true)]
+		public Client Client
+		{
+			get
+			{
+				return this._Client.Entity;
+			}
+			set
+			{
+				Client previousValue = this._Client.Entity;
+				if (((previousValue != value) 
+							|| (this._Client.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Client.Entity = null;
+						previousValue.ComposantClients.Remove(this);
+					}
+					this._Client.Entity = value;
+					if ((value != null))
+					{
+						value.ComposantClients.Add(this);
+						this._ClientId = value.Id;
+					}
+					else
+					{
+						this._ClientId = default(int);
+					}
+					this.SendPropertyChanged("Client");
 				}
 			}
 		}
@@ -1042,40 +1128,6 @@ namespace STM.GDA.DataAccess
 						this._ComposantId = default(int);
 					}
 					this.SendPropertyChanged("Composant");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantClient_Responsable", Storage="_Responsable", ThisKey="ClientId", OtherKey="Id", IsForeignKey=true)]
-		public Responsable Responsable
-		{
-			get
-			{
-				return this._Responsable.Entity;
-			}
-			set
-			{
-				Responsable previousValue = this._Responsable.Entity;
-				if (((previousValue != value) 
-							|| (this._Responsable.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Responsable.Entity = null;
-						previousValue.ComposantClients.Remove(this);
-					}
-					this._Responsable.Entity = value;
-					if ((value != null))
-					{
-						value.ComposantClients.Add(this);
-						this._ClientId = value.Id;
-					}
-					else
-					{
-						this._ClientId = default(int);
-					}
-					this.SendPropertyChanged("Responsable");
 				}
 			}
 		}
@@ -3092,8 +3144,6 @@ namespace STM.GDA.DataAccess
 		
 		private string _Nom;
 		
-		private EntitySet<ComposantClient> _ComposantClients;
-		
 		private EntitySet<ComposantResponsable> _ComposantResponsables;
 		
     #region Extensibility Method Definitions
@@ -3108,7 +3158,6 @@ namespace STM.GDA.DataAccess
 		
 		public Responsable()
 		{
-			this._ComposantClients = new EntitySet<ComposantClient>(new Action<ComposantClient>(this.attach_ComposantClients), new Action<ComposantClient>(this.detach_ComposantClients));
 			this._ComposantResponsables = new EntitySet<ComposantResponsable>(new Action<ComposantResponsable>(this.attach_ComposantResponsables), new Action<ComposantResponsable>(this.detach_ComposantResponsables));
 			OnCreated();
 		}
@@ -3153,19 +3202,6 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantClient_Responsable", Storage="_ComposantClients", ThisKey="Id", OtherKey="ClientId", DeleteRule="NO ACTION")]
-		public EntitySet<ComposantClient> ComposantClients
-		{
-			get
-			{
-				return this._ComposantClients;
-			}
-			set
-			{
-				this._ComposantClients.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantResponsable_Responsable", Storage="_ComposantResponsables", ThisKey="Id", OtherKey="ResponsableId", DeleteRule="NO ACTION")]
 		public EntitySet<ComposantResponsable> ComposantResponsables
 		{
@@ -3197,18 +3233,6 @@ namespace STM.GDA.DataAccess
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_ComposantClients(ComposantClient entity)
-		{
-			this.SendPropertyChanging();
-			entity.Responsable = this;
-		}
-		
-		private void detach_ComposantClients(ComposantClient entity)
-		{
-			this.SendPropertyChanging();
-			entity.Responsable = null;
 		}
 		
 		private void attach_ComposantResponsables(ComposantResponsable entity)

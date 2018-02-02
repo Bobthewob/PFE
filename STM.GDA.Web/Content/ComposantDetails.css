@@ -1,0 +1,8 @@
+﻿.align-right {
+    text-align: right;
+}
+
+.value {
+    overflow: auto;
+    padding-bottom: 10px;
+}

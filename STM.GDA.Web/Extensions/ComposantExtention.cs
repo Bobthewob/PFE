@@ -39,7 +39,22 @@ namespace STM.GDA.Web.Extensions
                 Nom = composant.Nom,
                 Abrevriation = composant.Abreviation,
                 Description = composant.Description,
-                Version = composant.Version
+                Version = composant.Version,
+                Type = new EtiquetteModel { Id = composant.ComposantType.Id, Nom = composant.ComposantType.Nom },
+                Clients = composant.ComposantClients.Select(x => new EtiquetteModel {
+                    Id = x.Client.Id,
+                    Nom = x.Client.Nom
+                }).ToList(),
+                Responsables = composant.ComposantResponsables.Select(x => new EtiquetteModel
+                {
+                    Id = x.Responsable.Id,
+                    Nom = x.Responsable.Nom
+                }).ToList(),
+                NomBD = composant.NomBD,
+                SourceControlPath = composant.SourceControlPath,
+                BC = composant.BC,
+                BW = composant.BW,
+                DerniereMAJ = composant.DerniereMAJ
             };
         }
     }

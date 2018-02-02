@@ -49,6 +49,8 @@ label {
 
 .divComposant:hover {
     border: 1px solid rgba(0, 158, 224, 0.6);
+    background: rgba(0, 158, 224, 0.05);
+    cursor: pointer;
 }
     
 .bold {
@@ -88,9 +90,9 @@ label {
 }
 
 .tag {
-    background-color: rgba(0, 158, 224, 0.6);
-    border: 1px solid rgba(0, 158, 224, 0.6);
-    color: #fff;
+    background-color: rgba(254, 228, 4, 0.05);
+    border: 1px solid rgba(254, 228, 4, 0.6);
+    color: #555;
     text-align: center;
     margin-right: 3px;
     display: inline-block;

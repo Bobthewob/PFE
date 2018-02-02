@@ -1,0 +1,45 @@
+﻿@model STM.GDA.Web.Models.ComposantModel
+
+<h2>Détails</h2>
+
+<div>
+    <p>
+        @Html.ActionLink("Retour  à la lise", "Index")
+    </p>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Abrevriation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Abrevriation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Version)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Version)
+        </dd>
+    </dl>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    </p>
+</div>

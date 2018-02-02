@@ -3,7 +3,7 @@
 
 @foreach (var composant in Model)
 {
-<div class="divComposant">
+<div class="divComposant" onclick="window.location.href = '@Url.Action("Details", "Composant", new { id =  @Html.ValueFor(x => composant.Id) })'">
     <div class="col-md-10 bold padding-top">
         @Html.DisplayFor(x => composant.AbreviationNom)
     </div>

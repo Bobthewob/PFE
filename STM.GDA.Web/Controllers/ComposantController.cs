@@ -23,7 +23,21 @@ namespace STM.GDA.Web.Controllers
                 composants = composants.Where(x => x.Nom.Contains(filtre)).ToList();
             }
 
-            return PartialView("_ListeComposant", composants);
+            return PartialView("_Liste", composants);
+        }
+
+        public ActionResult Details(int id)
+        {
+            var composant = ComposantBL.GetComposant(id);
+
+            if (composant == null)
+            {
+                return View("Error");
+            }
+            else
+            {
+                return View("Details", composant);
+            }
         }
     }
 }   

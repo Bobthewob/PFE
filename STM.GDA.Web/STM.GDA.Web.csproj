@@ -148,10 +148,12 @@
     <Compile Include="BL\ComposantBL.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ComposantController.cs" />
+    <Compile Include="Extensions\ComposantExtention.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ComposantListeModel.cs" />
+    <Compile Include="Models\ComposantModel.cs" />
     <Compile Include="Models\DependanceModel.cs" />
     <Compile Include="Models\TechnologieModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -207,7 +209,8 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Composant\Index.cshtml" />
-    <Content Include="Views\Composant\_ListeComposant.cshtml" />
+    <Content Include="Views\Composant\_Liste.cshtml" />
+    <Content Include="Views\Composant\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

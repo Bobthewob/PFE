@@ -154,8 +154,7 @@
     </Compile>
     <Compile Include="Models\ComposantListeModel.cs" />
     <Compile Include="Models\ComposantModel.cs" />
-    <Compile Include="Models\DependanceModel.cs" />
-    <Compile Include="Models\TechnologieModel.cs" />
+    <Compile Include="Models\EtiquetteModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

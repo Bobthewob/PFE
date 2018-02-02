@@ -17,9 +17,9 @@ namespace STM.GDA.Web.Models
 
         public string Version { get; set; }
 
-        public List<DependanceModel> Dependances { get; set; } = new List<DependanceModel>();
+        public List<EtiquetteModel> Dependances { get; set; } = new List<EtiquetteModel>();
 
-        public List<TechnologieModel> Technologies { get; set; } = new List<TechnologieModel>();
+        public List<EtiquetteModel> Technologies { get; set; } = new List<EtiquetteModel>();
 
         public string AbreviationNom => Abrevriation + " - " + Nom;
     }

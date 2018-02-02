@@ -18,12 +18,12 @@ namespace STM.GDA.Web.Extensions
                 Abrevriation = composant.Abreviation,
                 Description = composant.Description,
                 Version = composant.Version,
-                Technologies = composant.ComposantTechnologies.Select(comp => new TechnologieModel
+                Technologies = composant.ComposantTechnologies.Select(comp => new EtiquetteModel
                 {
                     Id = comp.Technologie.Id,
                     Nom = comp.Technologie.Nom
                 }).ToList(),
-                Dependances = composant.ComposantDependances.Select(comp => new DependanceModel
+                Dependances = composant.ComposantDependances.Select(comp => new EtiquetteModel
                 {
                     Id = comp.Dependance.Id,
                     Nom = comp.Dependance.Nom

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace STM.GDA.Web.Models
 {
-   public class TechnologieModel
+   public class EtiquetteModel
    {
       public int Id { get; set; }
 

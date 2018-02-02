@@ -19,7 +19,15 @@ namespace STM.GDA.Web.BL
                Nom = x.Nom,
                Abrevriation = x.Abreviation,
                Description = x.Description,
-               Version = x.Version
+               Version = x.Version,
+               Technologies = x.ComposantTechnologies.Select(comp => new TechnologieModel {
+                  Id = comp.Technologie.Id,
+                  Nom = comp.Technologie.Nom
+               }).ToList(),
+               Dependances = x.ComposantDependances.Select(comp => new DependanceModel {
+                  Id = comp.Dependance.Id,
+                  Nom = comp.Dependance.Nom
+               }).ToList()
             }).ToList();
          }
       }

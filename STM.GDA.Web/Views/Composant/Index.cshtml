@@ -5,5 +5,15 @@
 
 @for (var i = 0; i < Model.Count; i++)
 {
-   @Html.ValueFor(m => m[i].Nom) <br/>
+    <p>Nom</p>
+    @Html.ValueFor(m => m[i].Nom); <br />
+    <br />
+    <p>Technologie</p>
+    @Html.ValueFor(m => m[i].TechnologiesNom); <br />
+    <br />
+
+    <p>Dependance</p>
+    @Html.ValueFor(m => m[i].DependancesNom); <br />
+    <br />
+
 }

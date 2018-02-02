@@ -20,5 +20,9 @@ namespace STM.GDA.Web.Models
       public List<DependanceModel> Dependances { get; set; } = new List<DependanceModel>();
 
       public List<TechnologieModel> Technologies { get; set; } = new List<TechnologieModel>();
+
+      public string TechnologiesNom => System.String.Join(", ", Technologies.Select(x => x.Nom));
+
+      public string DependancesNom => System.String.Join(", ", Dependances.Select(x => x.Nom));
    }
 }

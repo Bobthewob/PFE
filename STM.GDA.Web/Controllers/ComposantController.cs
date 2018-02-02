@@ -7,11 +7,23 @@ using System.Web.Mvc;
 
 namespace STM.GDA.Web.Controllers
 {
-   public class ComposantController : BaseController
-   {
-      public ActionResult Index()
-      {
-         return View(ComposantBL.GetList());
-      }
-   }
-}
+    public class ComposantController : BaseController
+    {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult GetComposants(string filtre)
+        {
+            var composants = ComposantBL.GetList();
+
+            if (!String.IsNullOrEmpty(filtre))
+            {
+                composants = composants.Where(x => x.Nom.Contains(filtre)).ToList();
+            }
+
+            return PartialView("_ListeComposant", composants);
+        }
+    }
+}   

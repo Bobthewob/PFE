@@ -1,19 +1,53 @@
-﻿@using STM.GDA.Web.Models
-@model List<ComposantListeModel>
+﻿@section Styles {
+    <link href="@Url.Content("~/Content/Composant.css")" rel="stylesheet" type="text/css" />
+}
 
 <h2>Liste des applications et services</h2>
 
-@for (var i = 0; i < Model.Count; i++)
-{
-    <p>Nom</p>
-    @Html.ValueFor(m => m[i].Nom); <br />
-    <br />
-    <p>Technologie</p>
-    @Html.ValueFor(m => m[i].TechnologiesNom); <br />
-    <br />
+<div class="divListe">
+    <div class="input-group">
+        <span class="input-group-addon transparent"><span class="glyphicon glyphicon-search"></span></span>
+        <input type="text" id="txtFiltre" class="form-control left-border-none" placeholder="Rechercher">
+        <button type="button" id="btnExportCourt" class="btn btn-default">Export court</button>
+        <button type="button" id="btnExportLong" class="btn btn-default">Export long</button>
+    </div>
 
-    <p>Dependance</p>
-    @Html.ValueFor(m => m[i].DependancesNom); <br />
-    <br />
+    <div id="listeComposant">@{ Html.RenderAction("GetComposants"); }</div>
+</div>
 
-}
+<a id="scroll-up" href="#" class="btn btn-primary btn-lg scroll-up" role="button"><span class="glyphicon glyphicon-chevron-up"></span></a>
+
+
+<script>
+    $(document).ready(function () {
+        //https://bootsnipp.com/snippets/featured/link-to-top-page
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#scroll-up').fadeIn();
+            } else {
+                $('#scroll-up').fadeOut();
+            }
+        });
+
+        $('#scroll-up').click(function () {
+            $('#scroll-up').tooltip('hide');
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+
+        $("#txtFiltre").on('input', function (e) {
+            filtrerListe($(this).val());
+        });
+    });    
+
+    function filtrerListe(filtre) {
+        CallController(
+            "@Url.Action("GetComposants", "Composant")",
+            { filtre: filtre }
+        ).done(function (result) {
+            $("#listeComposant").html(result);
+        });
+    }
+</script>

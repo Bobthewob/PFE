@@ -1,0 +1,88 @@
+﻿.divListe {
+    margin: auto;
+    width: 80%;
+}
+
+label {
+    font-weight: normal;
+}
+
+#txtFiltre {
+    width: 65%;
+    margin-right: 2%;
+}
+
+button {
+    width: 15%;
+}
+
+#btnExportCourt {
+    width: 16%;
+    margin-right: 2%;
+}
+
+#listeComposant {
+    padding-top: 10px;
+}
+
+.divComposant {
+    border : 1px solid black;
+    height: 100px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.bold {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.italic {
+    font-style : italic;
+}
+
+.right-align {
+    text-align: right;
+}
+
+.description {
+    height: 2.2em;
+    line-height: 1.1;
+    margin-bottom: 5px;
+    overflow: hidden;
+}
+
+.tag {
+    border-radius: 4px;
+    background-color: black;
+    color: white;
+    width: 10%;
+    text-align: center;
+    margin-right: 3px;
+    display: inline-block;
+}
+
+.scroll-up {
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.divComposant:hover .overlay {
+    opacity: 0.5;
+}
+
+.padding-top {
+    padding-top: 5px;
+}

@@ -1,0 +1,42 @@
+﻿@using STM.GDA.Web.Models
+@model List<ComposantListeModel>
+
+@foreach (var composant in Model)
+{
+<div class="divComposant">
+    <div class="col-md-10 bold padding-top">
+        @Html.DisplayFor(x => composant.AbreviationNom)
+    </div>
+
+    <div class="col-md-2 italic right-align padding-top">
+        @Html.LabelFor(x => composant.Version)
+        @Html.DisplayFor(x => composant.Version)
+    </div>
+
+    <div class="col-md-12 description italic">
+        @Html.DisplayFor(x => composant.Description)
+    </div>
+
+    <div class="col-md-12 italic">
+        @foreach (var technologie in composant.Technologies)
+        {
+            <div class="tag">
+                @Html.DisplayFor(x => technologie.Nom)
+            </div>
+        }
+
+        @foreach (var dependance in composant.Dependances)
+        {
+            <div class="tag">
+                @Html.DisplayFor(x => dependance.Nom)
+            </div>
+        }
+    </div>
+
+    <div class="overlay"></div>
+</div>
+}
+
+<script>
+
+</script>

@@ -1,0 +1,9 @@
+﻿.align-right {
+    text-align: right;
+    vertical-align: middle;
+}
+
+.value {
+    overflow: auto;
+    padding-bottom: 10px;
+}

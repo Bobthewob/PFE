@@ -42,6 +42,31 @@ namespace STM.GDA.Web.Controllers
             }
         }
 
+        public ActionResult Modifier(int id)
+        {
+            var composant = ComposantBL.GetComposant(id);
+
+            if (composant == null)
+            {
+                return View("Error");
+            }
+            else
+            {
+                return View("Modifier", composant);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Modifier(ComposantModel composant)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
+            return View(composant);
+        }
+
         public ActionResult GetDependances(ComposantModel composant, int? environnementId)
         {
             return PartialView("_DetailsDependances", composant.FiltrerDependances(environnementId ?? Constantes.PRODUCTION));

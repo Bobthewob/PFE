@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,12 +12,16 @@ namespace STM.GDA.Web.Models
     {
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Un nom est requis")]
+        [StringLength(100)]
         public string Nom { get; set; }
 
-        public string Abrevriation { get; set; }
+        [StringLength(25)]
+        public string Abreviation { get; set; }
 
         public string Description { get; set; }
 
+        [StringLength(10)]
         public string Version { get; set; }
 
         public EtiquetteModel Type { get; set; }
@@ -34,12 +39,14 @@ namespace STM.GDA.Web.Models
         public string NomBD { get; set; }
 
         [DisplayName("Source control path")]
+        [StringLength(25)]
         public string SourceControlPath { get; set; }
 
         public string BC { get; set; }
 
         public string BW { get; set; }
 
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DerniereMAJ { get; set; }
 
         public List<EtiquetteModel> Technologies { get; set; } = new List<EtiquetteModel>();

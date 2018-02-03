@@ -38,7 +38,7 @@ namespace STM.GDA.Web.Extensions
             {
                 Id = composant.Id,
                 Nom = composant.Nom,
-                Abrevriation = composant.Abreviation,
+                Abreviation = composant.Abreviation,
                 Description = composant.Description,
                 Version = composant.Version,
                 Type = new EtiquetteModel { Id = composant.ComposantType.Id, Nom = composant.ComposantType.Nom },

@@ -168,6 +168,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Composant.css" />
     <Content Include="Content\ComposantDetails.css" />
+    <Content Include="Content\ComposantModifier.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -216,6 +217,7 @@
     <Content Include="Views\Composant\_Liste.cshtml" />
     <Content Include="Views\Composant\Details.cshtml" />
     <Content Include="Views\Composant\_DetailsDependances.cshtml" />
+    <Content Include="Views\Composant\Modifier.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -134,3 +134,18 @@ label {
 .padding-top {
     padding-top: 5px;
 }
+
+.chargement {
+    background-image: url(../Image/loading_spinner.gif);
+    margin: auto;
+    width: 8%;
+    padding-top: 8%;
+    background-size: cover;
+}
+
+.petitMilieu {
+	margin: auto;
+    width: 15%;
+    min-width: 100px;
+    display: block;
+}

@@ -15,6 +15,10 @@
     </div>
 
     <div id="listeComposant"></div>
+    <div id="listeComposantPiedDePage">
+        <button id="afficherPlus" type="button" class="btn btn-default petitMilieu" style="display:none;">Afficher Plus</button>
+        <div id="tourniquetChargement" class="chargement" style="display:none;"></div>
+    </div>
 </div>
 
 <a id="scroll-up" href="#" class="btn btn-primary btn-lg scroll-up" role="button"><span class="glyphicon glyphicon-chevron-up"></span></a>
@@ -24,6 +28,7 @@
     var offset = 0; //current pagination offset
     var take = 5; //how much we want to load for each ajax call
     var currentAjaxFetch; //the current ajax query, we don't want it to complete if we lauch a new search with a new filter for example
+    var spinnerTimeout; // the timeout function used to delay the display of the spinner or else it would flicker.
 
     $(document).ready(function () {
         //https://bootsnipp.com/snippets/featured/link-to-top-page
@@ -50,13 +55,34 @@
             filtrerListe($(this).val(), true);
         });
 
+        $("#afficherPlus").on('click', function (e) {
+            if (currentFetch)
+                currentFetch.abort("new filter called");
+
+            filtrerListe($("#txtFiltre").val(), false);
+        });
+
         filtrerListe("", true);
     });
 
     function filtrerListe(filtre, resetPagination) {
         if (resetPagination) {
-            offset = 0;
+            var token = true;
+
+            offset = 0; 
+
+            if (spinnerTimeout !== null) {
+                clearTimeout(spinnerTimeout);
+            }
+
             $("#listeComposant").html(""); //remove all elements
+            $("#afficherPlus").hide();
+
+            spinnerTimeout = setTimeout(function () {
+                if (token == true) {
+                    $("#tourniquetChargement").show();
+                }
+            }, 1000, token);
 
             currentFetch = CallController(
                 "@Url.Action("GetComposants", "Composant")",
@@ -64,20 +90,37 @@
             ).done(function (result) {
                 $("#listeComposant").html(result);
                 offset = offset + take;
-                filtrerListe(filtre);
+                token = false;
+
+               
+
+                $("#tourniquetChargement").hide();
+
+                if (result.status !== "All_Loaded" && ($("#listeComposant").find(".divComposant").length % take) == 0) { //if the server returned less than the maximum of elements he can take each call than we know we got all elements
+                    $("#afficherPlus").show();
+                } else {
+                    $("#afficherPlus").hide();
+                }
             });
         }
         else {
+            $("#tourniquetChargement").show();
+            $("#afficherPlus").hide();
+
             currentFetch = CallController(
                 "@Url.Action("GetComposants", "Composant")",
                 { filtre: filtre, take: take, offset: offset }
             ).done(function (result) {
-                if (result.status !== "All_Loaded") { //as long as we haven't loaded all elements we keep going
+                if (result.status !== "All_Loaded" && ($("#listeComposant").find(".divComposant").length % take) == 0) { //as long as we haven't loaded all elements we keep going
                     $("#listeComposant").append(result); //add the new element at the end of the list
                     offset = offset + take;
-                    filtrerListe(filtre); 
+
+                    $("#tourniquetChargement").hide();
+                    $("#afficherPlus").show();
+                } else {
+                    $("#tourniquetChargement").hide();
+                    $("#afficherPlus").hide(); //nothing else to load so we hide the button
                 }
-               
             });
         }
     }

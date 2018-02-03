@@ -18,7 +18,7 @@ namespace STM.GDA.Web.Controllers
 
         public ActionResult GetComposants(string filtre, int take, int offset = 0)
         {
-            IEnumerable<Models.ComposantListeModel> composants = ComposantBL.GetList();
+            IEnumerable<ComposantListeModel> composants = ComposantBL.GetList();
       
             if (!String.IsNullOrEmpty(filtre))
             {
@@ -30,10 +30,9 @@ namespace STM.GDA.Web.Controllers
                 x.Dependances.Any(d => d.Nom.ToLowerInvariant().Contains(filtre)));
             }
 
-            composants = composants.Skip(offset);
-            offset += take;
+            //System.Threading.Thread.Sleep(2000); //use to test loading spinner on new filter
 
-            System.Threading.Thread.Sleep(1000); //use for testing, if not it is a pretty much instant loading
+            composants = composants.Skip(offset);
 
             if (!composants.Take(take).Any())
                return Json(new { status = "All_Loaded", message = "no element left to load" });

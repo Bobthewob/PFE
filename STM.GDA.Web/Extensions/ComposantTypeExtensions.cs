@@ -9,9 +9,9 @@ namespace STM.GDA.Web.Extensions
 {
     public static class ComposantTypeExtensions
     {
-        public static SelectListItem ToSelectListItem(this ComposantType type, bool selectionne)
+        public static SelectListItem ToSelectListItem(this ComposantType type)
         {
-            return new SelectListItem { Value = type.Id.ToString(), Text = type.Nom, Selected = selectionne};
+            return new SelectListItem { Value = type.Id.ToString(), Text = type.Nom };
         }
     }
 }

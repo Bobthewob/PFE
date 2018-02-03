@@ -9,9 +9,9 @@ namespace STM.GDA.Web.Extensions
 {
     public static class ClientExtentions
     {
-        public static SelectListItem ToSelectListItem(this Client client, bool selectionne)
+        public static SelectListItem ToSelectListItem(this Client client)
         {
-            return new SelectListItem { Value = client.Id.ToString(), Text = client.Nom, Selected = selectionne};
+            return new SelectListItem { Value = client.Id.ToString(), Text = client.Nom };
         }
     }
 }

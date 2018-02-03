@@ -59,8 +59,9 @@ namespace STM.GDA.Web.Controllers
         {
             var composant = ComposantBL.GetComposant(id);
 
-            ViewBag.TypesComposant = TypeBL.GetAllTypes().Select(x => x.ToSelectListItem(x.Id == composant.Type.Id));
-            ViewBag.Clients = ClientBL.GetAllClients().Select(x => x.ToSelectListItem(composant.Clients.Any(c => c.Id == x.Id)));
+            ViewBag.ListeTypes = TypeBL.GetAllTypes().Select(x => x.ToSelectListItem());
+            ViewBag.ListeClients = ClientBL.GetAllClients().Select(x => x.ToSelectListItem());
+            ViewBag.ListeResponsables = ResponsableBL.GetAllResponsables().Select(x => x.ToSelectListItem());
 
             if (composant == null)
             {
@@ -73,14 +74,10 @@ namespace STM.GDA.Web.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Modifier(ComposantModel composant)
         {
-            if (ModelState.IsValid)
-            {
-
-            }
-            return RedirectToAction("Details", new {  id = composant.Id }); ;
+            ComposantBL.ModifierComposant(composant);
+            return Redirect("Details", "Composant", new { id = composant.Id });
         }
 
         public ActionResult GetDependances(ComposantModel composant, int? environnementId)

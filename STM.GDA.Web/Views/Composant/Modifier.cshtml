@@ -10,12 +10,6 @@
 @Html.ActionLink("Retour à la liste", "Index")
 <h3>Modification</h3>
 <div class="container">
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        @Html.HiddenFor(m => m.Id)
-
     <div class="col-md-5">
         <div class="value">
             <div class="col-md-3 align-right">
@@ -62,7 +56,25 @@
                 @Html.DisplayNameFor(m => m.Type)
             </div>
             <div class="col-md-9">
-                @Html.DropDownListFor(m => m.Type.Id, (IEnumerable<SelectListItem>)ViewBag.TypesComposant, new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.Type.Id, (IEnumerable<SelectListItem>)ViewBag.ListeTypes, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="value">
+            <div class="col-md-3 align-right">
+                @Html.DisplayNameFor(m => m.Responsables)
+            </div>
+            <div class="col-md-9">
+                @Html.ListBox("ResponsablesSelectionnes", new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeResponsables, "Value", "Text", Model.Responsables.Select(x => x.Id)), new { style = "width: 100%;" })
+            </div>
+        </div>
+
+        <div class="value">
+            <div class="col-md-3 align-right">
+                @Html.DisplayNameFor(m => m.Clients)
+            </div>
+            <div class="col-md-9">
+                @Html.ListBox("ClientsSelectionnes", new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeClients, "Value", "Text", Model.Clients.Select(x => x.Id)), new { style = "width: 100%;" })
             </div>
         </div>
 
@@ -107,13 +119,39 @@
         </div>
     </div>
 
-        <input type="submit" value="Sauvegarder" class="btn btn-default" />
-        <button type="button" id="btnAnnuler" class="btn btn-default">Annuler</button>
-    }
+    <button type="button" id="btnSauvegarder" class="btn btn-default">Sauvegarder</button>
+    <button type="button" id="btnAnnuler" class="btn btn-default">Annuler</button>
 </div>
 
 <script>
+    $(document).ready(function () {
+        $("#ClientsSelectionnes").chosen();
+        $("#ResponsablesSelectionnes").chosen();
+    });
+
     $("#btnAnnuler").click(function () {
         window.location.href = '@Url.Action("Details", "Composant", new { id = @Html.Raw(Json.Encode(Model.Id)) })';
+    });
+
+    $("#btnSauvegarder").click(function () {
+        CallController(
+            "@Url.Action("Modifier", "Composant")",
+            {
+                composant: {
+                    Id: @Html.Raw(Json.Encode(Model.Id)),
+                    Nom: $("#Nom").val(),
+                    Abreviation: $("#Abreviation").val(),
+                    Version: $("#Version").val(),
+                    Description: $("#Description").val(),
+                    Type: { Id: $("#Type_Id").val(), Nom: null },
+                    ResponsablesSelectionnes: $("#ResponsablesSelectionnes").val(),
+                    ClientsSelectionnes: $("#ClientsSelectionnes").val(),
+                    NomBD: $("#NomBD").val(),
+                    SourceControlPath: $("#SourceControlPath").val(),
+                    BC: $("#BC").val(),
+                    BW: $("#BW").val()
+                }
+            }
+        );
     });
 </script>

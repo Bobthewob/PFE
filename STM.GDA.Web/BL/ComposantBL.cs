@@ -25,5 +25,63 @@ namespace STM.GDA.Web.BL
                 return context.Composants.FirstOrDefault(x => x.Id == id)?.ToComposantModel();
             }
         }
+
+        public static void ModifierComposant(ComposantModel composantModif)
+        {
+            using (GDA_Context context = new GDA_Context())
+            {
+                var composant = context.Composants.FirstOrDefault(x => x.Id == composantModif.Id);
+
+                composant.Nom = composantModif.Nom;
+                composant.Abreviation = composantModif.Abreviation;
+                composant.Version = composantModif.Version;
+                composant.Description = composantModif.Description;
+                composant.ComposantTypeId = composantModif.Type.Id;
+                composant.NomBD = composantModif.NomBD;
+                composant.SourceControlPath = composantModif.SourceControlPath;
+                composant.BC = composantModif.BC;
+                composant.BW = composantModif.BW;
+
+                context.SubmitChanges();
+
+                ModifierClients(context, composantModif);
+                ModifierResponsables(context, composantModif);
+
+            }
+        }
+
+        private static void ModifierClients(GDA_Context context, ComposantModel composantModif)
+        {
+            var clients = context.ComposantClients.Where(x => x.ComposantId == composantModif.Id);
+
+            context.ComposantClients.DeleteAllOnSubmit(clients);
+
+            context.SubmitChanges();
+
+            context.ComposantClients.InsertAllOnSubmit(composantModif.ClientsSelectionnes.Select(x => new ComposantClient
+            {
+                ClientId = Convert.ToInt32(x),
+                ComposantId = composantModif.Id
+            }));
+
+            context.SubmitChanges();
+        }
+
+        private static void ModifierResponsables(GDA_Context context, ComposantModel composantModif)
+        {
+            var responsables = context.ComposantResponsables.Where(x => x.ComposantId == composantModif.Id);
+
+            context.ComposantResponsables.DeleteAllOnSubmit(responsables);
+
+            context.SubmitChanges();
+
+            context.ComposantResponsables.InsertAllOnSubmit(composantModif.ResponsablesSelectionnes.Select(x => new ComposantResponsable
+            {
+                ResponsableId = Convert.ToInt32(x),
+                ComposantId = composantModif.Id
+            }));
+
+            context.SubmitChanges();
+        }
     }
 }

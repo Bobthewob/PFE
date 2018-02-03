@@ -1,4 +1,6 @@
 ﻿using STM.GDA.Web.BL;
+using STM.GDA.Web.Configuration;
+using STM.GDA.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +40,11 @@ namespace STM.GDA.Web.Controllers
             {
                 return View("Details", composant);
             }
+        }
+
+        public ActionResult GetDependances(ComposantModel composant, int? environnementId)
+        {
+            return PartialView("_DetailsDependances", composant.FiltrerDependances(environnementId ?? Constantes.PRODUCTION));
         }
     }
 }   

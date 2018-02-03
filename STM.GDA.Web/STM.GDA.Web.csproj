@@ -146,14 +146,18 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BL\ComposantBL.cs" />
+    <Compile Include="Configuration\Constantes.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ComposantController.cs" />
-    <Compile Include="Extensions\ComposantExtention.cs" />
+    <Compile Include="Extensions\ComposantExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ComposantListeModel.cs" />
     <Compile Include="Models\ComposantModel.cs" />
+    <Compile Include="Models\DependanceModel.cs" />
+    <Compile Include="Models\DependanceModelListe.cs" />
+    <Compile Include="Models\EnvironnementModel.cs" />
     <Compile Include="Models\EtiquetteModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -211,6 +215,7 @@
     <Content Include="Views\Composant\Index.cshtml" />
     <Content Include="Views\Composant\_Liste.cshtml" />
     <Content Include="Views\Composant\Details.cshtml" />
+    <Content Include="Views\Composant\_DetailsDependances.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

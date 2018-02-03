@@ -3,129 +3,159 @@
 }
 
 @model STM.GDA.Web.Models.ComposantModel
-
+@Html.ActionLink("Retour  à la lise", "Index") <br>
 <div class="container">
-    <div class="col-md-4">
-        @Html.ActionLink("Retour  à la lise", "Index") <br>
+    <div class="col-md-5">
+
         <h3>Détails</h3>
 
         <div class="value">
-            <div class="col-md-4 align-right">
+            <div class="col-md-3 align-right">
                 @Html.DisplayNameFor(m => m.Nom)
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 @Html.DisplayFor(m => m.Nom)
             </div>
         </div>
 
         <div class="value">
-            <div class="col-md-4 align-right">
+            <div class="col-md-3 align-right">
                 @Html.DisplayNameFor(m => m.Abrevriation)
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 @Html.DisplayFor(m => m.Abrevriation)
             </div>
         </div>
 
         <div class="value">
-            <div class="col-md-4 align-right">
+            <div class="col-md-3 align-right">
                 @Html.DisplayNameFor(m => m.Version)
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 @Html.DisplayFor(m => m.Version)
             </div>
         </div>
 
         <div class="value">
-            <div class="col-md-4 align-right">
+            <div class="col-md-3 align-right">
                 @Html.DisplayNameFor(m => m.Description)
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 @Html.DisplayFor(m => m.Description)
             </div>
         </div>
 
         <div class="value">
-            <div class="col-md-4 align-right">
+            <div class="col-md-3 align-right">
                 @Html.DisplayNameFor(m => m.Type)
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 @Html.DisplayFor(m => m.Type.Nom)
             </div>
         </div>
 
         <div class="value">
-            <div class="col-md-4 align-right">
+            <div class="col-md-3 align-right">
                 @Html.DisplayNameFor(m => m.ResonsablesText)
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 @Html.DisplayFor(m => m.ResonsablesText)
             </div>
         </div>
 
         <div class="value">
-            <div class="col-md-4 align-right">
+            <div class="col-md-3 align-right">
                 @Html.DisplayNameFor(m => m.ClientsText)
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 @Html.DisplayFor(m => m.ClientsText)
             </div>
         </div>
 
         <div class="value">
-            <div class="col-md-4 align-right">
+            <div class="col-md-3 align-right">
                 @Html.DisplayNameFor(m => m.NomBD)
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 @Html.DisplayFor(m => m.NomBD)
             </div>
         </div>
 
         <div class="value">
-            <div class="col-md-4 align-right">
+            <div class="col-md-3 align-right">
                 @Html.DisplayNameFor(m => m.SourceControlPath)
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 @Html.DisplayFor(m => m.SourceControlPath)
             </div>
         </div>
 
         <div class="value">
-            <div class="col-md-4 align-right">
-                @Html.DisplayNameFor(m => m.SourceControlPath)
-            </div>
-            <div class="col-md-8">
-                @Html.DisplayFor(m => m.SourceControlPath)
-            </div>
-        </div>
-
-        <div class="value">
-            <div class="col-md-4 align-right">
+            <div class="col-md-3 align-right">
                 @Html.DisplayNameFor(m => m.BC)
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 @Html.DisplayFor(m => m.BC)
             </div>
         </div>
 
         <div class="value">
-            <div class="col-md-4 align-right">
+            <div class="col-md-3 align-right">
                 @Html.DisplayNameFor(m => m.BW)
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 @Html.DisplayFor(m => m.BW)
             </div>
         </div>
 
         <div class="value">
-            <div class="col-md-4 align-right">
+            <div class="col-md-3 align-right">
                 @Html.DisplayNameFor(m => m.DerniereMAJ)
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 @Html.DisplayFor(m => m.DerniereMAJ)
             </div>
         </div>
 
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
     </div>
+
+    <div class="col-md-7">
+        <div class="col-md-12">
+            <h3>Technologies</h3>
+            <div class="border">
+                @foreach (var techologie in Model.Technologies)
+                {
+                    @Html.DisplayFor(m => techologie.Nom) <br>
+                }
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <h3>Environnements</h3>
+            @Html.DropDownList("ddlEnvironnement", Model.EnvironnementsItems, new { @class = "form-control" })
+            <div id="divDependance" class="border marging-top">
+                @{ Html.RenderAction("GetDependances", new { composant = Model }); }
+            </div>
+        </div>
+
+        <div class="col-md-12 align-right padding-top">
+            <button type="button" id="btnModifier" class="btn btn-default">Modifier</button>
+            <button type="button" id="btnSupprimer" class="btn btn-default">Supprimer</button>
+        </div>
+    </div>
 </div>
+
+<script>
+    $("#ddlEnvironnement").on("change", function () {
+        CallController(
+            "@Url.Action("GetDependances", "Composant")",
+            {
+                composant: @Html.Raw(Json.Encode(Model)),
+                environnementId: this.value
+            }
+        ).done(function (result) {
+            $("#divDependance").html(result);
+        });
+    })
+</script>

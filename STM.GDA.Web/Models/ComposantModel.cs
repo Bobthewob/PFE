@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace STM.GDA.Web.Models
 {
@@ -23,12 +24,12 @@ namespace STM.GDA.Web.Models
         public List<EtiquetteModel> Responsables { get; set; } = new List<EtiquetteModel>();
 
         [DisplayName("Responsables")]
-        public string ResonsablesText => string.Join(", ", Responsables);
+        public string ResonsablesText => string.Join(", ", Responsables.Select(x => x.Nom));
 
         public List<EtiquetteModel> Clients { get; set; } = new List<EtiquetteModel>();
 
         [DisplayName("Clients")]
-        public string ClientsText =>  string.Join(", ", Clients);
+        public string ClientsText =>  string.Join(", ", Clients.Select(x => x.Nom));
 
         public string NomBD { get; set; }
 
@@ -43,14 +44,34 @@ namespace STM.GDA.Web.Models
 
         public List<EtiquetteModel> Technologies { get; set; } = new List<EtiquetteModel>();
 
-        public string TechnologiesText => string.Join(", ", Technologies);
+        public List<EnvironnementModel> Environnements { get; set; } = new List<EnvironnementModel>();
 
-        public List<EtiquetteModel> Environnements { get; set; } = new List<EtiquetteModel>();
+        public List<SelectListItem> EnvironnementsItems
+        {
+            get
+            {
+                return Environnements.Select(x => new SelectListItem
+                {
+                    Value = x.Etiquette.Id.ToString(),
+                    Text = x.Etiquette.Nom,
+                    Selected = x.Ordre == 1
+                }).ToList();
+            }             
+        }
 
-        public string EnvironnementsText => string.Join(", ", Environnements);
+        public DependanceModelListe Dependances { get; set; } 
 
-        public List<EtiquetteModel> Dependances { get; set; } = new List<EtiquetteModel>();
-
-        public string DependancesText => string.Join(", ", Dependances);
+        public DependanceModelListe FiltrerDependances(int environnementId)
+        {
+            return new DependanceModelListe
+            {
+                Web = Dependances.Web.Where(x => x.EnvironnementId == environnementId).ToList(),
+                BDs = Dependances.BDs.Where(x => x.EnvironnementId == environnementId).ToList(),
+                Rapports = Dependances.Rapports.Where(x => x.EnvironnementId == environnementId).ToList(),
+                Interfaces = Dependances.Interfaces.Where(x => x.EnvironnementId == environnementId).ToList(),
+                Jobs = Dependances.Jobs.Where(x => x.EnvironnementId == environnementId).ToList(),
+                Externes = Dependances.Externes.Where(x => x.EnvironnementId == environnementId).ToList()
+            };
+        }
     }
 }

@@ -6,3 +6,15 @@
     overflow: auto;
     padding-bottom: 10px;
 }
+
+.border {
+    border: 1px solid black;
+}
+
+.padding-top {
+    padding-top: 10px;
+}
+
+.marging-top {
+    margin-top: 10px;
+}

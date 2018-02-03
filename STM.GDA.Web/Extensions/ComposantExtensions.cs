@@ -1,4 +1,5 @@
 ﻿using STM.GDA.DataAccess;
+using STM.GDA.Web.Configuration;
 using STM.GDA.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Web;
 
 namespace STM.GDA.Web.Extensions
 {
-    public static class ComposantExtention
+    public static class ComposantExtensions
     {
         public static ComposantListeModel ToComposantListeModel(this Composant composant)
         {
@@ -54,8 +55,37 @@ namespace STM.GDA.Web.Extensions
                 SourceControlPath = composant.SourceControlPath,
                 BC = composant.BC,
                 BW = composant.BW,
-                DerniereMAJ = composant.DerniereMAJ
+                DerniereMAJ = composant.DerniereMAJ,
+                Technologies = composant.ComposantTechnologies.Select(x => new EtiquetteModel
+                {
+                    Id = x.Technologie.Id,
+                    Nom = x.Technologie.Nom
+                }).ToList(),
+                Environnements = composant.ComposantEnvironnements.OrderBy(x => x.Ordre).Select(x => new EnvironnementModel
+                {
+                    Etiquette = new EtiquetteModel { Id = x.Environnement.Id, Nom = x.Environnement.Nom },
+                    Ordre = x.Environnement.Ordre
+                }).ToList(),
+                Dependances = new DependanceModelListe
+                {
+                    Web = GetDependaceComposant(composant, Constantes.WEB),
+                    BDs = GetDependaceComposant(composant, Constantes.BD),
+                    Interfaces = GetDependaceComposant(composant, Constantes.INTERFACE),
+                    Rapports = GetDependaceComposant(composant, Constantes.RAPPORT),
+                    Externes = GetDependaceComposant(composant, Constantes.EXTERNE),
+                    Jobs = GetDependaceComposant(composant, Constantes.JOB)
+                }
             };
+        }
+
+        private static List<DependanceModel> GetDependaceComposant(Composant composant, int typeDependance)
+        {
+            return composant.ComposantDependances.Where(x => x.Dependance.DependanceType.Id == typeDependance).Select(x => new DependanceModel
+            {
+                Etiquette = new EtiquetteModel { Id = x.Dependance.Id, Nom = x.Dependance.Nom },
+                Type = new EtiquetteModel { Id = x.Dependance.DependanceType.Id, Nom = x.Dependance.DependanceType.Nom },
+                EnvironnementId = x.EnvironnementId
+            }).ToList();
         }
     }
 }

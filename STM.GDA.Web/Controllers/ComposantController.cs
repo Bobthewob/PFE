@@ -61,6 +61,7 @@ namespace STM.GDA.Web.Controllers
             var composant = ComposantBL.GetComposant(id);
 
             ViewBag.TypesComposant = TypeBL.GetAllTypes().Select(x => x.ToSelectListItem(x.Id == composant.Type.Id));
+            ViewBag.Clients = ClientBL.GetAllClients().Select(x => x.ToSelectListItem(composant.Clients.Any(c => c.Id == x.Id)));
 
             if (composant == null)
             {

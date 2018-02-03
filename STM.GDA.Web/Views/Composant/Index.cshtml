@@ -14,13 +14,17 @@
         <button type="button" id="btnExportLong" class="btn btn-default">Export long</button>
     </div>
 
-    <div id="listeComposant">@{ Html.RenderAction("GetComposants"); }</div>
+    <div id="listeComposant"></div>
 </div>
 
 <a id="scroll-up" href="#" class="btn btn-primary btn-lg scroll-up" role="button"><span class="glyphicon glyphicon-chevron-up"></span></a>
 
 
 <script>
+    var offset = 0; //current pagination offset
+    var take = 5; //how much we want to load for each ajax call
+    var currentAjaxFetch; //the current ajax query, we don't want it to complete if we lauch a new search with a new filter for example
+
     $(document).ready(function () {
         //https://bootsnipp.com/snippets/featured/link-to-top-page
         $(window).scroll(function () {
@@ -40,16 +44,41 @@
         });
 
         $("#txtFiltre").on('input', function (e) {
-            filtrerListe($(this).val());
-        });
-    });    
+            if (currentFetch)
+                currentFetch.abort("new filter called");
 
-    function filtrerListe(filtre) {
-        CallController(
-            "@Url.Action("GetComposants", "Composant")",
-            { filtre: filtre }
-        ).done(function (result) {
-            $("#listeComposant").html(result);
+            filtrerListe($(this).val(), true);
         });
+
+        filtrerListe("", true);
+    });
+
+    function filtrerListe(filtre, resetPagination) {
+        if (resetPagination) {
+            offset = 0;
+            $("#listeComposant").html(""); //remove all elements
+
+            currentFetch = CallController(
+                "@Url.Action("GetComposants", "Composant")",
+                { filtre: filtre, take: take }
+            ).done(function (result) {
+                $("#listeComposant").html(result);
+                offset = offset + take;
+                filtrerListe(filtre);
+            });
+        }
+        else {
+            currentFetch = CallController(
+                "@Url.Action("GetComposants", "Composant")",
+                { filtre: filtre, take: take, offset: offset }
+            ).done(function (result) {
+                if (result.status !== "All_Loaded") { //as long as we haven't loaded all elements we keep going
+                    $("#listeComposant").append(result); //add the new element at the end of the list
+                    offset = offset + take;
+                    filtrerListe(filtre); 
+                }
+               
+            });
+        }
     }
 </script>

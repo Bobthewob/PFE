@@ -14,90 +14,98 @@
     {
         @Html.AntiForgeryToken()
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(m => m.Id)
 
-        <div class="col-md-5">
-            <div class="value">
-                <div class="col-md-3 align-right">
-                    @Html.DisplayNameFor(m => m.Nom)
-                </div>
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.Nom, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger" })
-                </div>
+    <div class="col-md-5">
+        <div class="value">
+            <div class="col-md-3 align-right">
+                @Html.DisplayNameFor(m => m.Nom)
             </div>
-
-            <div class="value">
-                <div class="col-md-3 align-right">
-                    @Html.DisplayNameFor(m => m.Abreviation)
-                </div>
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.Abreviation, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Abreviation, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="value">
-                <div class="col-md-3 align-right">
-                    @Html.DisplayNameFor(m => m.Version)
-                </div>
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.Version, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Version, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="value">
-                <div class="col-md-3 align-right">
-                    @Html.DisplayNameFor(m => m.Description)
-                </div>
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="value">
-                <div class="col-md-3 align-right">
-                    @Html.DisplayNameFor(m => m.NomBD)
-                </div>
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.NomBD, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.NomBD, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="value">
-                <div class="col-md-3 align-right">
-                    @Html.DisplayNameFor(m => m.SourceControlPath)
-                </div>
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.SourceControlPath, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.SourceControlPath, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="value">
-                <div class="col-md-3 align-right">
-                    @Html.DisplayNameFor(m => m.BC)
-                </div>
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.BC, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.BC, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="value">
-                <div class="col-md-3 align-right">
-                    @Html.DisplayNameFor(m => m.BW)
-                </div>
-                <div class="col-md-9">
-                    @Html.EditorFor(model => model.BW, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.BW, "", new { @class = "text-danger" })
-                </div>
+            <div class="col-md-9">
+                @Html.EditorFor(m => m.Nom, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Nom, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div class="value">
+            <div class="col-md-3 align-right">
+                @Html.DisplayNameFor(m => m.Abreviation)
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(m => m.Abreviation, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Abreviation, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="value">
+            <div class="col-md-3 align-right">
+                @Html.DisplayNameFor(m => m.Version)
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(m => m.Version, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Version, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="value">
+            <div class="col-md-3 align-right">
+                @Html.DisplayNameFor(m => m.Description)
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(m => m.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="value">
+            <div class="col-md-3 align-right">
+                @Html.DisplayNameFor(m => m.Type)
+            </div>
+            <div class="col-md-9">
+                @Html.DropDownListFor(m => m.Type.Id, (IEnumerable<SelectListItem>)ViewBag.TypesComposant, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="value">
+            <div class="col-md-3 align-right">
+                @Html.DisplayNameFor(m => m.NomBD)
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(m => m.NomBD, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.NomBD, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="value">
+            <div class="col-md-3 align-right">
+                @Html.DisplayNameFor(m => m.SourceControlPath)
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(m => m.SourceControlPath, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.SourceControlPath, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="value">
+            <div class="col-md-3 align-right">
+                @Html.DisplayNameFor(m => m.BC)
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(m => m.BC, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.BC, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="value">
+            <div class="col-md-3 align-right">
+                @Html.DisplayNameFor(m => m.BW)
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(m => m.BW, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.BW, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
 
         <input type="submit" value="Sauvegarder" class="btn btn-default" />
         <button type="button" id="btnAnnuler" class="btn btn-default">Annuler</button>

@@ -1,5 +1,6 @@
 ﻿using STM.GDA.Web.BL;
 using STM.GDA.Web.Configuration;
+using STM.GDA.Web.Extensions;
 using STM.GDA.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ namespace STM.GDA.Web.Controllers
 
         public ActionResult Details(int id)
         {
-            var composant = ComposantBL.GetComposant(id);
+            var composant = ComposantBL.GetComposant(id);            
 
             if (composant == null)
             {
@@ -58,6 +59,8 @@ namespace STM.GDA.Web.Controllers
         public ActionResult Modifier(int id)
         {
             var composant = ComposantBL.GetComposant(id);
+
+            ViewBag.TypesComposant = TypeBL.GetAllTypes().Select(x => x.ToSelectListItem(x.Id == composant.Type.Id));
 
             if (composant == null)
             {
@@ -77,7 +80,7 @@ namespace STM.GDA.Web.Controllers
             {
 
             }
-            return View(composant);
+            return RedirectToAction("Details", new {  id = composant.Id }); ;
         }
 
         public ActionResult GetDependances(ComposantModel composant, int? environnementId)

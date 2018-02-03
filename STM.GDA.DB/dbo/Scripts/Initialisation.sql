@@ -20,6 +20,8 @@ INSERT INTO DependanceType (Id, Nom) VALUES (4, 'Job');
 
 INSERT INTO DependanceType (Id, Nom) VALUES (5, 'Externe');
 
+INSERT INTO DependanceType (Id, Nom) VALUES (6, 'Rapport');
+
 SET IDENTITY_INSERT [dbo].[DependanceType] OFF;
 
 --Insertion des environnements de base

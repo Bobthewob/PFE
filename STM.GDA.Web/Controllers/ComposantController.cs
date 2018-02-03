@@ -16,16 +16,29 @@ namespace STM.GDA.Web.Controllers
             return View();
         }
 
-        public ActionResult GetComposants(string filtre)
+        public ActionResult GetComposants(string filtre, int take, int offset = 0)
         {
-            var composants = ComposantBL.GetList();
-
+            IEnumerable<Models.ComposantListeModel> composants = ComposantBL.GetList();
+      
             if (!String.IsNullOrEmpty(filtre))
             {
-                composants = composants.Where(x => x.Nom.Contains(filtre)).ToList();
+                filtre = filtre.ToLowerInvariant();
+
+                composants = composants.Where(x => x.Nom.ToLowerInvariant().Contains(filtre) ||
+                x.Description.ToLowerInvariant().Contains(filtre) ||
+                x.Technologies.Any(t => t.Nom.ToLowerInvariant().Contains(filtre)) ||
+                x.Dependances.Any(d => d.Nom.ToLowerInvariant().Contains(filtre)));
             }
 
-            return PartialView("_Liste", composants);
+            composants = composants.Skip(offset);
+            offset += take;
+
+            System.Threading.Thread.Sleep(1000); //use for testing, if not it is a pretty much instant loading
+
+            if (!composants.Take(take).Any())
+               return Json(new { status = "All_Loaded", message = "no element left to load" });
+
+            return PartialView("_Liste", composants.Take(take).ToList());
         }
 
         public ActionResult Details(int id)

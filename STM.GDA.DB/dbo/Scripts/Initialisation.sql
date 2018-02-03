@@ -63,6 +63,8 @@ INSERT INTO Technologie (Id, Nom) VALUES (3, 'jQuery');
 
 SET IDENTITY_INSERT [dbo].[Technologie] OFF;
 
+SET IDENTITY_INSERT [dbo].[Composant] ON;
+
 --Création composant 1
 INSERT INTO Composant (Nom, Abreviation, Description, Version, ComposantTypeId, DateCreation, DerniereMAJ) VALUES
 ('Application 1', 'App1', 'Description application 1', '1.0', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
@@ -107,3 +109,5 @@ INSERT INTO ComposantDependance VALUES (3, 4, 5);
 
 INSERT INTO ComposantTechnologie VAlUES (3, 1);
 INSERT INTO ComposantTechnologie VAlUES (3, 3);
+
+SET IDENTITY_INSERT [dbo].[Composant] OFF;

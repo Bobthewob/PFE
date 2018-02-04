@@ -1,0 +1,10 @@
+﻿.align-right {
+    text-align: right;
+    vertical-align: middle;
+}
+
+.value {
+    display: flex;
+    padding-bottom: 10px;
+}
+

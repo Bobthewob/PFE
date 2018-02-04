@@ -26,6 +26,37 @@ namespace STM.GDA.Web.BL
             }
         }
 
+        public static void CreerComposant(ComposantModel nouveauComposant)
+        {
+            using (GDA_Context context = new GDA_Context())
+            {
+                var composant = new Composant
+                {
+                    Nom = nouveauComposant.Nom,
+                    Abreviation = nouveauComposant.Abreviation,
+                    Version = nouveauComposant.Version,
+                    Description = nouveauComposant.Description,
+                    ComposantTypeId = nouveauComposant.Type.Id,
+                    NomBD = nouveauComposant.NomBD,
+                    SourceControlPath = nouveauComposant.SourceControlPath,
+                    BC = nouveauComposant.BC,
+                    BW = nouveauComposant.BW,
+                    DerniereMAJ = DateTime.Now,
+                    DateCreation = DateTime.Now
+                };
+
+                context.Composants.InsertOnSubmit(composant);
+
+                context.SubmitChanges();
+
+                nouveauComposant.Id = composant.Id; //Set the newly inserted id
+
+                CreerEnvironnements(context, nouveauComposant);
+                ModifierClients(context, nouveauComposant);
+                ModifierResponsables(context, nouveauComposant);
+            }
+        }
+
         public static void ModifierComposant(ComposantModel composantModif)
         {
             using (GDA_Context context = new GDA_Context())
@@ -43,11 +74,10 @@ namespace STM.GDA.Web.BL
                 composant.BW = composantModif.BW;
                 composant.DerniereMAJ = DateTime.Now;
 
-                context.SubmitChanges();
+                context.SubmitChanges();                
 
                 ModifierClients(context, composantModif);
                 ModifierResponsables(context, composantModif);
-
             }
         }
 
@@ -116,6 +146,20 @@ namespace STM.GDA.Web.BL
             {
                 ResponsableId = x.Id,
                 ComposantId = composantModif.Id
+            }));
+
+            context.SubmitChanges();
+        }
+
+        private static void CreerEnvironnements(GDA_Context context, ComposantModel composant)
+        {
+            var environnements = context.Environnements.ToList();
+
+            context.ComposantEnvironnements.InsertAllOnSubmit(environnements.Select(x => new ComposantEnvironnement
+            {
+                ComposantId = composant.Id,
+                EnvironnementId = x.Id,
+                Ordre = x.Ordre
             }));
 
             context.SubmitChanges();

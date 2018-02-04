@@ -1,5 +1,5 @@
 ﻿@section Styles {
-    <link href="@Url.Content("~/Content/ComposantModifier.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/ComposantCreer.css")" rel="stylesheet" type="text/css" />
 }
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -8,9 +8,9 @@
 @model STM.GDA.Web.Models.ComposantModel
 
 @Html.ActionLink("Retour à la liste", "Index")
-<h3>Modification</h3>
+<h3>Création</h3>
 <div class="container">
-    <form id="formModification">
+    <form id="formCreation">
         <div class="col-md-5">
             <div class="value">
                 <div class="col-md-3 align-right">
@@ -66,7 +66,7 @@
                     @Html.DisplayNameFor(m => m.Responsables)
                 </div>
                 <div class="col-md-9">
-                    @Html.ListBox("ResponsablesSelectionnes", new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeResponsables, "Value", "Text", Model.Responsables.Select(x => x.Id)), new { style = "width: 100%;" })
+                    @Html.ListBox("ResponsablesSelectionnes", new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeResponsables, "Value", "Text"), new { style = "width: 100%;" })
                 </div>
             </div>
 
@@ -75,7 +75,7 @@
                     @Html.DisplayNameFor(m => m.Clients)
                 </div>
                 <div class="col-md-9">
-                    @Html.ListBox("ClientsSelectionnes", new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeClients, "Value", "Text", Model.Clients.Select(x => x.Id)), new { style = "width: 100%;" })
+                    @Html.ListBox("ClientsSelectionnes", new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeClients, "Value", "Text"), new { style = "width: 100%;" })
                 </div>
             </div>
 
@@ -120,8 +120,7 @@
             </div>
         </div>
 
-        <button type="button" id="btnSauvegarder" class="btn btn-default">Sauvegarder</button>
-        <button type="button" id="btnAnnuler" class="btn btn-default">Annuler</button>
+        <button type="button" id="btnCreer" class="btn btn-default">Créer</button>
     </form>
 </div>
 
@@ -144,17 +143,12 @@
         chosenMultiselectCustomAdd("ResponsablesSelectionnes");
     });
 
-    $("#btnAnnuler").click(function () {
-        window.location.href = '@Url.Action("Details", "Composant", new { id = @Html.Raw(Json.Encode(Model.Id)) })';
-    });
-
-    $("#btnSauvegarder").click(function () {
-        if ($('#formModification').valid()) {
+    $("#btnCreer").click(function () {
+        if ($('#formCreation').valid()) {
             CallController(
-                "@Url.Action("Modifier", "Composant")",
+                "@Url.Action("Creer", "Composant")",
                 {
                     composant: {
-                        Id: @Html.Raw(Json.Encode(Model.Id)),
                         Nom: $("#Nom").val(),
                         Abreviation: $("#Abreviation").val(),
                         Version: $("#Version").val(),

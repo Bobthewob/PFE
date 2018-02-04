@@ -2,7 +2,8 @@
     <link href="@Url.Content("~/Content/Composant.css")" rel="stylesheet" type="text/css" />
 }
 
-<h2>Liste des applications et services</h2>
+<h2>Liste des applications et services</h2> 
+<button type="button" id="btnCreer" class="btn btn-default">Créer une application ou un service</button>
 
 <div class="divListe">
     <div class="search-group">
@@ -62,6 +63,10 @@
             filtrerListe($("#txtFiltre").val(), false);
         });
 
+        $("#btnCreer").on('click', function (e) {
+            window.location.href = '@Url.Action("Creer", "Composant")';
+        });
+
         filtrerListe("", true);
     });
 
@@ -69,7 +74,7 @@
         if (resetPagination) {
             var token = true;
 
-            offset = 0; 
+            offset = 0;
 
             if (spinnerTimeout !== null) {
                 clearTimeout(spinnerTimeout);
@@ -90,7 +95,7 @@
             ).done(function (result) {
                 $("#listeComposant").html(result);
                 offset = offset + take;
-                token = false;               
+                token = false;
 
                 $("#tourniquetChargement").hide();
 

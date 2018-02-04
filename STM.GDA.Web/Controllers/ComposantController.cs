@@ -55,6 +55,22 @@ namespace STM.GDA.Web.Controllers
             }
         }
 
+        public ActionResult Creer()
+        {
+            ViewBag.ListeTypes = TypeBL.GetAllTypes().Select(x => x.ToSelectListItem());
+            ViewBag.ListeClients = ClientBL.GetAllClients().Select(x => x.ToSelectListItem());
+            ViewBag.ListeResponsables = ResponsableBL.GetAllResponsables().Select(x => x.ToSelectListItem());
+
+            return View("Creer", new ComposantModel());
+        }
+
+        [HttpPost]
+        public ActionResult Creer(ComposantModel composant)
+        {
+            ComposantBL.CreerComposant(composant);
+            return Redirect("Details", "Composant", new { id = composant.Id });
+        }
+
         public ActionResult Modifier(int id)
         {
             var composant = ComposantBL.GetComposant(id);

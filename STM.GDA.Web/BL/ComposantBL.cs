@@ -41,6 +41,7 @@ namespace STM.GDA.Web.BL
                 composant.SourceControlPath = composantModif.SourceControlPath;
                 composant.BC = composantModif.BC;
                 composant.BW = composantModif.BW;
+                composant.DerniereMAJ = DateTime.Now;
 
                 context.SubmitChanges();
 
@@ -58,9 +59,27 @@ namespace STM.GDA.Web.BL
 
             context.SubmitChanges();
 
-            context.ComposantClients.InsertAllOnSubmit(composantModif.ClientsSelectionnes.Select(x => new ComposantClient
+            //New clients
+            if (composantModif.Clients.Any(x => x.Id == 0))
             {
-                ClientId = Convert.ToInt32(x),
+                var nouveauxClients = composantModif.Clients.Where(x => x.Id == 0).Select(x => new Client
+                {
+                    Nom = x.Nom
+                }).ToList();
+
+                ClientBL.CreerClients(nouveauxClients);
+
+                context.ComposantClients.InsertAllOnSubmit(nouveauxClients.Select(x => new ComposantClient
+                {
+                    ClientId = x.Id,
+                    ComposantId = composantModif.Id
+                }));
+            }
+
+            //Existing clients
+            context.ComposantClients.InsertAllOnSubmit(composantModif.Clients.Where(x => x.Id != 0).Select(x => new ComposantClient
+            {
+                ClientId = x.Id,
                 ComposantId = composantModif.Id
             }));
 
@@ -75,9 +94,27 @@ namespace STM.GDA.Web.BL
 
             context.SubmitChanges();
 
-            context.ComposantResponsables.InsertAllOnSubmit(composantModif.ResponsablesSelectionnes.Select(x => new ComposantResponsable
+            //New responsables
+            if (composantModif.Responsables.Any(x => x.Id == 0))
             {
-                ResponsableId = Convert.ToInt32(x),
+                var nouveauxResponsables = composantModif.Responsables.Where(x => x.Id == 0).Select(x => new Responsable
+                {
+                    Nom = x.Nom
+                }).ToList();
+
+                ResponsableBL.CreerResponsables(nouveauxResponsables);
+
+                context.ComposantResponsables.InsertAllOnSubmit(nouveauxResponsables.Select(x => new ComposantResponsable
+                {
+                    ResponsableId = x.Id,
+                    ComposantId = composantModif.Id
+                }));
+            }
+
+            //Existing responsables
+            context.ComposantResponsables.InsertAllOnSubmit(composantModif.Responsables.Where(x => x.Id != 0).Select(x => new ComposantResponsable
+            {
+                ResponsableId = x.Id,
                 ComposantId = composantModif.Id
             }));
 

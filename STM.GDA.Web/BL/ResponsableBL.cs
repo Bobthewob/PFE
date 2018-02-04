@@ -15,5 +15,15 @@ namespace STM.GDA.Web.BL
                 return context.Responsables.ToList();
             }
         }
+
+        public static void CreerResponsables(List<Responsable> responsables)
+        {
+            using (GDA_Context context = new GDA_Context())
+            {
+                context.Responsables.InsertAllOnSubmit(responsables);
+
+                context.SubmitChanges();
+            }
+        }
     }
 }

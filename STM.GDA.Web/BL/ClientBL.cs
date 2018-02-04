@@ -15,5 +15,15 @@ namespace STM.GDA.Web.BL
                 return context.Clients.ToList();
             }
         }
+
+        public static void CreerClients(List<Client> clients)
+        {
+            using (GDA_Context context = new GDA_Context())
+            {
+                context.Clients.InsertAllOnSubmit(clients);
+
+                context.SubmitChanges();
+            }
+        }
     }
 }

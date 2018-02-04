@@ -125,8 +125,19 @@
 
 <script>
     $(document).ready(function () {
-        $("#ClientsSelectionnes").chosen();
-        $("#ResponsablesSelectionnes").chosen();
+        $("#ClientsSelectionnes").chosen({
+            placeholder_text_multiple: "Sélectionnez un ou plusieurs clients",
+            no_results_text: "Aucun résultat. Appuyez sur Entré ou Tab pour ajouter l'option"
+        });
+
+        $("#ResponsablesSelectionnes").chosen({
+            placeholder_text_multiple: "Sélectionnez un ou plusieurs responsables",
+            no_results_text: "Aucun résultat. Appuyez sur Entré ou Tab pour ajouter l'option"
+        });
+
+        //Append the custom value add function declared in script.js
+        chosenMultiselectCustomAdd("ClientsSelectionnes");
+        chosenMultiselectCustomAdd("ResponsablesSelectionnes");
     });
 
     $("#btnAnnuler").click(function () {
@@ -144,8 +155,8 @@
                     Version: $("#Version").val(),
                     Description: $("#Description").val(),
                     Type: { Id: $("#Type_Id").val(), Nom: null },
-                    ResponsablesSelectionnes: $("#ResponsablesSelectionnes").val(),
-                    ClientsSelectionnes: $("#ClientsSelectionnes").val(),
+                    Responsables: getSelectedItems("ResponsablesSelectionnes"),
+                    Clients: getSelectedItems("ClientsSelectionnes"),
                     NomBD: $("#NomBD").val(),
                     SourceControlPath: $("#SourceControlPath").val(),
                     BC: $("#BC").val(),

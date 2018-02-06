@@ -51,6 +51,19 @@ function getSelectedItems(control) {
     return selectedItems;
 }
 
+// control: Control that containts options tags
+// Returns all the items in the control
+function getAllItems(control) {
+    var selectedValues = $("#" + control + " option").toArray();
+    var selectedItems = [];
+
+    selectedValues.forEach(function (item) {
+        selectedItems.push({ Id: item.value, Nom: item.text })
+    });
+
+    return selectedItems;
+}
+
 //https://stackoverflow.com/questions/7385246/allow-new-values-with-chosen-js-multiple-select
 function chosenMultiselectCustomAdd(controlId) {
     $("#" + controlId).parent().find('.chosen-container .search-field input[type=text]').keydown(

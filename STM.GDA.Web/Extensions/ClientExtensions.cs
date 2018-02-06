@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace STM.GDA.Web.Extensions
 {
-    public static class ClientExtentions
+    public static class ClientExtensions
     {
         public static SelectListItem ToSelectListItem(this Client client)
         {

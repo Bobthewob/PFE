@@ -148,13 +148,15 @@
     <Compile Include="BL\ClientBL.cs" />
     <Compile Include="BL\ComposantBL.cs" />
     <Compile Include="BL\ResponsableBL.cs" />
+    <Compile Include="BL\TechnologieBL.cs" />
     <Compile Include="BL\TypeBL.cs" />
     <Compile Include="Configuration\Constantes.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ComposantController.cs" />
+    <Compile Include="Extensions\TechnologieExtensions.cs" />
     <Compile Include="Extensions\ResponsableExtensions.cs" />
     <Compile Include="Extensions\ComposantExtensions.cs" />
-    <Compile Include="Extensions\ClientExtentions.cs" />
+    <Compile Include="Extensions\ClientExtensions.cs" />
     <Compile Include="Extensions\ComposantTypeExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

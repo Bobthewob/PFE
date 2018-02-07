@@ -9,11 +9,16 @@
     padding-right: 15px;
 }
 
+/* Set a margin to move the "Back" link down */
+.container-details {
+	margin-top: 2rem;
+}
+
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
-    white-space: normal;
+	white-space: normal;
 }
 
 h2 {

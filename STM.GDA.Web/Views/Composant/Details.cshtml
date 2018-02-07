@@ -133,7 +133,7 @@
             <h3>Environnements</h3>
             @Html.DropDownList("ddlEnvironnement", Model.EnvironnementsItems, new { @class = "form-control" })
             <div id="divDependance" class="border marging-top">
-                @{ Html.RenderAction("GetDependances", new { composant = Model }); }
+                @{ Html.RenderAction("GetDetailsDependances", new { composant = Model }); }
             </div>
         </div>
 
@@ -147,7 +147,7 @@
 <script>
     $("#ddlEnvironnement").on("change", function () {
         CallController(
-            "@Url.Action("GetDependances", "Composant")",
+            "@Url.Action("GetDetailsDependances", "Composant")",
             {
                 composant: @Html.Raw(Json.Encode(Model)),
                 environnementId: this.value

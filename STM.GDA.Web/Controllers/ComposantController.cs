@@ -19,24 +19,19 @@ namespace STM.GDA.Web.Controllers
 
         public ActionResult GetComposants(string filtre, int take, int offset = 0)
         {
-            IEnumerable<ComposantListeModel> composants = ComposantBL.GetList();
-      
-            if (!String.IsNullOrEmpty(filtre))
-            {
-                filtre = filtre.ToLowerInvariant();
-
-                composants = composants.Where(x => x.Nom.ToLowerInvariant().Contains(filtre) ||
-                x.Description.ToLowerInvariant().Contains(filtre) ||
-                x.Technologies.Any(t => t.Nom.ToLowerInvariant().Contains(filtre)) ||
-                x.Dependances.Any(d => d.Nom.ToLowerInvariant().Contains(filtre)));
-            }
+            IEnumerable<ComposantListeModel> composants = ComposantBL.GetList(take, offset, filtre);
 
             //System.Threading.Thread.Sleep(2000); //use to test loading spinner on new filter
 
-            composants = composants.Skip(offset);
+            if (!composants.Any())
+            {
+                return Json(new { status = "All_Loaded", message = "no element left to load" });
+            }
 
-            if (!composants.Take(take).Any())
-               return Json(new { status = "All_Loaded", message = "no element left to load" });
+            if (composants.Count() <= take)
+            {
+                composants.Last().DernierComposantAffiche = true;
+            }
 
             return PartialView("_Liste", composants.Take(take).ToList());
         }
@@ -101,7 +96,7 @@ namespace STM.GDA.Web.Controllers
             return Redirect("Details", "Composant", new { id = composant.Id });
         }
 
-        public ActionResult GetDependances(ComposantModel composant, int? environnementId)
+        public ActionResult GetDetailsDependances(ComposantModel composant, int? environnementId)
         {
             return PartialView("_DetailsDependances", composant.FiltrerDependances(environnementId ?? Constantes.PRODUCTION));
         }

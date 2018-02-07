@@ -21,6 +21,8 @@ namespace STM.GDA.Web.Models
 
         public List<EtiquetteModel> Technologies { get; set; } = new List<EtiquetteModel>();
 
+        public bool DernierComposantAffiche { get; set; } = false;
+
         public string AbreviationNom => Abrevriation + " - " + Nom;
     }
 }

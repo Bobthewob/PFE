@@ -16,5 +16,15 @@ namespace STM.GDA.Web.BL
                 return context.Technologies.ToList();
             }
         }
+
+        public static void CreerTechnologies(List<Technologie> technologies)
+        {
+            using (GDA_Context context = new GDA_Context())
+            {
+                context.Technologies.InsertAllOnSubmit(technologies);
+
+                context.SubmitChanges();
+            }
+        }
     }
 }

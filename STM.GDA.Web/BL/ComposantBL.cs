@@ -78,6 +78,7 @@ namespace STM.GDA.Web.BL
 
                 ModifierClients(context, composantModif);
                 ModifierResponsables(context, composantModif);
+                ModifierTechnologies(context, composantModif);
             }
         }
 
@@ -145,6 +146,41 @@ namespace STM.GDA.Web.BL
             context.ComposantResponsables.InsertAllOnSubmit(composantModif.Responsables.Where(x => x.Id != 0).Select(x => new ComposantResponsable
             {
                 ResponsableId = x.Id,
+                ComposantId = composantModif.Id
+            }));
+
+            context.SubmitChanges();
+        }
+
+        private static void ModifierTechnologies(GDA_Context context, ComposantModel composantModif)
+        {
+            var technologies = context.ComposantTechnologies.Where(x => x.ComposantId == composantModif.Id);
+
+            context.ComposantTechnologies.DeleteAllOnSubmit(technologies);
+
+            context.SubmitChanges();
+
+            //New technologies
+            if (composantModif.Technologies.Any(x => x.Id == 0))
+            {
+                var nouvelleTechnologies = composantModif.Technologies.Where(x => x.Id == 0).Select(x => new Technologie
+                {
+                    Nom = x.Nom
+                }).ToList();
+                
+                TechnologieBL.CreerTechnologies(nouvelleTechnologies);
+
+                context.ComposantTechnologies.InsertAllOnSubmit(nouvelleTechnologies.Select(x => new ComposantTechnologie
+                {
+                    TechnologieId = x.Id,
+                    ComposantId = composantModif.Id
+                }));
+            }
+
+            //Existing technologies
+            context.ComposantTechnologies.InsertAllOnSubmit(composantModif.Technologies.Where(x => x.Id != 0).Select(x => new ComposantTechnologie
+            {
+                TechnologieId = x.Id,
                 ComposantId = composantModif.Id
             }));
 

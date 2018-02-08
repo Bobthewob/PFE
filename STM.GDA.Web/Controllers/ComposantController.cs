@@ -21,7 +21,7 @@ namespace STM.GDA.Web.Controllers
         {
             IEnumerable<ComposantListeModel> composants = ComposantBL.GetList(take, offset, filtre);
 
-            //System.Threading.Thread.Sleep(2000); //use to test loading spinner on new filter
+            //System.Threading.Thread.Sleep(1000); //use to test loading spinner on new filter
 
             if (!composants.Any())
             {

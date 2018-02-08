@@ -17,7 +17,7 @@
 
     <div id="listeComposant"></div>
     <div id="listeComposantPiedDePage">
-        <p id="filtreAucuneCorrespondance" style="display:none;"="">Rien ne correspond à cette recherche</p>
+        <p id="filtreAucuneCorrespondance" style="display:none;">Rien ne correspond à cette recherche</p>
         <button id="afficherPlus" type="button" class="btn btn-default petitMilieu" style="display:none;">Afficher Plus</button>
         <div id="tourniquetChargement" class="chargement" style="display:none;"></div>
     </div>
@@ -62,10 +62,11 @@
             $("#listeComposant").html("");
             $("#afficherPlus").hide();
             $("#filtreAucuneCorrespondance").hide();
+            $("#tourniquetChargement").show();
 
             filterTimeout = setTimeout(function () {
                 filtrerListe($("#txtFiltre").val(), true);
-            }, 1000);
+            }, 300);
         });
 
         $("#afficherPlus").on('click', function (e) {
@@ -79,6 +80,7 @@
             window.location.href = '@Url.Action("Creer", "Composant")';
         });
 
+        $("#tourniquetChargement").show();
         filtrerListe("", true);
     });
 

@@ -17,6 +17,7 @@
 
     <div id="listeComposant"></div>
     <div id="listeComposantPiedDePage">
+        <p id="filtreAucuneCorrespondance" style="display:none;"="">Rien ne correspond à cette recherche</p>
         <button id="afficherPlus" type="button" class="btn btn-default petitMilieu" style="display:none;">Afficher Plus</button>
         <div id="tourniquetChargement" class="chargement" style="display:none;"></div>
     </div>
@@ -27,8 +28,9 @@
 
 <script>
     var offset = 0; //current pagination offset
-    var take = 1; //how much we want to load for each ajax call
+    var take = 5; //how much we want to load for each ajax call
     var currentAjaxFetch; //the current ajax query, we don't want it to complete if we lauch a new search with a new filter for example
+    var filterTimeout; // the timeout function used to delay the filter call to the backend (so if the user is currently typing it does not create multiple call)
     var spinnerTimeout; // the timeout function used to delay the display of the spinner or else it would flicker.
 
     $(document).ready(function () {
@@ -53,7 +55,17 @@
             if (currentFetch)
                 currentFetch.abort("new filter called");
 
-            filtrerListe($(this).val(), true);
+            if (filterTimeout !== null) {
+                clearTimeout(filterTimeout);
+            }
+
+            $("#listeComposant").html("");
+            $("#afficherPlus").hide();
+            $("#filtreAucuneCorrespondance").hide();
+
+            filterTimeout = setTimeout(function () {
+                filtrerListe($("#txtFiltre").val(), true);
+            }, 1000);
         });
 
         $("#afficherPlus").on('click', function (e) {
@@ -73,18 +85,14 @@
     function filtrerListe(filtre, resetPagination) {
         if (resetPagination) {
             var token = true;
-
             offset = 0;
 
             if (spinnerTimeout !== null) {
                 clearTimeout(spinnerTimeout);
             }
 
-            $("#listeComposant").html(""); //remove all elements
-            $("#afficherPlus").hide();
-
             spinnerTimeout = setTimeout(function () {
-                if (token == true) {
+                if (token) {
                     $("#tourniquetChargement").show();
                 }
             }, 1000, token);
@@ -93,16 +101,17 @@
                 "@Url.Action("GetComposants", "Composant")",
                 { filtre: filtre, take: take }
             ).done(function (result) {
-                $("#listeComposant").html(result);
                 offset = offset + take;
                 token = false;
-
                 $("#tourniquetChargement").hide();
 
-                if (result.status !== "All_Loaded" && ($("#listeComposant").find(".divComposant").length % take) == 0) { //if the server returned less than the maximum of elements he can take each call than we know we got all elements
-                    $("#afficherPlus").show();
+                if (result.status === "All_Loaded") {
+                    $("#filtreAucuneCorrespondance").show();
                 } else {
-                    $("#afficherPlus").hide();
+                    $("#listeComposant").html(result);
+
+                    if (!$("#listeComposant").find(".dernier-element").length)
+                        $("#afficherPlus").show();
                 }
             });
         }
@@ -114,16 +123,15 @@
                 "@Url.Action("GetComposants", "Composant")",
                 { filtre: filtre, take: take, offset: offset }
             ).done(function (result) {
-                if (result.status !== "All_Loaded" && ($("#listeComposant").find(".divComposant").length % take) == 0) { //as long as we haven't loaded all elements we keep going
+                if (result.status !== "All_Loaded") { //as long as we haven't loaded all elements we keep going
                     $("#listeComposant").append(result); //add the new element at the end of the list
                     offset = offset + take;
 
                     $("#tourniquetChargement").hide();
-                    $("#afficherPlus").show();
-                } else {
-                    $("#tourniquetChargement").hide();
-                    $("#afficherPlus").hide(); //nothing else to load so we hide the button
-                }
+
+                    if(!$("#listeComposant").find(".dernier-element").length)
+                        $("#afficherPlus").show();
+                } 
             });
         }
     }

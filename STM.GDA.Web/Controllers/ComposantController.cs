@@ -96,9 +96,17 @@ namespace STM.GDA.Web.Controllers
             return Redirect("Details", "Composant", new { id = composant.Id });
         }
 
-        public ActionResult GetDetailsDependances(ComposantModel composant, int? environnementId)
+        public ActionResult GetDetailsDependances(ComposantModel composant)
         {
-            return PartialView("_DetailsDependances", composant.FiltrerDependances(environnementId ?? Constantes.PRODUCTION));
+            return PartialView("_DetailsDependances", composant.GetDependancesByEnvironnement());
         }
-    }
+
+      public ActionResult GetModifierDependances(ComposantModel composant) // could merge this and getdetailsdependances
+      {
+         ViewBag.ListeDependancesServeurs = DependanceBL.GetDependances(Constantes.DEPENDANCE_SERVEURS).Select(x => x.ToSelectListItem());
+         ViewBag.ListeDependancesAutres = DependanceBL.GetDependances(Constantes.DEPENDANCE_AUTRES).Select(x => x.ToSelectListItem());
+
+         return PartialView("_ModifierDependances", composant.GetDependancesByEnvironnement());
+      }
+   }
 }   

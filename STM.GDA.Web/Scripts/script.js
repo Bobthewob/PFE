@@ -54,14 +54,14 @@ function getSelectedItems(control) {
 // control: Control that containts options tags
 // Returns all the items in the control
 function getAllItems(control) {
-    var selectedValues = $("#" + control + " option").toArray();
-    var selectedItems = [];
+    var Values = $("#" + control + " option").toArray();
+    var AllItems = [];
 
-    selectedValues.forEach(function (item) {
-        selectedItems.push({ Id: item.value, Nom: item.text })
+    Values.forEach(function (item) {
+        AllItems.push({ Id: item.value, Nom: item.text })
     });
 
-    return selectedItems;
+    return AllItems;
 }
 
 //https://stackoverflow.com/questions/7385246/allow-new-values-with-chosen-js-multiple-select

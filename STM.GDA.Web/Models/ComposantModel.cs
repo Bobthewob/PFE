@@ -68,17 +68,26 @@ namespace STM.GDA.Web.Models
 
         public DependanceModelListe Dependances { get; set; } 
 
-        public DependanceModelListe FiltrerDependances(int environnementId)
+        public List<DependanceModelListe> GetDependancesByEnvironnement()
         {
-            return new DependanceModelListe
+            var listeEnvironnementInfo = new List<DependanceModelListe>();
+
+            foreach (var environnement in EnvironnementsItems)
             {
-                Web = Dependances.Web.Where(x => x.EnvironnementId == environnementId).ToList(),
-                BDs = Dependances.BDs.Where(x => x.EnvironnementId == environnementId).ToList(),
-                Rapports = Dependances.Rapports.Where(x => x.EnvironnementId == environnementId).ToList(),
-                Interfaces = Dependances.Interfaces.Where(x => x.EnvironnementId == environnementId).ToList(),
-                Jobs = Dependances.Jobs.Where(x => x.EnvironnementId == environnementId).ToList(),
-                Externes = Dependances.Externes.Where(x => x.EnvironnementId == environnementId).ToList()
-            };
-        }
+               var environnementId = Int32.Parse(environnement.Value);
+
+               listeEnvironnementInfo.Add(new DependanceModelListe
+               {
+                  Web = Dependances.Web.Where(x => x.EnvironnementId == environnementId).ToList(),
+                  BDs = Dependances.BDs.Where(x => x.EnvironnementId == environnementId).ToList(),
+                  Rapports = Dependances.Rapports.Where(x => x.EnvironnementId == environnementId).ToList(),
+                  Interfaces = Dependances.Interfaces.Where(x => x.EnvironnementId == environnementId).ToList(),
+                  Jobs = Dependances.Jobs.Where(x => x.EnvironnementId == environnementId).ToList(),
+                  Externes = Dependances.Externes.Where(x => x.EnvironnementId == environnementId).ToList()
+               });
+            }
+
+            return listeEnvironnementInfo;
+         }
     }
 }

@@ -128,6 +128,12 @@
             </div>
 
             <div class="col-md-12">
+                <h3>Environnements</h3>
+                @Html.DropDownList("ddlEnvironnement", Model.EnvironnementsItems, new { @class = "form-control" })          
+                @Html.Action("GetModifierDependances", new { composant = Model })
+            </div>
+
+            <div class="col-md-12">
                 <button type="button" id="btnSauvegarder" class="btn btn-default">Sauvegarder</button>
                 <button type="button" id="btnAnnuler" class="btn btn-default">Annuler</button>
             </div>
@@ -139,19 +145,19 @@
     $(document).ready(function () {
         $("#ClientsSelectionnes").chosen({
             placeholder_text_multiple: "Sélectionnez un ou plusieurs clients",
-            no_results_text: "Aucun résultat. Appuyez sur Entré ou Tab pour ajouter l'option",
+            no_results_text: "Aucun résultat. Appuyez sur Entrée ou Tab pour ajouter l'option",
             search_contains: true
         });
 
         $("#ResponsablesSelectionnes").chosen({
             placeholder_text_multiple: "Sélectionnez un ou plusieurs responsables",
-            no_results_text: "Aucun résultat. Appuyez sur Entré ou Tab pour ajouter l'option",
+            no_results_text: "Aucun résultat. Appuyez sur Entrée ou Tab pour ajouter l'option",
             search_contains: true
         });
 
         $("#Technologies").chosen({
             placeholder_text_single: "Ajouter des technologies",
-            no_results_text: "Aucun résultat. Appuyez sur Entré ou Tab pour ajouter l'option",
+            no_results_text: "Aucun résultat. Appuyez sur Entrée ou Tab pour ajouter l'option",
             search_contains: true
         });
 
@@ -228,6 +234,12 @@
         window.location.href = '@Url.Action("Details", "Composant", new { id = @Html.Raw(Json.Encode(Model.Id)) })';
     }); 
 
+    $("#ddlEnvironnement").on("change", function () { //initialize all the chosen in the first environnement selected
+        if (typeof changeEnvironnement !== "undefined") {
+            changeEnvironnement($("#ddlEnvironnement")[0].selectedIndex);
+        }
+    });
+
     $("#btnSauvegarder").click(function () {
         if ($('#formModification').valid()) {
             CallController(
@@ -246,10 +258,49 @@
                         SourceControlPath: $("#SourceControlPath").val(),
                         BC: $("#BC").val(),
                         BW: $("#BW").val(),
-                        Technologies: getAllItems("TechnologiesSelectionnees")
+                        Technologies: getAllItems("TechnologiesSelectionnees"),
+                        Dependances: getDependanceEnvironnement()
                     }
                 }
             );
         }
     });
+
+    function getDependanceEnvironnement() { //get all dependance for all environnements
+        var web = [];
+        var BDs = [];
+        var rapports = [];
+        var interfaces = [];
+        var jobs = [];
+        var externes = [];
+       
+        for (var i = 0; i < $("#ddlEnvironnement option").length; i++) {    
+            fillDependanceModel(web, "Web", i);
+            fillDependanceModel(BDs, "BDs", i);
+            fillDependanceModel(rapports, "Rapports", i);
+            fillDependanceModel(interfaces, "Interfaces", i);
+            fillDependanceModel(jobs, "Jobs", i);
+            fillDependanceModel(externes, "Externes", i);
+        }
+
+        return {
+            Web: web,
+            BDs: BDs,
+            Rapports: rapports,
+            Interfaces: interfaces,
+            Jobs: jobs,
+            Externes: externes
+        };
+    }
+
+    function fillDependanceModel(dependance, name, index) { //return a json string containing a dependance
+        $("#environnement-" + name + "-" + index + " option:selected").each(function () {
+            dependance.push({
+                Etiquette: { Id: $(this).val(), Nom: $(this).text() },
+                EnvironnementId: $("#ddlEnvironnement option")[index].value
+            });
+        });
+
+        return dependance;
+    }
 </script>

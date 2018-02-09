@@ -18,3 +18,11 @@
 .marging-top {
     margin-top: 10px;
 }
+
+.envTab {
+    display: none;
+}
+
+.envTab.currentEnvironnement {
+    display: block;
+}

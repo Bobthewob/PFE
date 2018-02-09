@@ -4,6 +4,7 @@ using STM.GDA.Web.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MoreLinq;
 using System.Web;
 
 namespace STM.GDA.Web.BL
@@ -90,6 +91,7 @@ namespace STM.GDA.Web.BL
                 ModifierClients(context, composantModif);
                 ModifierResponsables(context, composantModif);
                 ModifierTechnologies(context, composantModif);
+                ModifierDependances(context, composantModif);
             }
         }
 
@@ -168,14 +170,14 @@ namespace STM.GDA.Web.BL
             //New technologies
             if (composantModif.Technologies.Any(x => x.Id == 0))
             {
-                var nouvelleTechnologies = composantModif.Technologies.Where(x => x.Id == 0).Select(x => new Technologie
+                var nouvellesTechnologies = composantModif.Technologies.Where(x => x.Id == 0).Select(x => new Technologie
                 {
                     Nom = x.Nom
                 }).ToList();
                 
-                TechnologieBL.CreerTechnologies(nouvelleTechnologies);
+                TechnologieBL.CreerTechnologies(nouvellesTechnologies);
 
-                context.ComposantTechnologies.InsertAllOnSubmit(nouvelleTechnologies.Select(x => new ComposantTechnologie
+                context.ComposantTechnologies.InsertAllOnSubmit(nouvellesTechnologies.Select(x => new ComposantTechnologie
                 {
                     TechnologieId = x.Id,
                     ComposantId = composantModif.Id
@@ -187,6 +189,42 @@ namespace STM.GDA.Web.BL
             {
                 TechnologieId = x.Id,
                 ComposantId = composantModif.Id
+            }));
+
+            context.SubmitChanges();
+        }
+
+        private static void ModifierDependances(GDA_Context context, ComposantModel composantModif)
+        {
+            var dependances = context.ComposantDependances.Where(x => x.ComposantId == composantModif.Id);
+
+            context.ComposantDependances.DeleteAllOnSubmit(dependances);
+
+            //New dependencies
+            if (composantModif.RawDependances.Any(x => x.Etiquette.Id == 0))
+            {
+                var nouvellesDependances = composantModif.RawDependances.Where(x => x.Etiquette.Id == 0).DistinctBy(x => x.Etiquette.Nom).Select(x => new Dependance
+                {
+                    Nom = x.Etiquette.Nom,
+                    DependanceTypeId = x.Type.Id
+                }).ToList();
+
+                DependanceBL.CreerDependances(nouvellesDependances);
+
+                context.ComposantDependances.InsertAllOnSubmit(composantModif.RawDependances.Where(x => x.Etiquette.Id == 0).Select(x => new ComposantDependance
+                {
+                    DependanceId = nouvellesDependances.SingleOrDefault(nd => nd.Nom == x.Etiquette.Nom).Id,
+                    ComposantId = composantModif.Id,
+                    EnvironnementId = x.EnvironnementId
+                }));
+            }
+
+            //Existing dependencies
+            context.ComposantDependances.InsertAllOnSubmit(composantModif.RawDependances.Where(x => x.Etiquette.Id != 0).Select(x => new ComposantDependance
+            {
+                 DependanceId = x.Etiquette.Id,
+                 ComposantId = composantModif.Id,
+                 EnvironnementId = x.EnvironnementId
             }));
 
             context.SubmitChanges();

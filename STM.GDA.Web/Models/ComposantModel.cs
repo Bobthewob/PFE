@@ -1,4 +1,5 @@
-﻿using System;
+﻿using STM.GDA.Web.Configuration;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -95,6 +96,29 @@ namespace STM.GDA.Web.Models
                 }
                 return _DependancesByEnvironnement;                
             }            
+        }
+
+        private List<DependanceModel> _RawDependances { get; set; }
+
+        //Returns all the dependencies in only one list
+        public List<DependanceModel> RawDependances
+        {
+            get
+            {
+                if (_RawDependances == null)
+                {
+                    _RawDependances = new List<DependanceModel>();
+
+                    _RawDependances.AddRange(Dependances.Web.Select(x => { x.Type.Id = Constantes.DEPENDANCE_WEB; return x; }));
+                    _RawDependances.AddRange(Dependances.BDs.Select(x => { x.Type.Id = Constantes.DEPENDANCE_BD; return x; }));
+                    _RawDependances.AddRange(Dependances.Rapports.Select(x => { x.Type.Id = Constantes.DEPENDANCE_RAPPORT; return x; }));
+                    _RawDependances.AddRange(Dependances.Interfaces.Select(x => { x.Type.Id = Constantes.DEPENDANCE_INTERFACE; return x; }));
+                    _RawDependances.AddRange(Dependances.Jobs.Select(x => { x.Type.Id = Constantes.DEPENDANCE_JOB; return x; }));
+                    _RawDependances.AddRange(Dependances.Externes.Select(x => { x.Type.Id = Constantes.DEPENDANCE_EXTERNE; return x; }));
+                }      
+
+                return _RawDependances;
+            }
         }
     }
 }

@@ -25,7 +25,7 @@ namespace STM.GDA.Web.BL
                             x.ComposantDependances.Any(d => d.Dependance.Nom.ToLower().Contains(filtre)));
                 }
 
-                return query.Skip(offset).Take(take + 1).Select(x => x.ToComposantListeModel()).ToList();
+                return query.Skip(offset).Take(take + 1).Where(x => x.DateSuppression == null).Select(x => x.ToComposantListeModel()).ToList();
             }
         }
 
@@ -93,6 +93,18 @@ namespace STM.GDA.Web.BL
                 ModifierResponsables(context, composantModif);
                 ModifierTechnologies(context, composantModif);
                 ModifierDependances(context, composantModif);
+            }
+        }
+
+        public static void SupprimerComposant(int id)
+        {
+            using (GDA_Context context = new GDA_Context())
+            {
+                var composant = context.Composants.FirstOrDefault(x => x.Id == id);
+
+                composant.DateSuppression = DateTime.Now;
+
+                context.SubmitChanges();
             }
         }
 

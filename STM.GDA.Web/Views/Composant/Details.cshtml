@@ -173,4 +173,13 @@
     $("#btnModifier").click(function () {
         window.location.href = '@Url.Action("Modifier", "Composant", new { id = @Html.Raw(Json.Encode(Model.Id)) })';
     });
+
+    $("#btnSupprimer").click(function () {
+        if (confirm("Voulez-vous vraiment supprimer ce componsant?")) {
+             CallController(
+                "@Url.Action("Supprimer", "Composant")",
+                { Id: @Html.Raw(Json.Encode(Model.Id)) }
+            );
+        }
+    });
 </script>

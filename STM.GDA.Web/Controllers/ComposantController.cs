@@ -75,6 +75,12 @@ namespace STM.GDA.Web.Controllers
             return Redirect("Details", "Composant", new { id = composant.Id });
         }
 
+        public ActionResult Supprimer(int id)
+        {
+            ComposantBL.SupprimerComposant(id);
+            return Redirect("Index", "Composant", null);
+        }
+
         public ActionResult Modifier(int id)
         {
             var composant = ComposantBL.GetComposant(id);

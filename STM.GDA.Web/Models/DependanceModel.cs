@@ -9,7 +9,7 @@ namespace STM.GDA.Web.Models
     {
         public EtiquetteModel Etiquette { get; set; }
 
-        public EtiquetteModel Type { get; set; }
+        public EtiquetteModel Type { get; set; } = new EtiquetteModel();
 
         public int EnvironnementId { get; set; }
     }

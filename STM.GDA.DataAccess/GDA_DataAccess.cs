@@ -551,7 +551,7 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Version", DbType="VarChar(10)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Version", DbType="VarChar(25)")]
 		public string Version
 		{
 			get
@@ -1163,11 +1163,15 @@ namespace STM.GDA.DataAccess
 		
 		private int _EnvironnementId;
 		
+		private int _DependanceTypeId;
+		
 		private int _DependanceId;
 		
 		private EntityRef<Composant> _Composant;
 		
 		private EntityRef<Dependance> _Dependance;
+		
+		private EntityRef<DependanceType> _DependanceType;
 		
 		private EntityRef<Environnement> _Environnement;
 		
@@ -1179,6 +1183,8 @@ namespace STM.GDA.DataAccess
     partial void OnComposantIdChanged();
     partial void OnEnvironnementIdChanging(int value);
     partial void OnEnvironnementIdChanged();
+    partial void OnDependanceTypeIdChanging(int value);
+    partial void OnDependanceTypeIdChanged();
     partial void OnDependanceIdChanging(int value);
     partial void OnDependanceIdChanged();
     #endregion
@@ -1187,6 +1193,7 @@ namespace STM.GDA.DataAccess
 		{
 			this._Composant = default(EntityRef<Composant>);
 			this._Dependance = default(EntityRef<Dependance>);
+			this._DependanceType = default(EntityRef<DependanceType>);
 			this._Environnement = default(EntityRef<Environnement>);
 			OnCreated();
 		}
@@ -1235,6 +1242,30 @@ namespace STM.GDA.DataAccess
 					this._EnvironnementId = value;
 					this.SendPropertyChanged("EnvironnementId");
 					this.OnEnvironnementIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DependanceTypeId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int DependanceTypeId
+		{
+			get
+			{
+				return this._DependanceTypeId;
+			}
+			set
+			{
+				if ((this._DependanceTypeId != value))
+				{
+					if (this._DependanceType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDependanceTypeIdChanging(value);
+					this.SendPropertyChanging();
+					this._DependanceTypeId = value;
+					this.SendPropertyChanged("DependanceTypeId");
+					this.OnDependanceTypeIdChanged();
 				}
 			}
 		}
@@ -1327,6 +1358,40 @@ namespace STM.GDA.DataAccess
 						this._DependanceId = default(int);
 					}
 					this.SendPropertyChanged("Dependance");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantDependance_DependanceType", Storage="_DependanceType", ThisKey="DependanceTypeId", OtherKey="Id", IsForeignKey=true)]
+		public DependanceType DependanceType
+		{
+			get
+			{
+				return this._DependanceType.Entity;
+			}
+			set
+			{
+				DependanceType previousValue = this._DependanceType.Entity;
+				if (((previousValue != value) 
+							|| (this._DependanceType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DependanceType.Entity = null;
+						previousValue.ComposantDependances.Remove(this);
+					}
+					this._DependanceType.Entity = value;
+					if ((value != null))
+					{
+						value.ComposantDependances.Add(this);
+						this._DependanceTypeId = value.Id;
+					}
+					else
+					{
+						this._DependanceTypeId = default(int);
+					}
+					this.SendPropertyChanged("DependanceType");
 				}
 			}
 		}
@@ -2064,8 +2129,6 @@ namespace STM.GDA.DataAccess
 		
 		private int _Id;
 		
-		private int _DependanceTypeId;
-		
 		private string _Nom;
 		
 		private System.Nullable<int> _ComposantId;
@@ -2074,16 +2137,12 @@ namespace STM.GDA.DataAccess
 		
 		private EntityRef<Composant> _Composant;
 		
-		private EntityRef<DependanceType> _DependanceType;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
-    partial void OnDependanceTypeIdChanging(int value);
-    partial void OnDependanceTypeIdChanged();
     partial void OnNomChanging(string value);
     partial void OnNomChanged();
     partial void OnComposantIdChanging(System.Nullable<int> value);
@@ -2094,7 +2153,6 @@ namespace STM.GDA.DataAccess
 		{
 			this._ComposantDependances = new EntitySet<ComposantDependance>(new Action<ComposantDependance>(this.attach_ComposantDependances), new Action<ComposantDependance>(this.detach_ComposantDependances));
 			this._Composant = default(EntityRef<Composant>);
-			this._DependanceType = default(EntityRef<DependanceType>);
 			OnCreated();
 		}
 		
@@ -2114,30 +2172,6 @@ namespace STM.GDA.DataAccess
 					this._Id = value;
 					this.SendPropertyChanged("Id");
 					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DependanceTypeId", DbType="Int NOT NULL")]
-		public int DependanceTypeId
-		{
-			get
-			{
-				return this._DependanceTypeId;
-			}
-			set
-			{
-				if ((this._DependanceTypeId != value))
-				{
-					if (this._DependanceType.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnDependanceTypeIdChanging(value);
-					this.SendPropertyChanging();
-					this._DependanceTypeId = value;
-					this.SendPropertyChanged("DependanceTypeId");
-					this.OnDependanceTypeIdChanged();
 				}
 			}
 		}
@@ -2233,40 +2267,6 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Dependance_DependanceType", Storage="_DependanceType", ThisKey="DependanceTypeId", OtherKey="Id", IsForeignKey=true)]
-		public DependanceType DependanceType
-		{
-			get
-			{
-				return this._DependanceType.Entity;
-			}
-			set
-			{
-				DependanceType previousValue = this._DependanceType.Entity;
-				if (((previousValue != value) 
-							|| (this._DependanceType.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DependanceType.Entity = null;
-						previousValue.Dependances.Remove(this);
-					}
-					this._DependanceType.Entity = value;
-					if ((value != null))
-					{
-						value.Dependances.Add(this);
-						this._DependanceTypeId = value.Id;
-					}
-					else
-					{
-						this._DependanceTypeId = default(int);
-					}
-					this.SendPropertyChanged("DependanceType");
-				}
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -2310,7 +2310,7 @@ namespace STM.GDA.DataAccess
 		
 		private string _Nom;
 		
-		private EntitySet<Dependance> _Dependances;
+		private EntitySet<ComposantDependance> _ComposantDependances;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2324,7 +2324,7 @@ namespace STM.GDA.DataAccess
 		
 		public DependanceType()
 		{
-			this._Dependances = new EntitySet<Dependance>(new Action<Dependance>(this.attach_Dependances), new Action<Dependance>(this.detach_Dependances));
+			this._ComposantDependances = new EntitySet<ComposantDependance>(new Action<ComposantDependance>(this.attach_ComposantDependances), new Action<ComposantDependance>(this.detach_ComposantDependances));
 			OnCreated();
 		}
 		
@@ -2368,16 +2368,16 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Dependance_DependanceType", Storage="_Dependances", ThisKey="Id", OtherKey="DependanceTypeId", DeleteRule="NO ACTION")]
-		public EntitySet<Dependance> Dependances
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ComposantDependance_DependanceType", Storage="_ComposantDependances", ThisKey="Id", OtherKey="DependanceTypeId", DeleteRule="NO ACTION")]
+		public EntitySet<ComposantDependance> ComposantDependances
 		{
 			get
 			{
-				return this._Dependances;
+				return this._ComposantDependances;
 			}
 			set
 			{
-				this._Dependances.Assign(value);
+				this._ComposantDependances.Assign(value);
 			}
 		}
 		
@@ -2401,13 +2401,13 @@ namespace STM.GDA.DataAccess
 			}
 		}
 		
-		private void attach_Dependances(Dependance entity)
+		private void attach_ComposantDependances(ComposantDependance entity)
 		{
 			this.SendPropertyChanging();
 			entity.DependanceType = this;
 		}
 		
-		private void detach_Dependances(Dependance entity)
+		private void detach_ComposantDependances(ComposantDependance entity)
 		{
 			this.SendPropertyChanging();
 			entity.DependanceType = null;

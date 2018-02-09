@@ -4,6 +4,7 @@ using STM.GDA.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MoreLinq;
 using System.Web;
 
 namespace STM.GDA.Web.Extensions
@@ -24,7 +25,7 @@ namespace STM.GDA.Web.Extensions
                     Id = comp.Technologie.Id,
                     Nom = comp.Technologie.Nom
                 }).ToList(),
-                Dependances = composant.ComposantDependances.Select(comp => new EtiquetteModel
+                Dependances = composant.ComposantDependances.DistinctBy(x => x.DependanceId).Select(comp => new EtiquetteModel
                 {
                     Id = comp.Dependance.Id,
                     Nom = comp.Dependance.Nom
@@ -80,10 +81,10 @@ namespace STM.GDA.Web.Extensions
 
         private static List<DependanceModel> GetDependaceComposant(Composant composant, int typeDependance)
         {
-            return composant.ComposantDependances.Where(x => x.Dependance.DependanceType.Id == typeDependance).Select(x => new DependanceModel
+            return composant.ComposantDependances.Where(x => x.DependanceTypeId == typeDependance).Select(x => new DependanceModel
             {
                 Etiquette = new EtiquetteModel { Id = x.Dependance.Id, Nom = x.Dependance.Nom },
-                Type = new EtiquetteModel { Id = x.Dependance.DependanceType.Id, Nom = x.Dependance.DependanceType.Nom },
+                Type = new EtiquetteModel { Id = typeDependance, Nom = x.DependanceType.Nom },
                 EnvironnementId = x.EnvironnementId
             }).ToList();
         }

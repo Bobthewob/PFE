@@ -1,31 +1,4 @@
-﻿.search-group {
-    display: flex;
-}
-
-.search-group .search-input {
-    flex-grow: 1;
-}
-
-.search-group .btn {
-    flex-grow: 0;
-    margin-left: 10px;
-}
-
-.search-group .input-group {
-    display: flex;
-}
-
-.search-group .input-group-addon {
-    display:inline-block;
-    flex-grow: 0;
-    width: auto;
-}
-
-.search-group .form-control {
-    display: inline-block;
-    flex-grow: 1;
-}
-    
+﻿    
 label {
     font-weight: normal;
 }
@@ -34,11 +7,6 @@ label {
     flex-grow: 1;
     display: inline-block;
 }
-
-#listeComposant {
-    padding-top: 10px;
-}
-
 
 .divComposant {
     border: 1px solid rgb(204, 204, 204);
@@ -51,19 +19,6 @@ label {
     border: 1px solid rgba(0, 158, 224, 0.6);
     background: rgba(0, 158, 224, 0.05);
     cursor: pointer;
-}
-    
-.bold {
-    font-weight: bold;
-    font-size: 18px;
-}
-
-.italic {
-    font-style : italic;
-}
-
-.right-align {
-    text-align: right;
 }
 
 @media (max-width: 767px) {
@@ -83,22 +38,6 @@ label {
     min-height: 40px;
     padding-top:5px;
     margin-bottom: 5px;
-}
-
-.tags {
-    padding: 5px 15px 0 15px;
-}
-
-.tag {
-    background-color: rgba(254, 228, 4, 0.05);
-    border: 1px solid rgba(254, 228, 4, 0.6);
-    color: #555;
-    text-align: center;
-    margin-right: 3px;
-    display: inline-block;
-    padding: 0 10px;
-    margin-bottom: 5px;
-    box-shadow: 3px 2px 5px rgba(0, 0, 0, .075);
 }
 
 .scroll-up {

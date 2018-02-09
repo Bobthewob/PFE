@@ -4,57 +4,75 @@
 @foreach (var environnementInfo in Model)
 {
     <div class="envTab" >
-        <div class="value">
-            <div class="col-md-3">
+        <div class="value row">
+            <div class="col-xs-12 col-sm-4 col-md-3 sm-right-align bold">
                 @Html.DisplayNameFor(x => environnementInfo.Web)
             </div>
-            <div class="col-md-9">
-                @Html.DisplayFor(x => environnementInfo.WebText)
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                @foreach (var dep in environnementInfo.Web)
+                {
+                    <span class="tag">@Html.DisplayFor(m => dep.Etiquette.Nom)</span>
+                }
             </div>
         </div>
 
-        <div class="value">
-            <div class="col-md-3">
+        <div class="value row">
+            <div class="col-xs-12 col-sm-4 col-md-3 sm-right-align bold">
                 @Html.DisplayNameFor(x => environnementInfo.BDs)
             </div>
-            <div class="col-md-9">
-                @Html.DisplayFor(x => environnementInfo.BDsText)
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                @foreach (var dep in environnementInfo.BDs)
+                {
+                    <span class="tag">@Html.DisplayFor(m => dep.Etiquette.Nom)</span>
+                }
             </div>
         </div>
 
-        <div class="value">
-            <div class="col-md-3">
+        <div class="value row">
+            <div class="col-xs-12 col-sm-4 col-md-3 sm-right-align bold">
                 @Html.DisplayNameFor(x => environnementInfo.Rapports)
             </div>
-            <div class="col-md-9">
-                @Html.DisplayFor(x => environnementInfo.RapportsText)
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                @foreach (var dep in environnementInfo.Rapports)
+                {
+                    <span class="tag">@Html.DisplayFor(m => dep.Etiquette.Nom)</span>
+                }
             </div>
         </div>
 
-        <div class="value">
-            <div class="col-md-3">
+        <div class="value row">
+            <div class="col-xs-12 col-sm-4 col-md-3 sm-right-align bold">
                 @Html.DisplayNameFor(x => environnementInfo.Interfaces)
             </div>
-            <div class="col-md-9">
-                @Html.DisplayFor(x => environnementInfo.InterfacesText)
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                @foreach (var dep in environnementInfo.Interfaces)
+                {
+                    <span class="tag">@Html.DisplayFor(m => dep.Etiquette.Nom)</span>
+                }
             </div>
         </div>
 
-        <div class="value">
-            <div class="col-md-3">
+        <div class="value row">
+            <div class="col-xs-12 col-sm-4 col-md-3 sm-right-align bold">
                 @Html.DisplayNameFor(x => environnementInfo.Jobs)
             </div>
-            <div class="col-md-9">
-                @Html.DisplayFor(x => environnementInfo.JobsText)
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                @foreach (var dep in environnementInfo.Jobs)
+                {
+                    <span class="tag">@Html.DisplayFor(m => dep.Etiquette.Nom)</span>
+                }
             </div>
         </div>
 
-        <div class="value">
-            <div class="col-md-3">
+        <div class="value row">
+            <div class="col-xs-12 col-sm-4 col-md-3 sm-right-align bold">
                 @Html.DisplayNameFor(x => environnementInfo.Externes)
             </div>
-            <div class="col-md-9">
-                @Html.DisplayFor(x => environnementInfo.ExternesText)
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                @foreach (var dep in environnementInfo.Externes)
+                {
+                    <span class="tag">@Html.DisplayFor(m => dep.Etiquette.Nom)</span>
+                }
             </div>
         </div>
     </div>

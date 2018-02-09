@@ -9,137 +9,143 @@
 
         <h3>Détails</h3>
 
-        <div class="value">
-            <div class="col-md-3 align-right">
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
                 @Html.DisplayNameFor(m => m.Nom)
             </div>
-            <div class="col-md-9">
+            <div class="col-xs-12 col-sm-9 col-md-8">
                 @Html.DisplayFor(m => m.Nom)
             </div>
         </div>
 
-        <div class="value">
-            <div class="col-md-3 align-right">
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
                 @Html.DisplayNameFor(m => m.Abreviation)
             </div>
-            <div class="col-md-9">
+            <div class="col-xs-12 col-sm-9 col-md-8">
                 @Html.DisplayFor(m => m.Abreviation)
             </div>
         </div>
 
-        <div class="value">
-            <div class="col-md-3 align-right">
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
                 @Html.DisplayNameFor(m => m.Version)
             </div>
-            <div class="col-md-9">
+            <div class="col-xs-12 col-sm-9 col-md-8">
                 @Html.DisplayFor(m => m.Version)
             </div>
         </div>
 
-        <div class="value">
-            <div class="col-md-3 align-right">
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
                 @Html.DisplayNameFor(m => m.Description)
             </div>
-            <div class="col-md-9">
+            <div class="col-xs-12 col-sm-9 col-md-8">
                 @Html.DisplayFor(m => m.Description)
             </div>
         </div>
 
-        <div class="value">
-            <div class="col-md-3 align-right">
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
                 @Html.DisplayNameFor(m => m.Type)
             </div>
-            <div class="col-md-9">
+            <div class="col-xs-12 col-sm-9 col-md-8">
                 @Html.DisplayFor(m => m.Type.Nom)
             </div>
         </div>
 
-        <div class="value">
-            <div class="col-md-3 align-right">
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
                 @Html.DisplayNameFor(m => m.ResonsablesText)
             </div>
-            <div class="col-md-9">
+            <div class="col-xs-12 col-sm-9 col-md-8">
                 @Html.DisplayFor(m => m.ResonsablesText)
             </div>
         </div>
 
-        <div class="value">
-            <div class="col-md-3 align-right">
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
                 @Html.DisplayNameFor(m => m.ClientsText)
             </div>
-            <div class="col-md-9">
+            <div class="col-xs-12 col-sm-9 col-md-8">
                 @Html.DisplayFor(m => m.ClientsText)
             </div>
         </div>
 
-        <div class="value">
-            <div class="col-md-3 align-right">
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
                 @Html.DisplayNameFor(m => m.NomBD)
             </div>
-            <div class="col-md-9">
+            <div class="col-xs-12 col-sm-9 col-md-8">
                 @Html.DisplayFor(m => m.NomBD)
             </div>
         </div>
 
-        <div class="value">
-            <div class="col-md-3 align-right">
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
                 @Html.DisplayNameFor(m => m.SourceControlPath)
             </div>
-            <div class="col-md-9">
+            <div class="col-xs-12 col-sm-9 col-md-8">
                 @Html.DisplayFor(m => m.SourceControlPath)
             </div>
         </div>
 
-        <div class="value">
-            <div class="col-md-3 align-right">
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
                 @Html.DisplayNameFor(m => m.BC)
             </div>
-            <div class="col-md-9">
+            <div class="col-xs-12 col-sm-9 col-md-8">
                 @Html.DisplayFor(m => m.BC)
             </div>
         </div>
 
-        <div class="value">
-            <div class="col-md-3 align-right">
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
                 @Html.DisplayNameFor(m => m.BW)
             </div>
-            <div class="col-md-9">
+            <div class="col-xs-12 col-sm-9 col-md-8">
                 @Html.DisplayFor(m => m.BW)
             </div>
         </div>
 
-        <div class="value">
-            <div class="col-md-3 align-right">
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
                 @Html.DisplayNameFor(m => m.DerniereMAJ)
             </div>
-            <div class="col-md-9">
+            <div class="col-xs-12 col-sm-9 col-md-8">
                 @Html.DisplayFor(m => m.DerniereMAJ)
             </div>
         </div>
     </div>
 
-    <div class="col-md-7">
-        <div class="col-md-12">
-            <h3>Technologies</h3>
-            <div class="border">
-                @foreach (var techologie in Model.Technologies)
-                {
-                    @Html.DisplayFor(m => techologie.Nom) <br>
-                }
-            </div>
-        </div>
+    <div class="col-md-7 no-pad">
+		<div class="col-md-12">
+			<h3>Technologies</h3>
+			@if (@Model.Technologies.Count() == 0)
+			{
+				<p>Il n'y a présentement aucune technologie pour cette application.</p>
+			}
+			else
+			{
+				<div class="form-control full-height">
+				@foreach (var techologie in Model.Technologies) {
+                    <span class="tag">@Html.DisplayFor(m => techologie.Nom)</span>
+				}
+				</div>
+			}
+		</div>
 
         <div class="col-md-12">
             <h3>Environnements</h3>
             @Html.DropDownList("ddlEnvironnement", Model.EnvironnementsItems, new { @class = "form-control" })
-            <div id="divDependance" class="border marging-top">
+            <div id="divDependance" class="form-control marging-top full-height">
                 @{ Html.RenderAction("GetDetailsDependances", new { composant = Model }); }
             </div>
         </div>
 
         <div class="col-md-12 align-right padding-top">
-            <button type="button" id="btnModifier" class="btn btn-default">Modifier</button>
-            <button type="button" id="btnSupprimer" class="btn btn-default">Supprimer</button>
+            <button type="button" id="btnModifier" class="btn btn-primary">Modifier</button>
+            <button type="button" id="btnSupprimer" class="btn btn-danger">Supprimer</button>
         </div>
     </div>
 </div>

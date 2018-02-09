@@ -2,10 +2,13 @@
     <link href="@Url.Content("~/Content/Composant.css")" rel="stylesheet" type="text/css" />
 }
 
-<h2>Liste des applications et services</h2> 
-<button type="button" id="btnCreer" class="btn btn-default">Créer une application ou un service</button>
+<h2>Liste des applications et services</h2>
 
-<div class="divListe">
+<div class="divListe row">
+    <div class="action-group">
+        <button type="button" id="btnCreer" class="btn btn-primary">Créer une application ou un service</button>
+    </div>
+       
     <div class="search-group">
         <div class="search-input input-group">
             <span class="input-group-addon transparent"><span class="glyphicon glyphicon-search"></span></span>
@@ -16,6 +19,7 @@
     </div>
 
     <div id="listeComposant"></div>
+
     <div id="listeComposantPiedDePage">
         <p id="filtreAucuneCorrespondance" style="display:none;">Rien ne correspond à cette recherche</p>
         <button id="afficherPlus" type="button" class="btn btn-default petitMilieu" style="display:none;">Afficher Plus</button>
@@ -27,114 +31,114 @@
 
 
 <script>
-    var offset = 0; //current pagination offset
-    var take = 5; //how much we want to load for each ajax call
-    var currentAjaxFetch; //the current ajax query, we don't want it to complete if we lauch a new search with a new filter for example
-    var filterTimeout; // the timeout function used to delay the filter call to the backend (so if the user is currently typing it does not create multiple call)
-    var spinnerTimeout; // the timeout function used to delay the display of the spinner or else it would flicker.
+var offset = 0; //current pagination offset
+var take = 5; //how much we want to load for each ajax call
+var currentAjaxFetch; //the current ajax query, we don't want it to complete if we lauch a new search with a new filter for example
+var filterTimeout; // the timeout function used to delay the filter call to the backend (so if the user is currently typing it does not create multiple call)
+var spinnerTimeout; // the timeout function used to delay the display of the spinner or else it would flicker.
 
-    $(document).ready(function () {
-        //https://bootsnipp.com/snippets/featured/link-to-top-page
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 50) {
-                $('#scroll-up').fadeIn();
-            } else {
-                $('#scroll-up').fadeOut();
-            }
-        });
-
-        $('#scroll-up').click(function () {
-            $('#scroll-up').tooltip('hide');
-            $('body,html').animate({
-                scrollTop: 0
-            }, 800);
-            return false;
-        });
-
-        $("#txtFiltre").on('input', function (e) {
-            if (currentFetch)
-                currentFetch.abort("new filter called");
-
-            if (filterTimeout !== null) {
-                clearTimeout(filterTimeout);
-            }
-
-            $("#listeComposant").html("");
-            $("#afficherPlus").hide();
-            $("#filtreAucuneCorrespondance").hide();
-            $("#tourniquetChargement").show();
-
-            filterTimeout = setTimeout(function () {
-                filtrerListe($("#txtFiltre").val(), true);
-            }, 300);
-        });
-
-        $("#afficherPlus").on('click', function (e) {
-            if (currentFetch)
-                currentFetch.abort("new filter called");
-
-            filtrerListe($("#txtFiltre").val(), false);
-        });
-
-        $("#btnCreer").on('click', function (e) {
-            window.location.href = '@Url.Action("Creer", "Composant")';
-        });
-
-        $("#tourniquetChargement").show();
-        filtrerListe("", true);
+$(document).ready(function () {
+    //https://bootsnipp.com/snippets/featured/link-to-top-page
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 50) {
+            $('#scroll-up').fadeIn();
+        } else {
+            $('#scroll-up').fadeOut();
+        }
     });
 
-    function filtrerListe(filtre, resetPagination) {
-        if (resetPagination) {
-            var token = true;
-            offset = 0;
+    $('#scroll-up').click(function () {
+        $('#scroll-up').tooltip('hide');
+        $('body,html').animate({
+            scrollTop: 0
+        }, 800);
+        return false;
+    });
 
-            if (spinnerTimeout !== null) {
-                clearTimeout(spinnerTimeout);
+    $("#txtFiltre").on('input', function (e) {
+        if (currentFetch)
+            currentFetch.abort("new filter called");
+
+        if (filterTimeout !== null) {
+            clearTimeout(filterTimeout);
+        }
+
+        $("#listeComposant").html("");
+        $("#afficherPlus").hide();
+        $("#filtreAucuneCorrespondance").hide();
+        $("#tourniquetChargement").show();
+
+        filterTimeout = setTimeout(function () {
+            filtrerListe($("#txtFiltre").val(), true);
+        }, 300);
+    });
+
+    $("#afficherPlus").on('click', function (e) {
+        if (currentFetch)
+            currentFetch.abort("new filter called");
+
+        filtrerListe($("#txtFiltre").val(), false);
+    });
+
+    $("#btnCreer").on('click', function (e) {
+        window.location.href = '@Url.Action("Creer", "Composant")';
+    });
+
+    $("#tourniquetChargement").show();
+    filtrerListe("", true);
+});
+
+function filtrerListe(filtre, resetPagination) {
+    if (resetPagination) {
+        var token = true;
+        offset = 0;
+
+        if (spinnerTimeout !== null) {
+            clearTimeout(spinnerTimeout);
+        }
+
+        spinnerTimeout = setTimeout(function () {
+            if (token) {
+                $("#tourniquetChargement").show();
             }
+        }, 1000, token);
 
-            spinnerTimeout = setTimeout(function () {
-                if (token) {
-                    $("#tourniquetChargement").show();
-                }
-            }, 1000, token);
+        currentFetch = CallController(
+            "@Url.Action("GetComposants", "Composant")",
+            { filtre: filtre, take: take }
+        ).done(function (result) {
+            offset = offset + take;
+            token = false;
+            $("#tourniquetChargement").hide();
 
-            currentFetch = CallController(
-                "@Url.Action("GetComposants", "Composant")",
-                { filtre: filtre, take: take }
-            ).done(function (result) {
+            if (result.status === "All_Loaded") {
+                $("#filtreAucuneCorrespondance").show();
+            } else {
+                $("#listeComposant").html(result);
+
+                if (!$("#listeComposant").find(".dernier-element").length)
+                    $("#afficherPlus").show();
+            }
+        });
+    }
+    else {
+        $("#tourniquetChargement").show();
+        $("#afficherPlus").hide();
+
+        currentFetch = CallController(
+            "@Url.Action("GetComposants", "Composant")",
+            { filtre: filtre, take: take, offset: offset }
+        ).done(function (result) {
+            if (result.status !== "All_Loaded") { //as long as we haven't loaded all elements we keep going
+                $("#listeComposant").append(result); //add the new element at the end of the list
                 offset = offset + take;
-                token = false;
+
                 $("#tourniquetChargement").hide();
 
-                if (result.status === "All_Loaded") {
-                    $("#filtreAucuneCorrespondance").show();
-                } else {
-                    $("#listeComposant").html(result);
-
-                    if (!$("#listeComposant").find(".dernier-element").length)
-                        $("#afficherPlus").show();
-                }
-            });
-        }
-        else {
-            $("#tourniquetChargement").show();
-            $("#afficherPlus").hide();
-
-            currentFetch = CallController(
-                "@Url.Action("GetComposants", "Composant")",
-                { filtre: filtre, take: take, offset: offset }
-            ).done(function (result) {
-                if (result.status !== "All_Loaded") { //as long as we haven't loaded all elements we keep going
-                    $("#listeComposant").append(result); //add the new element at the end of the list
-                    offset = offset + take;
-
-                    $("#tourniquetChargement").hide();
-
-                    if(!$("#listeComposant").find(".dernier-element").length)
-                        $("#afficherPlus").show();
-                } 
-            });
-        }
+                if(!$("#listeComposant").find(".dernier-element").length)
+                    $("#afficherPlus").show();
+            }
+        });
     }
+}
 </script>

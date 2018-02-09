@@ -14,6 +14,10 @@
 	margin-top: 2rem;
 }
 
+.chosen-container {
+	margin-bottom: 1rem;
+}
+
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -21,6 +25,113 @@
 	white-space: normal;
 }
 
+.full-height {
+	height: 100%;
+}
+
+.margin-bottom {
+	margin-bottom: 1rem;
+}
+
 h2 {
     padding-bottom : 30px;
+}
+
+.action-group,
+.search-group {
+    padding-bottom: 10px;
+}
+
+.action-group {
+    text-align: right;
+}
+
+
+.search-group {
+    display: flex;
+}
+
+.search-group .search-input {
+    flex-grow: 1;
+}
+
+.search-group .btn {
+    flex-grow: 0;
+    margin-left: 10px;
+}
+
+.search-group .input-group {
+    display: flex;
+}
+
+.search-group .input-group-addon {
+    display: inline-block;
+    flex-grow: 0;
+    width: auto;
+}
+
+.search-group .form-control {
+    display: inline-block;
+    flex-grow: 1;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.right-align {
+    text-align: right;
+}
+
+@media (min-width: 768px) {
+    .sm-right-align {
+        text-align: right;
+    }
+}
+
+.no-pad {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+
+
+.tags {
+    padding: 5px 15px 0 15px;
+}
+
+.tag {
+    background-color: rgba(254, 228, 4, 0.05);
+    border: 1px solid rgba(254, 228, 4, 0.6);
+    color: #555;
+    text-align: center;
+    margin-right: 3px;
+    display: inline-block;
+    padding: 0 10px;
+    margin-bottom: 5px;
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, .075);
+}
+
+select.tag-select option {
+    background-color: rgba(254, 228, 4, 0.05);
+    border: 1px solid rgba(254, 228, 4, 0.6);
+    color: #555;
+    text-align: center;
+    margin: 3px;
+    display: inline-block;
+    padding: 2px 10px;
+    margin-bottom: 5px;
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, .075);
+}
+
+select.tag-select option::after {
+    content: '\e014';
+    display: inline;
+    font-family: 'Glyphicons Halflings';
+    margin-left: 10px;
+    font-size: 10px;
 }

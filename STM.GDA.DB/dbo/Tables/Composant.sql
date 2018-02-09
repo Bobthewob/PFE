@@ -3,7 +3,7 @@
 	[Id] INT	IDENTITY (1, 1) NOT NULL,
 	[Abreviation] VARCHAR(25) NULL,
 	[Nom] VARCHAR(100) NOT NULL,
-	[Version] VARCHAR(10) NULL,
+	[Version] VARCHAR(25) NULL,
 	[Description] VARCHAR(MAX) NULL,
 	[NomBD] VARCHAR(25) NULL,
 	[SourceControlPath] VARCHAR(25) NULL,

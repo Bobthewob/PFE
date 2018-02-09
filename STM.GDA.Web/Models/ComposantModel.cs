@@ -21,7 +21,7 @@ namespace STM.GDA.Web.Models
 
         public string Description { get; set; }
 
-        [StringLength(10)]
+        [StringLength(25)]
         public string Version { get; set; }
 
         public EtiquetteModel Type { get; set; }

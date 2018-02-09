@@ -127,7 +127,7 @@
 			}
 			else
 			{
-				<div class="form-control full-height">
+				<div class="full-height">
 				@foreach (var techologie in Model.Technologies) {
                     <span class="tag">@Html.DisplayFor(m => techologie.Nom)</span>
 				}
@@ -136,9 +136,16 @@
 		</div>
 
         <div class="col-md-12">
-            <h3>Environnements</h3>
-            @Html.DropDownList("ddlEnvironnement", Model.EnvironnementsItems, new { @class = "form-control" })
-            <div id="divDependance" class="form-control marging-top full-height">
+            <h3>Dépendances</h3>
+            <div class="row">
+                <div class="col-xs-12 col-sm-3 sm-right-align bold">
+                    Environnement
+                </div>
+                <div class="col-xs-12 col-sm-9">
+                    @Html.DropDownList("ddlEnvironnement", Model.EnvironnementsItems, new { @class = "form-control" })
+                </div>
+            </div>
+            <div id="divDependance" class="marging-top full-height">
                 @{ Html.RenderAction("GetDetailsDependances", new { composant = Model }); }
             </div>
         </div>

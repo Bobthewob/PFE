@@ -135,3 +135,50 @@ select.tag-select option::after {
     margin-left: 10px;
     font-size: 10px;
 }
+
+.chosen-container-multi .chosen-choices li.search-choice {
+    background-color: rgba(254, 228, 4, 0.05);
+    background-image: none;
+    border: 1px solid rgba(254, 228, 4, 0.6);
+    border-radius: 0;
+    color: #555;
+    text-align: center;
+    margin: 3px;
+    display: inline-block;
+    padding: 3px 10px 3px 10px;
+    margin-bottom: 5px;
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, .075);
+}
+
+.chosen-container-multi .chosen-choices li.search-choice span {
+    display: inline;
+
+}
+
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
+    background: none !important;
+    position: initial;
+    top: 0;
+    right: 0;
+    display: inline;
+    width: auto;
+    height: auto;
+    font-size: initial;
+    color: #555;
+}
+
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close:active,
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close:hover,
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close:focus,
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close:visited {
+    color: #555;
+    text-decoration: none;
+}
+
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close::before {
+    content: '\e014';
+    display: inline;
+    font-family: 'Glyphicons Halflings';
+    margin-left: 10px;
+    font-size: 10px;
+}

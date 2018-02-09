@@ -36,3 +36,64 @@
 h2 {
     padding-bottom : 30px;
 }
+
+.action-group,
+.search-group {
+    padding-bottom: 10px;
+}
+
+.action-group {
+    text-align: right;
+}
+
+
+.search-group {
+    display: flex;
+}
+
+.search-group .search-input {
+    flex-grow: 1;
+}
+
+.search-group .btn {
+    flex-grow: 0;
+    margin-left: 10px;
+}
+
+.search-group .input-group {
+    display: flex;
+}
+
+.search-group .input-group-addon {
+    display: inline-block;
+    flex-grow: 0;
+    width: auto;
+}
+
+.search-group .form-control {
+    display: inline-block;
+    flex-grow: 1;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.right-align {
+    text-align: right;
+}
+
+@media (min-width: 768px) {
+    .sm-right-align {
+        text-align: right;
+    }
+}
+
+.no-pad {
+    padding: 0 !important;
+    margin: 0 !important;
+}

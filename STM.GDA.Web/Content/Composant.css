@@ -9,6 +9,8 @@ label {
 }
 
 .divComposant {
+	background: #fff;
+	color: #007EB6;
     border: 1px solid rgb(204, 204, 204);
     margin-bottom: 10px;
     border-radius: 4px;

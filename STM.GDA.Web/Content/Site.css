@@ -1,6 +1,6 @@
 ﻿body {
-    padding-top: 50px;
     padding-bottom: 20px;
+	background-color: #f6f6f6;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -12,6 +12,10 @@
 /* Set a margin to move the "Back" link down */
 .container-details {
 	margin-top: 2rem;
+}
+
+.container h2 {
+	color: #00AEEF;
 }
 
 .chosen-container {
@@ -31,6 +35,25 @@
 
 .margin-bottom {
 	margin-bottom: 1rem;
+}
+
+.navbar {
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+	height: 100%;
+	position: relative
+}
+
+.navbar 
+.container{
+	padding: 1rem 0;
+}
+
+a.navbar-brand {
+	background: url(../Image/header-logo.png) no-repeat top left;
+	display: block;
+	width: 150px;
+	text-indent: -9999px; /* hides the link text */
 }
 
 h2 {

@@ -129,7 +129,7 @@
 			{
 				<div class="form-control full-height">
 				@foreach (var techologie in Model.Technologies) {
-					@Html.DisplayFor(m => techologie.Nom) <br>
+                    <span class="tag">@Html.DisplayFor(m => techologie.Nom)</span>
 				}
 				</div>
 			}

@@ -40,22 +40,6 @@ label {
     margin-bottom: 5px;
 }
 
-.tags {
-    padding: 5px 15px 0 15px;
-}
-
-.tag {
-    background-color: rgba(254, 228, 4, 0.05);
-    border: 1px solid rgba(254, 228, 4, 0.6);
-    color: #555;
-    text-align: center;
-    margin-right: 3px;
-    display: inline-block;
-    padding: 0 10px;
-    margin-bottom: 5px;
-    box-shadow: 3px 2px 5px rgba(0, 0, 0, .075);
-}
-
 .scroll-up {
     cursor: pointer;
     position: fixed;

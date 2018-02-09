@@ -1,0 +1,109 @@
+﻿@using STM.GDA.Web.Models
+@model List<DependanceModelListe>
+
+<div id="divDependance" class="border marging-top">
+    @for (int i = 0; i < Model.Count(); i++)
+    {
+        <div class="envTab">
+            <div class="value">
+                <div class="col-md-3">
+                    @Html.DisplayNameFor(x => Model[i].Web)
+                </div>
+                <div class="col-md-9">
+                    @Html.ListBox("environnement-Web-" + i.ToString(), 
+                                  new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesServeurs, 
+                                  "Value", "Text", Model[i].Web.Select(x => x.Etiquette.Id)), 
+                                  new { @class = "form-control listeChosen not-initialize" })
+                </div>
+            </div>
+
+            <div class="value">
+                <div class="col-md-3">
+                    @Html.DisplayNameFor(x => Model[i].BDs)
+                </div>
+                <div class="col-md-9">
+                    @Html.ListBox("environnement-BDs-" + i.ToString(), 
+                                  new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesServeurs, 
+                                  "Value", "Text", Model[i].BDs.Select(x => x.Etiquette.Id)), 
+                                  new { @class = "form-control listeChosen not-initialize" })
+                </div>
+            </div>
+
+            <div class="value">
+                <div class="col-md-3">
+                    @Html.DisplayNameFor(x => Model[i].Rapports)
+                </div>
+                <div class="col-md-9">
+                    @Html.ListBox("environnement-Rapports-" + i.ToString(), 
+                                  new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesServeurs, 
+                                  "Value", "Text", Model[i].Rapports.Select(x => x.Etiquette.Id)), 
+                                  new { @class = "form-control listeChosen not-initialize" })
+                </div>
+            </div>
+
+            <div class="value">
+                <div class="col-md-3">
+                    @Html.DisplayNameFor(x => Model[i].Interfaces)
+                </div>
+                <div class="col-md-9">
+                    @Html.ListBox("environnement-Interfaces-" + i.ToString(), 
+                                  new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesAutres, 
+                                  "Value", "Text", Model[i].Interfaces.Select(x => x.Etiquette.Id)), 
+                                  new { @class = "form-control listeChosen not-initialize" })
+                </div>
+            </div>
+
+            <div class="value">
+                <div class="col-md-3">
+                    @Html.DisplayNameFor(x => Model[i].Jobs)
+                </div>
+                <div class="col-md-9">
+                    @Html.ListBox("environnement-Jobs-" + i.ToString(), 
+                                  new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesAutres, 
+                                  "Value", "Text", Model[i].Jobs.Select(x => x.Etiquette.Id)), 
+                                  new { @class = "form-control listeChosen not-initialize" })
+                </div>
+            </div>
+
+            <div class="value">
+                <div class="col-md-3">
+                    @Html.DisplayNameFor(x => Model[i].Externes)
+                </div>
+                <div class="col-md-9">
+                    @Html.ListBox("environnement-Externes-" + i.ToString(), 
+                                  new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesAutres, 
+                                  "Value", "Text", Model[i].Externes.Select(x => x.Etiquette.Id)), 
+                                  new { @class = "form-control listeChosen not-initialize" })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<script>
+    var currentEnvironnement;
+
+    $(document).ready(function () {    
+        changeEnvironnement(0);
+    });
+
+    function changeEnvironnement(index) { //change the environnement display
+        if (currentEnvironnement) {
+            currentEnvironnement.removeClass("currentEnvironnement");
+        }
+
+        currentEnvironnement = $("#divDependance").children("div:eq(" + index + ")");
+        currentEnvironnement.addClass("currentEnvironnement");
+          
+        currentEnvironnement.find("select").each(function () {
+            $(this).chosen({
+                placeholder_text_multiple: "Sélectionnez une ou plusieurs dépendance",
+                no_results_text: "Aucun résultat. Appuyez sur Entrée ou Tab pour ajouter l'option",
+                search_contains: true
+            });
+
+            if (typeof chosenMultiselectCustomAdd !== "undefined") {
+                chosenMultiselectCustomAdd($(this).attr("name"));
+            }
+        });
+    }
+</script>

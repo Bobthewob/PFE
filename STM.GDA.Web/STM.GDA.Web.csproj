@@ -147,12 +147,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BL\ClientBL.cs" />
     <Compile Include="BL\ComposantBL.cs" />
+    <Compile Include="BL\DependanceBL.cs" />
     <Compile Include="BL\ResponsableBL.cs" />
     <Compile Include="BL\TechnologieBL.cs" />
     <Compile Include="BL\TypeBL.cs" />
     <Compile Include="Configuration\Constantes.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ComposantController.cs" />
+    <Compile Include="Extensions\DependanceExtension.cs" />
     <Compile Include="Extensions\TechnologieExtensions.cs" />
     <Compile Include="Extensions\ResponsableExtensions.cs" />
     <Compile Include="Extensions\ComposantExtensions.cs" />
@@ -237,6 +239,7 @@
     <Content Include="Views\Composant\_DetailsDependances.cshtml" />
     <Content Include="Views\Composant\Modifier.cshtml" />
     <Content Include="Views\Composant\Creer.cshtml" />
+    <Content Include="Views\Composant\_ModifierDependances.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

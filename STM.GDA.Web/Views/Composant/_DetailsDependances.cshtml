@@ -1,56 +1,61 @@
 ﻿@using STM.GDA.Web.Models
-@model DependanceModelListe
+@model List<DependanceModelListe>
 
-<div class="value">
-    <div class="col-md-3">
-        @Html.DisplayNameFor(m => m.Web)
-    </div>
-    <div class="col-md-9">
-        @Html.DisplayFor(m => m.WebText)
-    </div>
-</div>
+@foreach (var environnementInfo in Model)
+{
+    <div class="envTab" >
+        <div class="value">
+            <div class="col-md-3">
+                @Html.DisplayNameFor(x => environnementInfo.Web)
+            </div>
+            <div class="col-md-9">
+                @Html.DisplayFor(x => environnementInfo.WebText)
+            </div>
+        </div>
 
-<div class="value">
-    <div class="col-md-3">
-        @Html.DisplayNameFor(m => m.BDs)
-    </div>
-    <div class="col-md-9">
-        @Html.DisplayFor(m => m.BDsText)
-    </div>
-</div>
+        <div class="value">
+            <div class="col-md-3">
+                @Html.DisplayNameFor(x => environnementInfo.BDs)
+            </div>
+            <div class="col-md-9">
+                @Html.DisplayFor(x => environnementInfo.BDsText)
+            </div>
+        </div>
 
-<div class="value">
-    <div class="col-md-3">
-        @Html.DisplayNameFor(m => m.Rapports)
-    </div>
-    <div class="col-md-9">
-        @Html.DisplayFor(m => m.RapportsText)
-    </div>
-</div>
+        <div class="value">
+            <div class="col-md-3">
+                @Html.DisplayNameFor(x => environnementInfo.Rapports)
+            </div>
+            <div class="col-md-9">
+                @Html.DisplayFor(x => environnementInfo.RapportsText)
+            </div>
+        </div>
 
-<div class="value">
-    <div class="col-md-3">
-        @Html.DisplayNameFor(m => m.Interfaces)
-    </div>
-    <div class="col-md-9">
-        @Html.DisplayFor(m => m.InterfacesText)
-    </div>
-</div>
+        <div class="value">
+            <div class="col-md-3">
+                @Html.DisplayNameFor(x => environnementInfo.Interfaces)
+            </div>
+            <div class="col-md-9">
+                @Html.DisplayFor(x => environnementInfo.InterfacesText)
+            </div>
+        </div>
 
-<div class="value">
-    <div class="col-md-3">
-        @Html.DisplayNameFor(m => m.Jobs)
-    </div>
-    <div class="col-md-9">
-        @Html.DisplayFor(m => m.JobsText)
-    </div>
-</div>
+        <div class="value">
+            <div class="col-md-3">
+                @Html.DisplayNameFor(x => environnementInfo.Jobs)
+            </div>
+            <div class="col-md-9">
+                @Html.DisplayFor(x => environnementInfo.JobsText)
+            </div>
+        </div>
 
-<div class="value">
-    <div class="col-md-3">
-        @Html.DisplayNameFor(m => m.Externes)
+        <div class="value">
+            <div class="col-md-3">
+                @Html.DisplayNameFor(x => environnementInfo.Externes)
+            </div>
+            <div class="col-md-9">
+                @Html.DisplayFor(x => environnementInfo.ExternesText)
+            </div>
+        </div>
     </div>
-    <div class="col-md-9">
-        @Html.DisplayFor(m => m.ExternesText)
-    </div>
-</div>
+}

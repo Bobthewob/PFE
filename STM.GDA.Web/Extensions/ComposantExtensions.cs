@@ -68,12 +68,12 @@ namespace STM.GDA.Web.Extensions
                 }).ToList(),
                 Dependances = new DependanceModelListe
                 {
-                    Web = GetDependaceComposant(composant, Constantes.WEB),
-                    BDs = GetDependaceComposant(composant, Constantes.BD),
-                    Interfaces = GetDependaceComposant(composant, Constantes.INTERFACE),
-                    Rapports = GetDependaceComposant(composant, Constantes.RAPPORT),
-                    Externes = GetDependaceComposant(composant, Constantes.EXTERNE),
-                    Jobs = GetDependaceComposant(composant, Constantes.JOB)
+                    Web = GetDependaceComposant(composant, Constantes.DEPENDANCE_WEB),
+                    BDs = GetDependaceComposant(composant, Constantes.DEPENDANCE_BD),
+                    Interfaces = GetDependaceComposant(composant, Constantes.DEPENDANCE_INTERFACE),
+                    Rapports = GetDependaceComposant(composant, Constantes.DEPENDANCE_RAPPORT),
+                    Externes = GetDependaceComposant(composant, Constantes.DEPENDANCE_EXTERNE),
+                    Jobs = GetDependaceComposant(composant, Constantes.DEPENDANCE_JOB)
                 }
             };
         }

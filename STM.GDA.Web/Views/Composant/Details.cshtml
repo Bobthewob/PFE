@@ -145,16 +145,16 @@
 </div>
 
 <script>
+    var currentEnvironnement = $("#divDependance div:first");
+    currentEnvironnement.addClass("currentEnvironnement");
+
     $("#ddlEnvironnement").on("change", function () {
-        CallController(
-            "@Url.Action("GetDetailsDependances", "Composant")",
-            {
-                composant: @Html.Raw(Json.Encode(Model)),
-                environnementId: this.value
-            }
-        ).done(function (result) {
-            $("#divDependance").html(result);
-        });
+        if (currentEnvironnement) {
+            currentEnvironnement.removeClass("currentEnvironnement");
+        }
+
+        currentEnvironnement = $("#divDependance").children("div:eq(" + $("#ddlEnvironnement")[0].selectedIndex + ")");
+        currentEnvironnement.addClass("currentEnvironnement");
     });
 
     $("#btnModifier").click(function () {

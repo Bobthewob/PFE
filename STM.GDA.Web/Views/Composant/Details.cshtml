@@ -119,20 +119,26 @@
     </div>
 
     <div class="col-md-7">
-        <div class="col-md-12">
-            <h3>Technologies</h3>
-            <div class="border">
-                @foreach (var techologie in Model.Technologies)
-                {
-                    @Html.DisplayFor(m => techologie.Nom) <br>
-                }
-            </div>
-        </div>
+		<div class="col-md-12">
+			<h3>Technologies</h3>
+			@if (@Model.Technologies.Count() == 0)
+			{
+				<p>Il n'y a présentement aucune technologie pour cette application.</p>
+			}
+			else
+			{
+				<div class="form-control full-height">
+				@foreach (var techologie in Model.Technologies) {
+					@Html.DisplayFor(m => techologie.Nom) <br>
+				}
+				</div>
+			}
+		</div>
 
         <div class="col-md-12">
             <h3>Environnements</h3>
             @Html.DropDownList("ddlEnvironnement", Model.EnvironnementsItems, new { @class = "form-control" })
-            <div id="divDependance" class="border marging-top">
+            <div id="divDependance" class="form-control marging-top full-height">
                 @{ Html.RenderAction("GetDetailsDependances", new { composant = Model }); }
             </div>
         </div>

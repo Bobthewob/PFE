@@ -6,136 +6,135 @@
 }
 
 @model STM.GDA.Web.Models.ComposantModel
+	<div class="container container-details">
+		@Html.ActionLink("Retour à la liste", "Index")
+		<form id="formModification">
+			<div class="col-md-5">
+				<h3>Modification</h3>
+				<div class="value">
+					<div class="col-md-3 align-right">
+						@Html.DisplayNameFor(m => m.Nom)
+					</div>
+					<div class="col-md-9">
+						@Html.EditorFor(m => m.Nom, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(m => m.Nom, "", new { @class = "text-danger" })
+					</div>
+				</div>
 
-@Html.ActionLink("Retour à la liste", "Index")
-<div class="container">
-    <form id="formModification">
-        <div class="col-md-5">
-            <h3>Modification</h3>
-            <div class="value">
-                <div class="col-md-3 align-right">
-                    @Html.DisplayNameFor(m => m.Nom)
-                </div>
-                <div class="col-md-9">
-                    @Html.EditorFor(m => m.Nom, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(m => m.Nom, "", new { @class = "text-danger" })
-                </div>
-            </div>
+				<div class="value">
+					<div class="col-md-3 align-right">
+						@Html.DisplayNameFor(m => m.Abreviation)
+					</div>
+					<div class="col-md-9">
+						@Html.EditorFor(m => m.Abreviation, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(m => m.Abreviation, "", new { @class = "text-danger" })
+					</div>
+				</div>
 
-            <div class="value">
-                <div class="col-md-3 align-right">
-                    @Html.DisplayNameFor(m => m.Abreviation)
-                </div>
-                <div class="col-md-9">
-                    @Html.EditorFor(m => m.Abreviation, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(m => m.Abreviation, "", new { @class = "text-danger" })
-                </div>
-            </div>
+				<div class="value">
+					<div class="col-md-3 align-right">
+						@Html.DisplayNameFor(m => m.Version)
+					</div>
+					<div class="col-md-9">
+						@Html.EditorFor(m => m.Version, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(m => m.Version, "", new { @class = "text-danger" })
+					</div>
+				</div>
 
-            <div class="value">
-                <div class="col-md-3 align-right">
-                    @Html.DisplayNameFor(m => m.Version)
-                </div>
-                <div class="col-md-9">
-                    @Html.EditorFor(m => m.Version, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(m => m.Version, "", new { @class = "text-danger" })
-                </div>
-            </div>
+				<div class="value">
+					<div class="col-md-3 align-right">
+						@Html.DisplayNameFor(m => m.Description)
+					</div>
+					<div class="col-md-9">
+						@Html.EditorFor(m => m.Description, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+					</div>
+				</div>
 
-            <div class="value">
-                <div class="col-md-3 align-right">
-                    @Html.DisplayNameFor(m => m.Description)
-                </div>
-                <div class="col-md-9">
-                    @Html.EditorFor(m => m.Description, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
-                </div>
-            </div>
+				<div class="value">
+					<div class="col-md-3 align-right">
+						@Html.DisplayNameFor(m => m.Type)
+					</div>
+					<div class="col-md-9">
+						@Html.DropDownListFor(m => m.Type.Id, (IEnumerable<SelectListItem>)ViewBag.ListeTypes, new { @class = "form-control" })
+					</div>
+				</div>
 
-            <div class="value">
-                <div class="col-md-3 align-right">
-                    @Html.DisplayNameFor(m => m.Type)
-                </div>
-                <div class="col-md-9">
-                    @Html.DropDownListFor(m => m.Type.Id, (IEnumerable<SelectListItem>)ViewBag.ListeTypes, new { @class = "form-control" })
-                </div>
-            </div>
+				<div class="value">
+					<div class="col-md-3 align-right">
+						@Html.DisplayNameFor(m => m.Responsables)
+					</div>
+					<div class="col-md-9">
+						@Html.ListBox("ResponsablesSelectionnes", new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeResponsables, "Value", "Text", Model.Responsables.Select(x => x.Id)), new { style = "width: 100%;" })
+					</div>
+				</div>
 
-            <div class="value">
-                <div class="col-md-3 align-right">
-                    @Html.DisplayNameFor(m => m.Responsables)
-                </div>
-                <div class="col-md-9">
-                    @Html.ListBox("ResponsablesSelectionnes", new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeResponsables, "Value", "Text", Model.Responsables.Select(x => x.Id)), new { style = "width: 100%;" })
-                </div>
-            </div>
+				<div class="value">
+					<div class="col-md-3 align-right">
+						@Html.DisplayNameFor(m => m.Clients)
+					</div>
+					<div class="col-md-9">
+						@Html.ListBox("ClientsSelectionnes", new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeClients, "Value", "Text", Model.Clients.Select(x => x.Id)), new { style = "width: 100%;" })
+					</div>
+				</div>
 
-            <div class="value">
-                <div class="col-md-3 align-right">
-                    @Html.DisplayNameFor(m => m.Clients)
-                </div>
-                <div class="col-md-9">
-                    @Html.ListBox("ClientsSelectionnes", new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeClients, "Value", "Text", Model.Clients.Select(x => x.Id)), new { style = "width: 100%;" })
-                </div>
-            </div>
+				<div class="value">
+					<div class="col-md-3 align-right">
+						@Html.DisplayNameFor(m => m.NomBD)
+					</div>
+					<div class="col-md-9">
+						@Html.EditorFor(m => m.NomBD, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(m => m.NomBD, "", new { @class = "text-danger" })
+					</div>
+				</div>
 
-            <div class="value">
-                <div class="col-md-3 align-right">
-                    @Html.DisplayNameFor(m => m.NomBD)
-                </div>
-                <div class="col-md-9">
-                    @Html.EditorFor(m => m.NomBD, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(m => m.NomBD, "", new { @class = "text-danger" })
-                </div>
-            </div>
+				<div class="value">
+					<div class="col-md-3 align-right">
+						@Html.DisplayNameFor(m => m.SourceControlPath)
+					</div>
+					<div class="col-md-9">
+						@Html.EditorFor(m => m.SourceControlPath, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(m => m.SourceControlPath, "", new { @class = "text-danger" })
+					</div>
+				</div>
 
-            <div class="value">
-                <div class="col-md-3 align-right">
-                    @Html.DisplayNameFor(m => m.SourceControlPath)
-                </div>
-                <div class="col-md-9">
-                    @Html.EditorFor(m => m.SourceControlPath, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(m => m.SourceControlPath, "", new { @class = "text-danger" })
-                </div>
-            </div>
+				<div class="value">
+					<div class="col-md-3 align-right">
+						@Html.DisplayNameFor(m => m.BC)
+					</div>
+					<div class="col-md-9">
+						@Html.EditorFor(m => m.BC, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(m => m.BC, "", new { @class = "text-danger" })
+					</div>
+				</div>
 
-            <div class="value">
-                <div class="col-md-3 align-right">
-                    @Html.DisplayNameFor(m => m.BC)
-                </div>
-                <div class="col-md-9">
-                    @Html.EditorFor(m => m.BC, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(m => m.BC, "", new { @class = "text-danger" })
-                </div>
-            </div>
+				<div class="value">
+					<div class="col-md-3 align-right">
+						@Html.DisplayNameFor(m => m.BW)
+					</div>
+					<div class="col-md-9">
+						@Html.EditorFor(m => m.BW, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(m => m.BW, "", new { @class = "text-danger" })
+					</div>
+				</div>
+			</div>
 
-            <div class="value">
-                <div class="col-md-3 align-right">
-                    @Html.DisplayNameFor(m => m.BW)
-                </div>
-                <div class="col-md-9">
-                    @Html.EditorFor(m => m.BW, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(m => m.BW, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
+			<div class="col-md-7">
+				<div class="col-md-12">
+					@Html.Partial("_ModifierTechnologies", Model.Technologies)
+				</div>
 
-        <div class="col-md-7">
-            <div class="col-md-12">
-                @Html.Partial("_ModifierTechnologies", Model.Technologies)
-            </div>
+				<div class="col-md-12">
+					@Html.Action("GetModifierDependances", new { composant = Model })
+				</div>
 
-            <div class="col-md-12">
-                @Html.Action("GetModifierDependances", new { composant = Model })
-            </div>
-
-            <div class="col-md-12">
-                <button type="button" id="btnSauvegarder" class="btn btn-default">Sauvegarder</button>
-                <button type="button" id="btnAnnuler" class="btn btn-default">Annuler</button>
-            </div>
-        </div>
-    </form>
-</div>
+				<div class="col-md-12 marging-top align-right">
+					<button type="button" id="btnSauvegarder" class="btn btn-default">Sauvegarder</button>
+					<button type="button" id="btnAnnuler" class="btn btn-default">Annuler</button>
+				</div>
+			</div>
+		</form>
+	</div>
 
 <script>
     $(document).ready(function () {

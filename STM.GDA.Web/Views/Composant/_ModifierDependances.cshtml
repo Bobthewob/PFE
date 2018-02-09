@@ -1,79 +1,82 @@
 ﻿@using STM.GDA.Web.Models
-@model List<DependanceModelListe>
+@model ComposantModel
+
+<h3>Environnements</h3>
+@Html.DropDownList("ddlEnvironnement", Model.EnvironnementsItems, new { @class = "form-control" })
 
 <div id="divDependance" class="border marging-top">
-    @for (int i = 0; i < Model.Count(); i++)
+    @for (int i = 0; i < Model.DependancesByEnvironnement.Count(); i++)
     {
         <div class="envTab">
             <div class="value">
                 <div class="col-md-3">
-                    @Html.DisplayNameFor(x => Model[i].Web)
+                    @Html.DisplayNameFor(x => Model.DependancesByEnvironnement[i].Web)
                 </div>
                 <div class="col-md-9">
-                    @Html.ListBox("environnement-Web-" + i.ToString(), 
-                                  new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesServeurs, 
-                                  "Value", "Text", Model[i].Web.Select(x => x.Etiquette.Id)), 
-                                  new { @class = "form-control listeChosen not-initialize" })
+                    @Html.ListBox("environnement-Web-" + i.ToString(),
+                                                 new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesServeurs,
+                                                 "Value", "Text", Model.DependancesByEnvironnement[i].Web.Select(x => x.Etiquette.Id)),
+                                                 new { @class = "form-control listeChosen not-initialize" })
                 </div>
             </div>
 
             <div class="value">
                 <div class="col-md-3">
-                    @Html.DisplayNameFor(x => Model[i].BDs)
+                    @Html.DisplayNameFor(x => Model.DependancesByEnvironnement[i].BDs)
                 </div>
                 <div class="col-md-9">
-                    @Html.ListBox("environnement-BDs-" + i.ToString(), 
-                                  new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesServeurs, 
-                                  "Value", "Text", Model[i].BDs.Select(x => x.Etiquette.Id)), 
-                                  new { @class = "form-control listeChosen not-initialize" })
+                    @Html.ListBox("environnement-BDs-" + i.ToString(),
+                                                 new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesServeurs,
+                                                 "Value", "Text", Model.DependancesByEnvironnement[i].BDs.Select(x => x.Etiquette.Id)),
+                                                 new { @class = "form-control listeChosen not-initialize" })
                 </div>
             </div>
 
             <div class="value">
                 <div class="col-md-3">
-                    @Html.DisplayNameFor(x => Model[i].Rapports)
+                    @Html.DisplayNameFor(x => Model.DependancesByEnvironnement[i].Rapports)
                 </div>
                 <div class="col-md-9">
-                    @Html.ListBox("environnement-Rapports-" + i.ToString(), 
-                                  new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesServeurs, 
-                                  "Value", "Text", Model[i].Rapports.Select(x => x.Etiquette.Id)), 
-                                  new { @class = "form-control listeChosen not-initialize" })
+                    @Html.ListBox("environnement-Rapports-" + i.ToString(),
+                                                 new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesServeurs,
+                                                 "Value", "Text", Model.DependancesByEnvironnement[i].Rapports.Select(x => x.Etiquette.Id)),
+                                                 new { @class = "form-control listeChosen not-initialize" })
                 </div>
             </div>
 
             <div class="value">
                 <div class="col-md-3">
-                    @Html.DisplayNameFor(x => Model[i].Interfaces)
+                    @Html.DisplayNameFor(x => Model.DependancesByEnvironnement[i].Interfaces)
                 </div>
                 <div class="col-md-9">
-                    @Html.ListBox("environnement-Interfaces-" + i.ToString(), 
-                                  new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesAutres, 
-                                  "Value", "Text", Model[i].Interfaces.Select(x => x.Etiquette.Id)), 
-                                  new { @class = "form-control listeChosen not-initialize" })
+                    @Html.ListBox("environnement-Interfaces-" + i.ToString(),
+                                                 new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesAutres,
+                                                 "Value", "Text", Model.DependancesByEnvironnement[i].Interfaces.Select(x => x.Etiquette.Id)),
+                                                 new { @class = "form-control listeChosen not-initialize" })
                 </div>
             </div>
 
             <div class="value">
                 <div class="col-md-3">
-                    @Html.DisplayNameFor(x => Model[i].Jobs)
+                    @Html.DisplayNameFor(x => Model.DependancesByEnvironnement[i].Jobs)
                 </div>
                 <div class="col-md-9">
-                    @Html.ListBox("environnement-Jobs-" + i.ToString(), 
-                                  new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesAutres, 
-                                  "Value", "Text", Model[i].Jobs.Select(x => x.Etiquette.Id)), 
-                                  new { @class = "form-control listeChosen not-initialize" })
+                    @Html.ListBox("environnement-Jobs-" + i.ToString(),
+                                                 new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesAutres,
+                                                 "Value", "Text", Model.DependancesByEnvironnement[i].Jobs.Select(x => x.Etiquette.Id)),
+                                                 new { @class = "form-control listeChosen not-initialize" })
                 </div>
             </div>
 
             <div class="value">
                 <div class="col-md-3">
-                    @Html.DisplayNameFor(x => Model[i].Externes)
+                    @Html.DisplayNameFor(x => Model.DependancesByEnvironnement[i].Externes)
                 </div>
                 <div class="col-md-9">
-                    @Html.ListBox("environnement-Externes-" + i.ToString(), 
-                                  new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesAutres, 
-                                  "Value", "Text", Model[i].Externes.Select(x => x.Etiquette.Id)), 
-                                  new { @class = "form-control listeChosen not-initialize" })
+                    @Html.ListBox("environnement-Externes-" + i.ToString(),
+                                                 new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesAutres,
+                                                 "Value", "Text", Model.DependancesByEnvironnement[i].Externes.Select(x => x.Etiquette.Id)),
+                                                 new { @class = "form-control listeChosen not-initialize" })
                 </div>
             </div>
         </div>
@@ -82,9 +85,53 @@
 <script>
     var currentEnvironnement;
 
-    $(document).ready(function () {    
+    $(document).ready(function () {
         changeEnvironnement(0);
     });
+
+    $("#ddlEnvironnement").on("change", function () { //initialize all the chosen in the first environnement selected
+        if (typeof changeEnvironnement !== "undefined") {
+            changeEnvironnement($("#ddlEnvironnement")[0].selectedIndex);
+        }
+    });
+
+    function getDependanceEnvironnement() { //get all dependance for all environnements
+        var web = [];
+        var BDs = [];
+        var rapports = [];
+        var interfaces = [];
+        var jobs = [];
+        var externes = [];
+
+        for (var i = 0; i < $("#ddlEnvironnement option").length; i++) {
+            fillDependanceModel(web, "Web", i);
+            fillDependanceModel(BDs, "BDs", i);
+            fillDependanceModel(rapports, "Rapports", i);
+            fillDependanceModel(interfaces, "Interfaces", i);
+            fillDependanceModel(jobs, "Jobs", i);
+            fillDependanceModel(externes, "Externes", i);
+        }
+
+        return {
+            Web: web,
+            BDs: BDs,
+            Rapports: rapports,
+            Interfaces: interfaces,
+            Jobs: jobs,
+            Externes: externes
+        };
+    }
+
+    function fillDependanceModel(dependance, name, index) { //return a json string containing a dependance
+        $("#environnement-" + name + "-" + index + " option:selected").each(function () {
+            dependance.push({
+                Etiquette: { Id: $(this).val(), Nom: $(this).text() },
+                EnvironnementId: $("#ddlEnvironnement option")[index].value
+            });
+        });
+
+        return dependance;
+    }
 
     function changeEnvironnement(index) { //change the environnement display
         if (currentEnvironnement) {
@@ -93,7 +140,7 @@
 
         currentEnvironnement = $("#divDependance").children("div:eq(" + index + ")");
         currentEnvironnement.addClass("currentEnvironnement");
-          
+
         currentEnvironnement.find("select").each(function () {
             $(this).chosen({
                 placeholder_text_multiple: "Sélectionnez une ou plusieurs dépendance",

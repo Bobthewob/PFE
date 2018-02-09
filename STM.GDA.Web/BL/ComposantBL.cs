@@ -61,7 +61,7 @@ namespace STM.GDA.Web.BL
 
                 nouveauComposant.Id = composant.Id; //Set the newly inserted id
 
-                CreerEnvironnements(context, nouveauComposant);
+                CreerEnvironnements(context, nouveauComposant); //This call has to be made before adding dependencies
                 ModifierClients(context, nouveauComposant);
                 ModifierResponsables(context, nouveauComposant);
                 ModifierTechnologies(context, nouveauComposant);

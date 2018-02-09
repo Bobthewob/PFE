@@ -61,7 +61,11 @@ namespace STM.GDA.Web.Controllers
             technologies.AddRange(TechnologieBL.GetAllTechnologies().Select(x => x.ToSelectListItem()));
             ViewBag.ListeTechnologies = technologies;
 
-            return View("Creer", new ComposantModel());
+            //Creating the default environnements
+            var composant = new ComposantModel();
+            composant.Environnements = EnvironnementBL.GetDefaultEnvironnements().Select(x => x.ToEnvironnementModel()).ToList();
+
+            return View("Creer", composant);
         }
 
         [HttpPost]
@@ -103,15 +107,15 @@ namespace STM.GDA.Web.Controllers
 
         public ActionResult GetDetailsDependances(ComposantModel composant)
         {
-            return PartialView("_DetailsDependances", composant.GetDependancesByEnvironnement());
+            return PartialView("_DetailsDependances", composant.DependancesByEnvironnement);
         }
 
-      public ActionResult GetModifierDependances(ComposantModel composant) // could merge this and getdetailsdependances
-      {
-         ViewBag.ListeDependancesServeurs = DependanceBL.GetDependances(Constantes.DEPENDANCE_SERVEURS).Select(x => x.ToSelectListItem());
-         ViewBag.ListeDependancesAutres = DependanceBL.GetDependances(Constantes.DEPENDANCE_AUTRES).Select(x => x.ToSelectListItem());
+        public ActionResult GetModifierDependances(ComposantModel composant)
+        {
+            ViewBag.ListeDependancesServeurs = DependanceBL.GetDependances(Constantes.DEPENDANCE_SERVEURS).Select(x => x.ToSelectListItem());
+            ViewBag.ListeDependancesAutres = DependanceBL.GetDependances(Constantes.DEPENDANCE_AUTRES).Select(x => x.ToSelectListItem());
 
-         return PartialView("_ModifierDependances", composant.GetDependancesByEnvironnement());
-      }
-   }
+            return PartialView("_ModifierDependances", composant);
+        }
+    }
 }   

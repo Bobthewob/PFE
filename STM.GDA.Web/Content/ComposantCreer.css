@@ -8,3 +8,26 @@
     padding-bottom: 10px;
 }
 
+.envTab {
+    display: none;
+}
+
+    .envTab.currentEnvironnement {
+        display: block;
+    }
+
+.border {
+    border: 1px solid black;
+}
+
+.padding-top {
+    padding-top: 10px;
+}
+
+.marging-top {
+    margin-top: 10px;
+}
+
+.listeChosen {
+    width: 100%;
+}

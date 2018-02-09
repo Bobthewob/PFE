@@ -148,6 +148,7 @@
     <Compile Include="BL\ClientBL.cs" />
     <Compile Include="BL\ComposantBL.cs" />
     <Compile Include="BL\DependanceBL.cs" />
+    <Compile Include="BL\EnvironnementBL.cs" />
     <Compile Include="BL\ResponsableBL.cs" />
     <Compile Include="BL\TechnologieBL.cs" />
     <Compile Include="BL\TypeBL.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ComposantController.cs" />
     <Compile Include="Extensions\DependanceExtension.cs" />
+    <Compile Include="Extensions\EnvironnementExtensions.cs" />
     <Compile Include="Extensions\TechnologieExtensions.cs" />
     <Compile Include="Extensions\ResponsableExtensions.cs" />
     <Compile Include="Extensions\ComposantExtensions.cs" />

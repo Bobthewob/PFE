@@ -126,7 +126,7 @@
             </div>
 
             <div class="col-md-12">
-
+                @Html.Action("GetModifierDependances", new { composant = Model })
             </div>
 
             <div class="col-md-12">
@@ -173,7 +173,8 @@
                         SourceControlPath: $("#SourceControlPath").val(),
                         BC: $("#BC").val(),
                         BW: $("#BW").val(),
-                        Technologies: getAllItems("TechnologiesSelectionnees")
+                        Technologies: getAllItems("TechnologiesSelectionnees"),
+                        Dependances: getDependanceEnvironnement()
                     }
                 }
             );

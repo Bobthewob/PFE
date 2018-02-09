@@ -64,6 +64,7 @@ namespace STM.GDA.Web.BL
                 CreerEnvironnements(context, nouveauComposant);
                 ModifierClients(context, nouveauComposant);
                 ModifierResponsables(context, nouveauComposant);
+                ModifierTechnologies(context, nouveauComposant);
             }
         }
 
@@ -98,8 +99,6 @@ namespace STM.GDA.Web.BL
 
             context.ComposantClients.DeleteAllOnSubmit(clients);
 
-            context.SubmitChanges();
-
             //New clients
             if (composantModif.Clients.Any(x => x.Id == 0))
             {
@@ -133,8 +132,6 @@ namespace STM.GDA.Web.BL
 
             context.ComposantResponsables.DeleteAllOnSubmit(responsables);
 
-            context.SubmitChanges();
-
             //New responsables
             if (composantModif.Responsables.Any(x => x.Id == 0))
             {
@@ -167,8 +164,6 @@ namespace STM.GDA.Web.BL
             var technologies = context.ComposantTechnologies.Where(x => x.ComposantId == composantModif.Id);
 
             context.ComposantTechnologies.DeleteAllOnSubmit(technologies);
-
-            context.SubmitChanges();
 
             //New technologies
             if (composantModif.Technologies.Any(x => x.Id == 0))

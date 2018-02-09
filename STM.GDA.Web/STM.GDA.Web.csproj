@@ -240,6 +240,7 @@
     <Content Include="Views\Composant\Modifier.cshtml" />
     <Content Include="Views\Composant\Creer.cshtml" />
     <Content Include="Views\Composant\_ModifierDependances.cshtml" />
+    <Content Include="Views\Composant\_ModifierTechnologies.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

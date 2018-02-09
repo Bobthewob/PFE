@@ -122,9 +122,7 @@
 
         <div class="col-md-7">
             <div class="col-md-12">
-                <h3>Technologies</h3>
-                @Html.DropDownList("Technologies", new SelectList((IEnumerable<SelectListItem>)ViewBag.ListeTechnologies, "Value", "Text"), new { style = "width: 100%;" })
-                @Html.ListBox("TechnologiesSelectionnees", new SelectList(Model.Technologies.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Nom }), "Value", "Text"), new { @class = "form-control" })
+                @Html.Partial("_ModifierTechnologies", Model.Technologies)
             </div>
 
             <div class="col-md-12">
@@ -155,79 +153,9 @@
             search_contains: true
         });
 
-        $("#Technologies").chosen({
-            placeholder_text_single: "Ajouter des technologies",
-            no_results_text: "Aucun résultat. Appuyez sur Entrée ou Tab pour ajouter l'option",
-            search_contains: true
-        });
-
         //Append the custom value add function declared in script.jsx`
         chosenMultiselectCustomAdd("ClientsSelectionnes");
         chosenMultiselectCustomAdd("ResponsablesSelectionnes");
-
-        //Lets the user add a new technologie that is not already in the list
-        //This function is a modified version of the function declared in script.js
-        $("#Technologies_chosen").find("input").on("keydown", function (evt) {
-            var stroke;
-            stroke = (_ref = evt.which) != null ? _ref : evt.keyCode;
-            if (stroke === 13) {
-                textbox = $(evt.target);
-                var nouvelleTechologie = $.trim(textbox.val());
-
-                var technologiesActuelles = $("#TechnologiesSelectionnees option").map(function () { return $(this).text(); }).get();
-
-                chosenList = textbox.parents('.chosen-container').find('.chosen-choices li.search-choice > span').map(function () { return $(this).text(); }).get();
-                matchList = textbox.parents('.chosen-container').find('.chosen-results li').map(function () { return $(this).text(); }).get();   
-                highlightedList = textbox.parents('.chosen-container').find('.chosen-results li.highlighted').map(function () { return $(this).text(); }).get();
-
-                if (nouvelleTechologie != "" && $.inArray(nouvelleTechologie, technologiesActuelles) < 0 && $.inArray(nouvelleTechologie, chosenList) < 0
-                    && $.inArray(nouvelleTechologie, chosenList) < 0 && highlightedList.length == 0) {
-                    $('#TechnologiesSelectionnees').append($('<option>', {
-                        value: 0,
-                        text: nouvelleTechologie
-                    }));
-                }
-
-                $("#Technologies").trigger("chosen:close");
-            }
-        }); 
-
-        
-    });
-
-    //When a technology is selected, it is removed from the dropdown and added to the list of techologies
-    $("#Technologies").change(function () {
-        var technologie = $(this).find("option:selected").text();
-
-        $("#TechnologiesSelectionnees").append($("<option>", {
-            value: this.value,
-            text: technologie
-        }));
-
-        //Here we check the text and not the value when deleting an option, because all new technologies will have an id of 0
-        $("#Technologies option").filter(function () {
-            return $.trim($(this).text()) == technologie
-        }).remove();
-
-        $("#Technologies").trigger("chosen:updated");
-    });
-
-    //Currently bound to dlb click because i did not feel like doing the pretty button
-    $("#TechnologiesSelectionnees").dblclick(function () {
-        var technologie = $(this).find("option:selected").text();
-
-        //Add the removed techology to the dropdowm
-        $("#Technologies").append($("<option>", {
-            value: this.value,
-            text: technologie
-        }));
-
-        $("#Technologies").trigger("chosen:updated");
-
-        //Remove the technology form the list
-        $("#TechnologiesSelectionnees option").filter(function () {
-            return $.trim($(this).text()) == technologie
-        }).remove();   
     });
 
     $("#btnAnnuler").click(function () {

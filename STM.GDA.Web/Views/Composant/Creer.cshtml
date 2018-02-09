@@ -8,10 +8,10 @@
 @model STM.GDA.Web.Models.ComposantModel
 
 @Html.ActionLink("Retour à la liste", "Index")
-<h3>Création</h3>
 <div class="container">
     <form id="formCreation">
         <div class="col-md-5">
+            <h3>Création</h3>
             <div class="value">
                 <div class="col-md-3 align-right">
                     @Html.DisplayNameFor(m => m.Nom)
@@ -120,7 +120,20 @@
             </div>
         </div>
 
-        <button type="button" id="btnCreer" class="btn btn-default">Créer</button>
+        <div class="col-md-7">
+            <div class="col-md-12">
+                @Html.Partial("_ModifierTechnologies", Model.Technologies)
+            </div>
+
+            <div class="col-md-12">
+
+            </div>
+
+            <div class="col-md-12">
+                <button type="button" id="btnCreer" class="btn btn-default">Créer</button>
+            </div>
+        </div>
+
     </form>
 </div>
 
@@ -159,7 +172,8 @@
                         NomBD: $("#NomBD").val(),
                         SourceControlPath: $("#SourceControlPath").val(),
                         BC: $("#BC").val(),
-                        BW: $("#BW").val()
+                        BW: $("#BW").val(),
+                        Technologies: getAllItems("TechnologiesSelectionnees")
                     }
                 }
             );

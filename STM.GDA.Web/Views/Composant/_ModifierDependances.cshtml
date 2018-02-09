@@ -8,7 +8,7 @@
     @for (int i = 0; i < Model.DependancesByEnvironnement.Count(); i++)
     {
         <div class="envTab">
-            <div class="value row">
+            <div class="value row envChosen">
                 <div class="col-xs-12 col-sm-4 col-md-3 sm-right-align bold">
                     @Html.DisplayNameFor(x => Model.DependancesByEnvironnement[i].Web)
                 </div>
@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            <div class="value row">
+            <div class="value row envChosen">
                 <div class="col-xs-12 col-sm-4 col-md-3 sm-right-align bold">
                     @Html.DisplayNameFor(x => Model.DependancesByEnvironnement[i].BDs)
                 </div>
@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <div class="value row">
+            <div class="value row envChosen">
                 <div class="col-xs-12 col-sm-4 col-md-3 sm-right-align bold">
                     @Html.DisplayNameFor(x => Model.DependancesByEnvironnement[i].Rapports)
                 </div>
@@ -44,7 +44,7 @@
                 </div>
             </div>
 
-            <div class="value row">
+            <div class="value row envChosen">
                 <div class="col-xs-12 col-sm-4 col-md-3 sm-right-align bold">
                     @Html.DisplayNameFor(x => Model.DependancesByEnvironnement[i].Interfaces)
                 </div>
@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <div class="value row">
+            <div class="value row envChosen">
                 <div class="col-xs-12 col-sm-4 col-md-3 sm-right-align bold">
                     @Html.DisplayNameFor(x => Model.DependancesByEnvironnement[i].Jobs)
                 </div>
@@ -68,7 +68,7 @@
                 </div>
             </div>
 
-            <div class="value row">
+            <div class="value row envChosen">
                 <div class="col-xs-12 col-sm-4 col-md-3 sm-right-align bold">
                     @Html.DisplayNameFor(x => Model.DependancesByEnvironnement[i].Externes)
                 </div>
@@ -87,6 +87,14 @@
 
     $(document).ready(function () {
         changeEnvironnement(0);
+
+        $(".envTab.currentEnvironnement").find("select.listeChosen").on("chosen:updated", function () {
+            var newOption = $(this).find("option:eq(0)"); // in the method chosenMultiselectCustomAdd we see that it always prepend so the first option is the newly added
+            var parentDiv = $(this).parentsUntil(".envChosen"); //get the div just a level under the envTab
+            var chosenChildrenIndex = $(this).parentsUntil(".envTab").children().index(parentDiv) + 1; //nth-child start at 1 and not 0 
+
+            $(".envTab:not(currentEnvironnement)").children(":nth-child(" + chosenChildrenIndex + ")").find("select.listeChosen").append(newOption[0]); // add new option in and corresponding chosen in all other environnement
+        });
     });
 
     $("#ddlEnvironnement").on("change", function () { //initialize all the chosen in the first environnement selected

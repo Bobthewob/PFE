@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MoreLinq;
 using System.Web;
 
 namespace STM.GDA.Web.BL
@@ -12,7 +13,7 @@ namespace STM.GDA.Web.BL
         {
             using (GDA_Context context = new GDA_Context())
             {
-                return context.Dependances.Where(x => typesDependance.Contains(x.DependanceTypeId)).ToList();
+                return context.ComposantDependances.Where(x => typesDependance.Contains(x.DependanceTypeId)).DistinctBy(x => x.DependanceId).Select(x => x.Dependance).ToList();
             }
         }
 

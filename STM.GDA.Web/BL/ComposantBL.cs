@@ -66,6 +66,7 @@ namespace STM.GDA.Web.BL
                 ModifierClients(context, nouveauComposant);
                 ModifierResponsables(context, nouveauComposant);
                 ModifierTechnologies(context, nouveauComposant);
+                ModifierDependances(context, nouveauComposant);
             }
         }
 
@@ -205,8 +206,7 @@ namespace STM.GDA.Web.BL
             {
                 var nouvellesDependances = composantModif.RawDependances.Where(x => x.Etiquette.Id == 0).DistinctBy(x => x.Etiquette.Nom).Select(x => new Dependance
                 {
-                    Nom = x.Etiquette.Nom,
-                    DependanceTypeId = x.Type.Id
+                    Nom = x.Etiquette.Nom
                 }).ToList();
 
                 DependanceBL.CreerDependances(nouvellesDependances);
@@ -215,16 +215,18 @@ namespace STM.GDA.Web.BL
                 {
                     DependanceId = nouvellesDependances.SingleOrDefault(nd => nd.Nom == x.Etiquette.Nom).Id,
                     ComposantId = composantModif.Id,
-                    EnvironnementId = x.EnvironnementId
+                    EnvironnementId = x.EnvironnementId,
+                    DependanceTypeId = x.Type.Id
                 }));
             }
 
             //Existing dependencies
             context.ComposantDependances.InsertAllOnSubmit(composantModif.RawDependances.Where(x => x.Etiquette.Id != 0).Select(x => new ComposantDependance
             {
-                 DependanceId = x.Etiquette.Id,
-                 ComposantId = composantModif.Id,
-                 EnvironnementId = x.EnvironnementId
+                DependanceId = x.Etiquette.Id,
+                ComposantId = composantModif.Id,
+                EnvironnementId = x.EnvironnementId,
+                DependanceTypeId = x.Type.Id
             }));
 
             context.SubmitChanges();

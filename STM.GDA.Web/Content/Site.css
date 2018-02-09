@@ -9,11 +9,6 @@
     padding-right: 15px;
 }
 
-/* Set a margin to move the "Back" link down */
-.container-details {
-	margin-top: 2rem;
-}
-
 .container h2 {
 	color: #00AEEF;
 }
@@ -27,6 +22,10 @@
 */
 .dl-horizontal dt {
 	white-space: normal;
+}
+
+footer {
+	text-align: center;
 }
 
 .full-height {

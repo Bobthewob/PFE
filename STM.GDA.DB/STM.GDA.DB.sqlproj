@@ -87,6 +87,7 @@
     <Build Include="dbo\Triggers\TriggerDeleteTechnologie.sql" />
     <Build Include="dbo\Triggers\TriggerDeleteClient.sql" />
     <Build Include="dbo\Triggers\TriggerDeleteResponsable.sql" />
+    <Build Include="dbo\Triggers\TriggerDeleteDependance.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dev.Compare.scmp" />

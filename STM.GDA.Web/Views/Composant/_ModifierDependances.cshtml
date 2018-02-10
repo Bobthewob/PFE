@@ -25,7 +25,7 @@
                     @Html.ListBox("environnement-Web-" + i.ToString(),
                                                         new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesServeurs,
                                                         "Value", "Text", Model.DependancesByEnvironnement[i].Web.Select(x => x.Etiquette.Id)),
-                                                        new { @class = "form-control listeChosen not-initialize" })
+                                                        new { @class = "not-initialize" })
                 </div>
             </div>
 
@@ -37,7 +37,7 @@
                     @Html.ListBox("environnement-BDs-" + i.ToString(),
                                                         new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesServeurs,
                                                         "Value", "Text", Model.DependancesByEnvironnement[i].BDs.Select(x => x.Etiquette.Id)),
-                                                        new { @class = "form-control listeChosen not-initialize" })
+                                                        new { @class = "not-initialize" })
                 </div>
             </div>
 
@@ -49,7 +49,7 @@
                     @Html.ListBox("environnement-Rapports-" + i.ToString(),
                                                         new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesServeurs,
                                                         "Value", "Text", Model.DependancesByEnvironnement[i].Rapports.Select(x => x.Etiquette.Id)),
-                                                        new { @class = "form-control listeChosen not-initialize" })
+                                                        new { @class = "not-initialize" })
                 </div>
             </div>
 
@@ -61,7 +61,7 @@
                     @Html.ListBox("environnement-Interfaces-" + i.ToString(),
                                                         new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesAutres,
                                                         "Value", "Text", Model.DependancesByEnvironnement[i].Interfaces.Select(x => x.Etiquette.Id)),
-                                                        new { @class = "form-control listeChosen not-initialize" })
+                                                        new { @class = "not-initialize" })
                 </div>
             </div>
 
@@ -73,7 +73,7 @@
                     @Html.ListBox("environnement-Jobs-" + i.ToString(),
                                                         new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesAutres,
                                                         "Value", "Text", Model.DependancesByEnvironnement[i].Jobs.Select(x => x.Etiquette.Id)),
-                                                        new { @class = "form-control listeChosen not-initialize" })
+                                                        new { @class = "not-initialize" })
                 </div>
             </div>
 
@@ -85,7 +85,7 @@
                     @Html.ListBox("environnement-Externes-" + i.ToString(),
                                                         new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeDependancesAutres,
                                                         "Value", "Text", Model.DependancesByEnvironnement[i].Externes.Select(x => x.Etiquette.Id)),
-                                                        new { @class = "form-control listeChosen not-initialize" })
+                                                        new { @class = "not-initialize" })
                 </div>
             </div>
         </div>
@@ -151,15 +151,16 @@
         currentEnvironnement.addClass("currentEnvironnement");
 
         currentEnvironnement.find("select").each(function () {
-            $(this).chosen({
-                placeholder_text_multiple: "Sélectionnez une ou plusieurs dépendance",
-                no_results_text: "Aucun résultat. Appuyez sur Entrée ou Tab pour ajouter l'option",
-                search_contains: true
+            $(this).selectize({
+                create: true,
+                persist: false,
+                placeholder: "Sélectionnez une ou plusieurs dépendance",
+                render: {
+                    option_create: function (data, escape) {
+                        return '<div class="create">Ajouter <strong>' + escape(data.input) + '</strong>&hellip;</div>';
+                    }
+                }
             });
-
-            if (typeof chosenMultiselectCustomAdd !== "undefined") {
-                chosenMultiselectCustomAdd($(this).attr("name"));
-            }
         });
     }
 </script>

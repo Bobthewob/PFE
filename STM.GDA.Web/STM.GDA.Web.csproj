@@ -192,6 +192,7 @@
     <Content Include="Content\ComposantDetails.css" />
     <Content Include="Content\ComposantCreer.css" />
     <Content Include="Content\ComposantModifier.css" />
+    <Content Include="Content\Selectize.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

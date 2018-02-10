@@ -6,14 +6,15 @@
 
 <script>
     $(document).ready(function () {
-        $("#TechnologiesSelectionnes").chosen({
-            placeholder_text_single: "Ajouter des technologies",
-            no_results_text: "Aucun résultat. Appuyez sur Entrée ou Tab pour ajouter l'option",
-            search_contains: true
+        $('#TechnologiesSelectionnes').selectize({
+            create: true,
+            persist: false,
+            placeholder: "Ajouter des technologies",
+            render: {
+                option_create: function (data, escape) {
+                    return '<div class="create">Ajouter <strong>' + escape(data.input) + '</strong>&hellip;</div>';
+                }
+            }
         });
-
-        if (typeof chosenMultiselectCustomAdd !== "undefined") {
-            chosenMultiselectCustomAdd("TechnologiesSelectionnes");
-        }
     });
 </script>

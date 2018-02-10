@@ -1,163 +1,170 @@
 ﻿@section Styles {
     <link href="@Url.Content("~/Content/ComposantModifier.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Selectize.css")" rel="stylesheet" type="text/css" />
 }
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
 
 @model STM.GDA.Web.Models.ComposantModel
-	<div class="container">
-		@Html.ActionLink("Retour à la liste", "Index")
-		<form id="formModification">
-			<div class="col-md-5">
-				<h3>Modification</h3>
-				<div class="value row">
-					<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-						@Html.DisplayNameFor(m => m.Nom)
-					</div>
-					<div class="col-xs-12 col-sm-9 col-md-8">
-						@Html.EditorFor(m => m.Nom, new { htmlAttributes = new { @class = "form-control" } })
-						@Html.ValidationMessageFor(m => m.Nom, "", new { @class = "text-danger" })
-					</div>
-				</div>
+<div class="container">
+    @Html.ActionLink("Retour à la liste", "Index")
+    <form id="formModification">
+        <div class="col-md-5">
+            <h3>Modification</h3>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Nom)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.EditorFor(m => m.Nom, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.Nom, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-				<div class="value row">
-					<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-						@Html.DisplayNameFor(m => m.Abreviation)
-					</div>
-					<div class="col-xs-12 col-sm-9 col-md-8">
-						@Html.EditorFor(m => m.Abreviation, new { htmlAttributes = new { @class = "form-control" } })
-						@Html.ValidationMessageFor(m => m.Abreviation, "", new { @class = "text-danger" })
-					</div>
-				</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Abreviation)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.EditorFor(m => m.Abreviation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.Abreviation, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-				<div class="value row">
-					<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-						@Html.DisplayNameFor(m => m.Version)
-					</div>
-					<div class="col-xs-12 col-sm-9 col-md-8">
-						@Html.EditorFor(m => m.Version, new { htmlAttributes = new { @class = "form-control" } })
-						@Html.ValidationMessageFor(m => m.Version, "", new { @class = "text-danger" })
-					</div>
-				</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Version)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.EditorFor(m => m.Version, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.Version, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-				<div class="value row">
-					<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-						@Html.DisplayNameFor(m => m.Description)
-					</div>
-					<div class="col-xs-12 col-sm-9 col-md-8">
-						@Html.EditorFor(m => m.Description, new { htmlAttributes = new { @class = "form-control" } })
-						@Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
-					</div>
-				</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Description)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.EditorFor(m => m.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-				<div class="value row">
-					<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-						@Html.DisplayNameFor(m => m.Type)
-					</div>
-					<div class="col-xs-12 col-sm-9 col-md-8">
-						@Html.DropDownListFor(m => m.Type.Id, (IEnumerable<SelectListItem>)ViewBag.ListeTypes, new { @class = "form-control" })
-					</div>
-				</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Type)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DropDownListFor(m => m.Type.Id, (IEnumerable<SelectListItem>)ViewBag.ListeTypes, new { @class = "form-control" })
+                </div>
+            </div>
 
-				<div class="value row">
-					<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-						@Html.DisplayNameFor(m => m.Responsables)
-					</div>
-					<div class="col-xs-12 col-sm-9 col-md-8">
-						@Html.ListBox("ResponsablesSelectionnes", new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeResponsables, "Value", "Text", Model.Responsables.Select(x => x.Id)), new { style = "width: 100%;" })
-					</div>
-				</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Responsables)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.ListBox("ResponsablesSelectionnes", new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeResponsables, "Value", "Text", Model.Responsables.Select(x => x.Id)), new { style = "width: 100%;" })
+                </div>
+            </div>
 
-				<div class="value row">
-					<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-						@Html.DisplayNameFor(m => m.Clients)
-					</div>
-					<div class="col-xs-12 col-sm-9 col-md-8">
-						@Html.ListBox("ClientsSelectionnes", new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeClients, "Value", "Text", Model.Clients.Select(x => x.Id)), new { style = "width: 100%;" })
-					</div>
-				</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Clients)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.ListBox("ClientsSelectionnes", new MultiSelectList((IEnumerable<SelectListItem>)ViewBag.ListeClients, "Value", "Text", Model.Clients.Select(x => x.Id)), new { style = "width: 100%;" })
+                </div>
+            </div>
 
-				<div class="value row">
-					<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-						@Html.DisplayNameFor(m => m.NomBD)
-					</div>
-					<div class="col-xs-12 col-sm-9 col-md-8">
-						@Html.EditorFor(m => m.NomBD, new { htmlAttributes = new { @class = "form-control" } })
-						@Html.ValidationMessageFor(m => m.NomBD, "", new { @class = "text-danger" })
-					</div>
-				</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.NomBD)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.EditorFor(m => m.NomBD, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.NomBD, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-				<div class="value row">
-					<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-						@Html.DisplayNameFor(m => m.SourceControlPath)
-					</div>
-					<div class="col-xs-12 col-sm-9 col-md-8">
-						@Html.EditorFor(m => m.SourceControlPath, new { htmlAttributes = new { @class = "form-control" } })
-						@Html.ValidationMessageFor(m => m.SourceControlPath, "", new { @class = "text-danger" })
-					</div>
-				</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.SourceControlPath)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.EditorFor(m => m.SourceControlPath, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.SourceControlPath, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-				<div class="value row">
-					<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-						@Html.DisplayNameFor(m => m.BC)
-					</div>
-					<div class="col-xs-12 col-sm-9 col-md-8">
-						@Html.EditorFor(m => m.BC, new { htmlAttributes = new { @class = "form-control" } })
-						@Html.ValidationMessageFor(m => m.BC, "", new { @class = "text-danger" })
-					</div>
-				</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.BC)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.EditorFor(m => m.BC, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.BC, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-				<div class="value row">
-					<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-						@Html.DisplayNameFor(m => m.BW)
-					</div>
-					<div class="col-xs-12 col-sm-9 col-md-8">
-						@Html.EditorFor(m => m.BW, new { htmlAttributes = new { @class = "form-control" } })
-						@Html.ValidationMessageFor(m => m.BW, "", new { @class = "text-danger" })
-					</div>
-				</div>
-			</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.BW)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.EditorFor(m => m.BW, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.BW, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
 
-			<div class="col-md-7 no-pad">
-				<div class="col-md-12">
-					@Html.Partial("_ModifierTechnologies", Model.Technologies)
-				</div>
+        <div class="col-md-7 no-pad">
+            <div class="col-md-12">
+                @Html.Partial("_ModifierTechnologies", Model.Technologies)
+            </div>
 
-				<div class="col-md-12">
-					@Html.Action("GetModifierDependances", new { composant = Model })
-				</div>
+            <div class="col-md-12">
+                @Html.Action("GetModifierDependances", new { composant = Model })
+            </div>
 
-				<div class="col-md-12 marging-top align-right">
-					<button type="button" id="btnSauvegarder" class="btn btn-primary">Sauvegarder</button>
-					<button type="button" id="btnAnnuler" class="btn btn-warning">Annuler</button>
-				</div>
-			</div>
-		</form>
-	</div>
+            <div class="col-md-12 marging-top align-right">
+                <button type="button" id="btnSauvegarder" class="btn btn-primary">Sauvegarder</button>
+                <button type="button" id="btnAnnuler" class="btn btn-warning">Annuler</button>
+            </div>
+        </div>
+    </form>
+</div>
 
 <script>
     $(document).ready(function () {
-        $("#ClientsSelectionnes").chosen({
-            placeholder_text_multiple: "Sélectionnez un ou plusieurs clients",
-            no_results_text: "Aucun résultat. Appuyez sur Entrée ou Tab pour ajouter l'option",
-            search_contains: true
+        $('#ClientsSelectionnes').selectize({
+            create: true,
+            persist: false,
+            placeholder: "Sélectionnez un ou plusieurs clients",
+            render: {
+                option_create: function (data, escape) {
+                    return '<div class="create">Ajouter <strong>' + escape(data.input) + '</strong>&hellip;</div>';
+                }
+            }
         });
 
-        $("#ResponsablesSelectionnes").chosen({
-            placeholder_text_multiple: "Sélectionnez un ou plusieurs responsables",
-            no_results_text: "Aucun résultat. Appuyez sur Entrée ou Tab pour ajouter l'option",
-            search_contains: true
+        $('#ResponsablesSelectionnes').selectize({
+            create: true,
+            persist: false,
+            placeholder: "Sélectionnez un ou plusieurs responsables",
+            render: {
+                option_create: function (data, escape) {
+                    return '<div class="create">Ajouter <strong>' + escape(data.input) + '</strong>&hellip;</div>';
+                }
+            }
         });
-
-        //Append the custom value add function declared in script.jsx`
-        chosenMultiselectCustomAdd("ClientsSelectionnes");
-        chosenMultiselectCustomAdd("ResponsablesSelectionnes");
     });
 
     $("#btnAnnuler").click(function () {
         window.location.href = '@Url.Action("Details", "Composant", new { id = @Html.Raw(Json.Encode(Model.Id)) })';
-    }); 
+    });
 
     $("#btnSauvegarder").click(function () {
         if ($('#formModification').valid()) {

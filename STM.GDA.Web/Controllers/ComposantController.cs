@@ -55,11 +55,7 @@ namespace STM.GDA.Web.Controllers
             ViewBag.ListeTypes = TypeBL.GetAllTypes().Select(x => x.ToSelectListItem());
             ViewBag.ListeClients = ClientBL.GetAllClients().Select(x => x.ToSelectListItem());
             ViewBag.ListeResponsables = ResponsableBL.GetAllResponsables().Select(x => x.ToSelectListItem());
-
-            var technologies = new List<SelectListItem>();
-            technologies.Add(new SelectListItem { Value = "", Text = "" }); //Add null value for empty option
-            technologies.AddRange(TechnologieBL.GetAllTechnologies().Select(x => x.ToSelectListItem()));
-            ViewBag.ListeTechnologies = technologies;
+            ViewBag.ListeTechnologies = TechnologieBL.GetAllTechnologies().Select(x => x.ToSelectListItem());
 
             //Creating the default environnements
             var composant = new ComposantModel();
@@ -88,10 +84,7 @@ namespace STM.GDA.Web.Controllers
             ViewBag.ListeTypes = TypeBL.GetAllTypes().Select(x => x.ToSelectListItem());
             ViewBag.ListeClients = ClientBL.GetAllClients().Select(x => x.ToSelectListItem());
             ViewBag.ListeResponsables = ResponsableBL.GetAllResponsables().Select(x => x.ToSelectListItem());
-
-            var technologies = new List<SelectListItem>();
-            technologies.AddRange(TechnologieBL.GetAllTechnologies().Select(x => x.ToSelectListItem()));
-            ViewBag.ListeTechnologies = technologies;
+            ViewBag.ListeTechnologies = TechnologieBL.GetAllTechnologies().Select(x => x.ToSelectListItem());
 
             if (composant == null)
             {

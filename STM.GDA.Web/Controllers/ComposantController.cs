@@ -84,8 +84,7 @@ namespace STM.GDA.Web.Controllers
             ViewBag.ListeResponsables = ResponsableBL.GetAllResponsables().Select(x => x.ToSelectListItem());
 
             var technologies = new List<SelectListItem>();
-            technologies.Add(new SelectListItem { Value = "", Text = "" }); //Add null value for empty option
-            technologies.AddRange(TechnologieBL.GetAllTechnologies().Where(x => !composant.Technologies.Any(c => c.Id == x.Id)).Select(x => x.ToSelectListItem()));
+            technologies.AddRange(TechnologieBL.GetAllTechnologies().Select(x => x.ToSelectListItem()));
             ViewBag.ListeTechnologies = technologies;
 
             if (composant == null)

@@ -139,21 +139,28 @@
 
 <script>
     $(document).ready(function () {
-        $("#ClientsSelectionnes").chosen({
-            placeholder_text_multiple: "Sélectionnez un ou plusieurs clients",
-            no_results_text: "Aucun résultat. Appuyez sur Entré ou Tab pour ajouter l'option",
-            search_contains: true
+        $("#ClientsSelectionnes").selectize({
+            plugins: ['remove_button'],
+            create: true,
+            persist: false,
+            placeholder: "Sélectionnez un ou plusieurs clients",
+            render: {
+                option_create: function (data, escape) {
+                    return '<div class="create">Ajouter <strong>' + escape(data.input) + '</strong>&hellip;</div>';
+                }
+            }
         });
-
-        $("#ResponsablesSelectionnes").chosen({
-            placeholder_text_multiple: "Sélectionnez un ou plusieurs responsables",
-            no_results_text: "Aucun résultat. Appuyez sur Entré ou Tab pour ajouter l'option",
-            search_contains: true
+        $("#ResponsablesSelectionnes").selectize({
+            plugins: ['remove_button'],
+            create: true,
+            persist: false,
+            placeholder: "Sélectionnez un ou plusieurs responsables",
+            render: {
+                option_create: function (data, escape) {
+                    return '<div class="create">Ajouter <strong>' + escape(data.input) + '</strong>&hellip;</div>';
+                }
+            }
         });
-
-        //Append the custom value add function declared in script.js
-        chosenMultiselectCustomAdd("ClientsSelectionnes");
-        chosenMultiselectCustomAdd("ResponsablesSelectionnes");
     });
 
     $("#btnCreer").click(function () {

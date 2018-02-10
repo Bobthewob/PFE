@@ -10,7 +10,7 @@ namespace STM.GDA.Web
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/chosen.jquery.js"));
+                        "~/Content/Selectize/js/standalone/selectize.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -26,7 +26,7 @@ namespace STM.GDA.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/chosen.css",
+                      "~/Content/Selectize/css/selectize.css",
                       "~/Content/site.css"));
         }
     }

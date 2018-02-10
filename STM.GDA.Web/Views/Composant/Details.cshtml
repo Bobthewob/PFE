@@ -127,11 +127,14 @@
 			}
 			else
 			{
-				<div class="full-height">
-				@foreach (var techologie in Model.Technologies) {
-                    <span class="tag">@Html.DisplayFor(m => techologie.Nom)</span>
-				}
-				</div>
+                <div class="row">
+                    <div class="full-height col-sm-9 col-sm-push-3">
+                        @foreach (var techologie in Model.Technologies)
+                        {
+                            <span class="tag">@Html.DisplayFor(m => techologie.Nom)</span>
+                        }
+                    </div>
+                </div>
 			}
 		</div>
 

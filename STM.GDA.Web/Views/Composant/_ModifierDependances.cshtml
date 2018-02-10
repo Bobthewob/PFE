@@ -152,6 +152,7 @@
 
         currentEnvironnement.find("select").each(function () {
             $(this).selectize({
+                plugins: ['remove_button'],
                 create: true,
                 persist: false,
                 placeholder: "Sélectionnez une ou plusieurs dépendance",

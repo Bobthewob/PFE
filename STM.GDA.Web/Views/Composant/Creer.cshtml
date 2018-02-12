@@ -130,6 +130,7 @@
 
             <div class="col-md-12 marging-top align-right">
                 <button type="button" id="btnCreer" class="btn btn-primary">Créer</button>
+                <button type="button" id="btnAnnuler" class="btn btn-warning">Annuler</button>
             </div>
         </div>
 
@@ -160,6 +161,10 @@
                 }
             }
         });
+    });
+
+    $("#btnAnnuler").click(function () {
+        window.location.href = '@Url.Action("Index", "Composant")';
     });
 
     $("#btnCreer").click(function () {

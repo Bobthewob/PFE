@@ -1,33 +1,37 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GDA</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-    @RenderSection("Styles", false)
-    <script src="~/Scripts/script.js?v1.6"></script>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>GDA</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@RenderSection("scripts", required: false)
+	@RenderSection("Styles", false)
+	<script src="~/Scripts/script.js?v1.6"></script>
+	<link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
 </head>
 <body>
     <div class="navbar navbar-fixed-top">
-        <div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				@Html.ActionLink("GDA", "Index", "Composant", new { area = "" }, new { @class = "navbar-brand" })
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<div class="navbar-brand">
+				<a href="@Url.Action("", "")" title="GDA" class="links">
+					<img alt="List View" src="@Url.Content("~/Image/header-logo.png")"><span class="logo-text">GDA</span>
+				</a>
 			</div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Applications et services", "Index", "Composant")</li>
-                </ul>
-            </div>
+			<!-- @Html.ActionLink("GDA", "Index", "Composant", new { area = "" }, new { @class = "navbar-brand" }) -->
+		</div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Applications et services", "Index", "Composant")</li>
+            </ul>
         </div>
     </div>
     <div class="container body-content">

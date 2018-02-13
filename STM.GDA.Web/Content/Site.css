@@ -40,7 +40,8 @@ footer {
 	background-color: #fff;
 	border-bottom: 1px solid #ccc;
 	height: 100%;
-	position: relative
+	position: relative;
+	padding: 2rem 0;
 }
 
 .navbar 
@@ -48,11 +49,46 @@ footer {
 	padding: 1rem 0;
 }
 
+.navbar-brand {
+	padding: 0;
+	margin-left: 2rem;
+}
+
 a.navbar-brand {
 	background: url(../Image/header-logo.png) no-repeat top left;
 	display: block;
 	width: 150px;
 	text-indent: -9999px; /* hides the link text */
+	margin-left: 2rem;
+}
+
+.navbar-brand 
+.links {
+	display: block;
+}
+
+.navbar-header 
+.logo-text {
+	position: relative;
+	top: 2rem;
+	left: 2rem;
+	color: #6D6D6D;
+	font-size: 0.7em;
+}
+
+.navbar-header 
+.logo-text:hover {
+	color: black;
+	text-decoration: underline;
+}
+
+
+.navbar-header {
+	width: 200px;
+}
+
+.navbar-header {
+	width: 200px;
 }
 
 h2 {

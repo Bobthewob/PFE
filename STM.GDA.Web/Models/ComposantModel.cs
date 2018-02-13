@@ -27,15 +27,11 @@ namespace STM.GDA.Web.Models
 
         public EtiquetteModel Type { get; set; }
 
+        [DisplayName("Responsables")]
         public List<EtiquetteModel> Responsables { get; set; } = new List<EtiquetteModel>();
 
-        [DisplayName("Responsables")]
-        public string ResonsablesText => string.Join(", ", Responsables.Select(x => x.Nom));
-
-        public List<EtiquetteModel> Clients { get; set; } = new List<EtiquetteModel>();
-
         [DisplayName("Clients")]
-        public string ClientsText => string.Join(", ", Clients.Select(x => x.Nom));
+        public List<EtiquetteModel> Clients { get; set; } = new List<EtiquetteModel>();
 
         public string NomBD { get; set; }
 

@@ -26,5 +26,13 @@ namespace STM.GDA.Web.BL
             }
         }
 
+        public static DeploiementModel GetDeploiement(int id)
+        {
+            using (GDA_Context context = new GDA_Context())
+            {
+                return context.Deploiements.FirstOrDefault(x => x.Id == id)?.ToDeploiementModel();
+            }
+        }
+
     }
 }

@@ -179,6 +179,7 @@
     <Compile Include="Models\ComposantModel.cs" />
     <Compile Include="Models\DependanceModel.cs" />
     <Compile Include="Models\DependanceModelListe.cs" />
+    <Compile Include="Models\DeploiementModel.cs" />
     <Compile Include="Models\EnvironnementModel.cs" />
     <Compile Include="Models\EtiquetteModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -267,6 +268,7 @@
     <Content Include="Views\Composant\_ModifierTechnologies.cshtml" />
     <Content Include="Views\Deploiement\_Liste.cshtml" />
     <Content Include="Views\Deploiement\Index.cshtml" />
+    <Content Include="Views\Deploiement\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

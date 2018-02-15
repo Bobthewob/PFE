@@ -29,7 +29,7 @@
 
 <script>
 var offset = 0; //current pagination offset
-var take = 5; //how much we want to load for each ajax call
+var take = 1; //how much we want to load for each ajax call
 var currentAjaxFetch; //the current ajax query, we don't want it to complete if we lauch a new search with a new filter for example
 var filterTimeout; // the timeout function used to delay the filter call to the backend (so if the user is currently typing it does not create multiple call)
 var spinnerTimeout; // the timeout function used to delay the display of the spinner or else it would flicker.

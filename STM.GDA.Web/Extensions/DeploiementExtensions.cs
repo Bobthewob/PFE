@@ -20,5 +20,29 @@ namespace STM.GDA.Web.Extensions
                 Environnement = deploiement.Environnement.Nom   
             };
         }
-}
+
+        public static DeploiementModel ToDeploiementModel(this Deploiement deploiement)
+        {
+            return new DeploiementModel
+            {
+                Id = deploiement.Id,
+                NomComposant = new EtiquetteModel { Id = deploiement.Composant.Id, Nom = deploiement.Composant.Nom },
+                Environnement = new EtiquetteModel { Id = deploiement.Environnement.Id, Nom = deploiement.Environnement.Nom },
+                AbreviationComposant = deploiement.Composant.Abreviation,
+                PremierDeploiement = deploiement.PremierDeploiement,
+                DateDeploiement = deploiement.Date,
+                BranchTag = deploiement.BrancheTag,
+                UrlDestination = deploiement.URLDestination,
+                PortailGroupe = deploiement.PortailGroupe,
+                PortailDescription = deploiement.PortailDescription,
+                Details = deploiement.Details,
+                DernierMAJ = deploiement.DerniereMAJ,
+                Web = deploiement.Web,
+                BD = deploiement.BD,
+                Rapport = deploiement.Rapport,
+                Interface = deploiement.Interface,
+                Job = deploiement.Job
+            };
+        }
+    }
 }

@@ -34,5 +34,19 @@ namespace STM.GDA.Web.Controllers
 
             return PartialView("_Liste", deploiements.Take(take).ToList());
         }
+
+        public ActionResult Details(int id)
+        {
+            var deploiement = DeploiementBL.GetDeploiement(id);
+
+            if (deploiement == null)
+            {
+                return View("Error");
+            }
+            else
+            {
+                return View("Details", deploiement);
+            }
+        }
     }
 }

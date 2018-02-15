@@ -15,7 +15,7 @@ namespace STM.GDA.Web.BL
         {
             using (GDA_Context context = new GDA_Context())
             {
-                var query = context.Composants.Select(x => x);
+                var query = context.Composants.Where(x => x.DateSuppression == null).Select(x => x);
 
                 if (!String.IsNullOrEmpty(filtre))
                 {
@@ -25,7 +25,7 @@ namespace STM.GDA.Web.BL
                             x.ComposantDependances.Any(d => d.Dependance.Nom.ToLower().Contains(filtre)));
                 }
 
-                return query.Skip(offset).Take(take + 1).Where(x => x.DateSuppression == null).Select(x => x.ToComposantListeModel()).ToList();
+                return query.Skip(offset).Take(take + 1).Select(x => x.ToComposantListeModel()).ToList();
             }
         }
 

@@ -76,9 +76,9 @@
 				</div>
 				<div class="col-xs-12 col-sm-9 col-md-8">
 					@foreach (var responsable in Model.Responsables)
-				{
-					<span class="tag">@Html.DisplayFor(m => responsable.Nom)</span>
-			}
+				    {
+					    <span class="tag">@Html.DisplayFor(m => responsable.Nom)</span>
+			        }
 				</div>
 			</div>
 
@@ -88,9 +88,9 @@
 				</div>
 				<div class="col-xs-12 col-sm-9 col-md-8">
 					@foreach (var client in Model.Clients)
-				{
-					<span class="tag">@Html.DisplayFor(m => client.Nom)</span>
-			}
+				    {
+					    <span class="tag">@Html.DisplayFor(m => client.Nom)</span>
+			        }
 				</div>
 			</div>
 
@@ -144,20 +144,20 @@
 			<div class="col-md-12">
 				<h3>Technologies</h3>
 				@if (@Model.Technologies.Count() == 0)
-			{
-				<p>Il n'y a présentement aucune technologie pour cette application.</p>
-		}
-		else
-		{
-			<div class="row">
-				<div class="full-height col-sm-9 col-sm-push-3">
-					@foreach (var techologie in Model.Technologies)
-				{
-					<span class="tag">@Html.DisplayFor(m => techologie.Nom)</span>
-			}
-				</div>
-			</div>
-	}
+			    {
+				    <p>Il n'y a présentement aucune technologie pour cette application.</p>
+		        }
+		        else
+		        {
+			        <div class="row">
+				        <div class="full-height col-sm-9 col-sm-push-3">
+					        @foreach (var techologie in Model.Technologies)
+				            {
+					        <span class="tag">@Html.DisplayFor(m => techologie.Nom)</span>
+			                }
+				        </div>
+			        </div>
+	            }
 			</div>
 
 			<div class="col-md-12">

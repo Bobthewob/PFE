@@ -269,6 +269,7 @@
     <Content Include="Views\Deploiement\_Liste.cshtml" />
     <Content Include="Views\Deploiement\Index.cshtml" />
     <Content Include="Views\Deploiement\Details.cshtml" />
+    <Content Include="Views\Deploiement\Creer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

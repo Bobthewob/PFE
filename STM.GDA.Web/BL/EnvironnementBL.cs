@@ -15,5 +15,13 @@ namespace STM.GDA.Web.BL
                 return context.Environnements.Where(x => x.EstDefault).OrderBy(x => x.Ordre).ToList();
             }
         }
+
+        public static List<Environnement> GetAllEnvironnements()
+        {
+            using (GDA_Context context = new GDA_Context())
+            {
+                return context.Environnements.ToList();
+            }
+        }
     }
 }

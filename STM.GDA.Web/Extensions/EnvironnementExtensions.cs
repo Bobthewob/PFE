@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace STM.GDA.Web.Extensions
 {
@@ -15,6 +16,11 @@ namespace STM.GDA.Web.Extensions
                 Etiquette = new EtiquetteModel { Id = environnement.Id, Nom = environnement.Nom },
                 Ordre = environnement.Ordre
             };
+        }
+
+        public static SelectListItem ToSelectListItem(this Environnement environnement)
+        {
+            return new SelectListItem { Value = environnement.Id.ToString(), Text = environnement.Nom };
         }
     }
 }

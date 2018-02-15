@@ -14,7 +14,7 @@ namespace STM.GDA.Web.Models
         [Required(ErrorMessage = "Un composant est requis")]
         [StringLength(100)]
         [DisplayName("Nom du composant déployé")]
-        public EtiquetteModel NomComposant { get; set; }
+        public EtiquetteModel Composant { get; set; }
 
         [Required(ErrorMessage = "Un environnement est requis")]
         public EtiquetteModel Environnement { get; set; }

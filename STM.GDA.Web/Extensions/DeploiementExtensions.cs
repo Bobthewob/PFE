@@ -26,7 +26,7 @@ namespace STM.GDA.Web.Extensions
             return new DeploiementModel
             {
                 Id = deploiement.Id,
-                NomComposant = new EtiquetteModel { Id = deploiement.Composant.Id, Nom = deploiement.Composant.Nom },
+                Composant = new EtiquetteModel { Id = deploiement.Composant.Id, Nom = deploiement.Composant.Nom },
                 Environnement = new EtiquetteModel { Id = deploiement.Environnement.Id, Nom = deploiement.Environnement.Nom },
                 AbreviationComposant = deploiement.Composant.Abreviation,
                 PremierDeploiement = deploiement.PremierDeploiement,

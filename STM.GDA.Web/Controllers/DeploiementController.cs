@@ -1,4 +1,5 @@
 ﻿using STM.GDA.Web.BL;
+using STM.GDA.Web.Extensions;
 using STM.GDA.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -47,6 +48,16 @@ namespace STM.GDA.Web.Controllers
             {
                 return View("Details", deploiement);
             }
+        }
+
+        public ActionResult Creer()
+        {
+            //Creating the default environnements
+            var deploiement = new DeploiementModel();
+
+            ViewBag.ListeEnvrionnements = EnvironnementBL.GetAllEnvironnements().Select(x => x.ToSelectListItem()); ;
+
+            return View("Creer", deploiement);
         }
     }
 }

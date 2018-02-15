@@ -34,5 +34,34 @@ namespace STM.GDA.Web.BL
             }
         }
 
+        public static void CreerDeploiement(DeploiementModel nouveauDeploiement)
+        {
+            using (GDA_Context context = new GDA_Context())
+            {
+                var deploiement = new Deploiement
+                {
+                    ComposantId = nouveauDeploiement.Composant.Id,
+                    PremierDeploiement = nouveauDeploiement.PremierDeploiement,
+                    Date = nouveauDeploiement.DateDeploiement,
+                    BrancheTag = nouveauDeploiement.BranchTag,
+                    URLDestination = nouveauDeploiement.UrlDestination,
+                    PortailGroupe = nouveauDeploiement.PortailGroupe,
+                    PortailDescription = nouveauDeploiement.PortailDescription,
+                    Details = nouveauDeploiement.Details,
+                    EnvironnementId = nouveauDeploiement.Environnement.Id,
+                    DerniereMAJ = DateTime.Now,
+                    Web = nouveauDeploiement.Web,
+                    BD = nouveauDeploiement.BD,
+                    Rapport = nouveauDeploiement.Rapport,
+                    Interface = nouveauDeploiement.Interface,
+                    Job = nouveauDeploiement.Job               
+                };
+
+                context.Deploiements.InsertOnSubmit(deploiement);
+
+                context.SubmitChanges();
+            }
+        }
+
     }
 }

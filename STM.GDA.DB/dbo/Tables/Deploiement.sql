@@ -3,7 +3,6 @@
 	[Id] INT IDENTITY (1, 1) NOT NULL,
 	[ComposantId] INT NOT NULL,
 	[EnvironnementId] INT NOT NULL,
-	[NomApplication] VARCHAR(100) NULL,
 	[Date] DATETIME NOT NULL,
 	[BrancheTag] VARCHAR(MAX) NULL,
 	[URLDestination] VARCHAR(100) NULL,
@@ -19,7 +18,7 @@
 	[Job] BIT NOT NULL,
 	CONSTRAINT [PK_Deploiement] PRIMARY KEY CLUSTERED ([Id] ASC) WITH (FILLFACTOR = 90), 
     CONSTRAINT [FK_Deploiement_Composant] FOREIGN KEY ([ComposantId]) REFERENCES [Composant]([Id]),
-	CONSTRAINT [FK_Deploiement_ComposantEnvironnement] FOREIGN KEY ([ComposantId], [EnvironnementId]) REFERENCES [ComposantEnvironnement]([ComposantId], [EnvironnementId])
+	CONSTRAINT [FK_Deploiement_Environnement] FOREIGN KEY ([EnvironnementId]) REFERENCES [Environnement]([Id]),
 )
 
 GO

@@ -154,6 +154,7 @@
     <Compile Include="BL\ClientBL.cs" />
     <Compile Include="BL\ComposantBL.cs" />
     <Compile Include="BL\DependanceBL.cs" />
+    <Compile Include="BL\DeploiementBL.cs" />
     <Compile Include="BL\EnvironnementBL.cs" />
     <Compile Include="BL\ResponsableBL.cs" />
     <Compile Include="BL\TechnologieBL.cs" />
@@ -161,7 +162,9 @@
     <Compile Include="Configuration\Constantes.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ComposantController.cs" />
+    <Compile Include="Controllers\DeploiementController.cs" />
     <Compile Include="Extensions\DependanceExtension.cs" />
+    <Compile Include="Extensions\DeploiementExtensions.cs" />
     <Compile Include="Extensions\EnvironnementExtensions.cs" />
     <Compile Include="Extensions\TechnologieExtensions.cs" />
     <Compile Include="Extensions\ResponsableExtensions.cs" />
@@ -171,6 +174,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DeploiementListeModel.cs" />
     <Compile Include="Models\ComposantListeModel.cs" />
     <Compile Include="Models\ComposantModel.cs" />
     <Compile Include="Models\DependanceModel.cs" />
@@ -261,6 +265,8 @@
     <Content Include="Views\Composant\Creer.cshtml" />
     <Content Include="Views\Composant\_ModifierDependances.cshtml" />
     <Content Include="Views\Composant\_ModifierTechnologies.cshtml" />
+    <Content Include="Views\Deploiement\_Liste.cshtml" />
+    <Content Include="Views\Deploiement\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

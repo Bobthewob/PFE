@@ -1,0 +1,28 @@
+﻿
+@using STM.GDA.Web.Models
+@model List<DeploiementListeModel>
+
+@foreach (var deploiement in Model)
+{
+    <div class="divComposant @(deploiement.DernierDeploiementAffiche ? "dernier-element" : "")" onclick="window.location.href = '@Url.Action("Details", "Deploiement", new { id =  @Html.ValueFor(x => deploiement.Id) })'">
+        <div class="col-sm-10 bold padding-top">
+            @Html.DisplayFor(x => deploiement.AbreviationNomComposant)
+        </div>
+
+        <div class="col-sm-2 italic right-align padding-top version">
+            @Html.DisplayFor(x => deploiement.DateDeploiement)
+        </div>
+
+        <div class="col-xs-12 description italic">
+            @Html.DisplayFor(x => deploiement.Environnement)
+        </div>
+
+        <div class="overlay"></div>
+    </div>
+}
+
+
+<script>
+
+</script>
+

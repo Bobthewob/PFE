@@ -3,162 +3,166 @@
 }
 
 @model STM.GDA.Web.Models.DeploiementModel
-<div class="container">
-    @Html.ActionLink("Retour à la liste", "Index") 
-    <br>
-    <div class="col-md-6">
-        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        Confirmation de suppression
-                    </div>
-                    <div class="modal-body">
-                        Êtes-vous certain de vouloir supprimer ce déploiement?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                        <button type="button" id="btnSupprimerConfirmer" class="btn btn-danger btn-ok">Supprimer</button>
+    <div class="container">
+        @Html.ActionLink("Retour à la liste", "Index")
+        <br>
+        <div class="col-md-6">
+            <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            Confirmation de suppression
+                        </div>
+                        <div class="modal-body">
+                            Êtes-vous certain de vouloir supprimer ce déploiement?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                            <button type="button" id="btnSupprimerConfirmer" class="btn btn-danger btn-ok">Supprimer</button>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <h3>Consulter un déploiement</h3>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.DateDeploiement)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.DateDeploiement)
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Composant)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.Composant.Nom)
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Environnement)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.Environnement.Nom)
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.PremierDeploiement)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.PremierDeploiement)
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.BrancheTag)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.BrancheTag)
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.UrlDestination)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.UrlDestination)
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.PortailGroupe)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.PortailGroupe)
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.PortailDescription)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.PortailDescription)
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Details)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.Details)
+                </div>
+            </div>
+
         </div>
 
-        <h3>Consulter un déploiement</h3>
+        <div class="col-md-6">
 
-        <div class="value row">
-            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                @Html.DisplayNameFor(m => m.DateDeploiement)
+            <h3>Déploiements nécéssaires</h3>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Web)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.Web)
+                </div>
             </div>
-            <div class="col-xs-12 col-sm-9 col-md-8">
-                @Html.DisplayFor(m => m.DateDeploiement)
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.BD)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.BD)
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Rapport)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.Rapport)
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Interface)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.Interface)
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Job)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.Job)
+                </div>
             </div>
         </div>
-
-        <div class="value row">
-            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                @Html.DisplayNameFor(m => m.Composant)
-            </div>
-            <div class="col-xs-12 col-sm-9 col-md-8">
-                @Html.DisplayFor(m => m.Composant.Nom)
-            </div>
+        <div class="col-md-12 align-right padding-top">
+            <button type="button" id="btnModifier" class="btn btn-primary">Modifier</button>
+            <button type="button" id="btnSupprimer" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete">Supprimer</button>
         </div>
-
-        <div class="value row">
-            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                @Html.DisplayNameFor(m => m.Environnement)
-            </div>
-            <div class="col-xs-12 col-sm-9 col-md-8">
-                @Html.DisplayFor(m => m.Environnement.Nom)
-            </div>
-        </div>
-
-        <div class="value row">
-            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                @Html.DisplayNameFor(m => m.PremierDeploiement)
-            </div>
-            <div class="col-xs-12 col-sm-9 col-md-8">
-                @Html.DisplayFor(m => m.PremierDeploiement)
-            </div>
-        </div>
-
-        <div class="value row">
-            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                @Html.DisplayNameFor(m => m.BrancheTag)
-            </div>
-            <div class="col-xs-12 col-sm-9 col-md-8">
-                @Html.DisplayFor(m => m.BrancheTag)
-            </div>
-        </div>
-
-        <div class="value row">
-            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                @Html.DisplayNameFor(m => m.UrlDestination)
-            </div>
-            <div class="col-xs-12 col-sm-9 col-md-8">
-                @Html.DisplayFor(m => m.UrlDestination)
-            </div>
-        </div>
-
-        <div class="value row">
-            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                @Html.DisplayNameFor(m => m.PortailGroupe)
-            </div>
-            <div class="col-xs-12 col-sm-9 col-md-8">
-                @Html.DisplayFor(m => m.PortailGroupe)
-            </div>
-        </div>
-
-        <div class="value row">
-            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                @Html.DisplayNameFor(m => m.PortailDescription)
-            </div>
-            <div class="col-xs-12 col-sm-9 col-md-8">
-                @Html.DisplayFor(m => m.PortailDescription)
-            </div>
-        </div>
-
-        <div class="value row">
-            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                @Html.DisplayNameFor(m => m.Details)
-            </div>
-            <div class="col-xs-12 col-sm-9 col-md-8">
-                @Html.DisplayFor(m => m.Details)
-            </div>
-        </div>
-
     </div>
-
-    <div class="col-md-6">
-
-        <h3>Déploiements nécéssaires</h3>
-
-        <div class="value row">
-            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                @Html.DisplayNameFor(m => m.Web)
-            </div>
-            <div class="col-xs-12 col-sm-9 col-md-8">
-                @Html.DisplayFor(m => m.Web)
-            </div>
-        </div>
-
-        <div class="value row">
-            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                @Html.DisplayNameFor(m => m.BD)
-            </div>
-            <div class="col-xs-12 col-sm-9 col-md-8">
-                @Html.DisplayFor(m => m.BD)
-            </div>
-        </div>
-
-        <div class="value row">
-            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                @Html.DisplayNameFor(m => m.Rapport)
-            </div>
-            <div class="col-xs-12 col-sm-9 col-md-8">
-                @Html.DisplayFor(m => m.Rapport)
-            </div>
-        </div>
-
-        <div class="value row">
-            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                @Html.DisplayNameFor(m => m.Interface)
-            </div>
-            <div class="col-xs-12 col-sm-9 col-md-8">
-                @Html.DisplayFor(m => m.Interface)
-            </div>
-        </div>
-
-        <div class="value row">
-            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                @Html.DisplayNameFor(m => m.Job)
-            </div>
-            <div class="col-xs-12 col-sm-9 col-md-8">
-                @Html.DisplayFor(m => m.Job)
-            </div>
-        </div>
-     </div>
-</div>
 
 <script>
 

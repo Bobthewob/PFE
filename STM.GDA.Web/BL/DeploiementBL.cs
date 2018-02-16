@@ -65,17 +65,44 @@ namespace STM.GDA.Web.BL
             }
         }
 
-        /*public static void SupprimerDeploiement(int id)
+
+        public static void ModifierDeploiement(DeploiementModel deploiementModif)
+        {
+            using (GDA_Context context = new GDA_Context())
+            {
+                var deploiement = context.Deploiements.FirstOrDefault(x => x.Id == deploiementModif.Id);
+                deploiement.ComposantId = deploiementModif.Composant.Id;
+                deploiement.PremierDeploiement = deploiementModif.PremierDeploiement;
+                deploiement.Date = deploiementModif.DateDeploiement;
+                deploiement.BrancheTag = deploiementModif.BrancheTag;
+                deploiement.URLDestination = deploiementModif.UrlDestination;
+                deploiement.PortailGroupe = deploiementModif.PortailGroupe;
+                deploiement.PortailDescription = deploiementModif.PortailDescription;
+                deploiement.Details = deploiementModif.Details;
+                deploiement.EnvironnementId = deploiementModif.Environnement.Id;
+                deploiement.DerniereMAJ = DateTime.Now;
+                deploiement.Web = deploiementModif.Web;
+                deploiement.BD = deploiementModif.BD;
+                deploiement.Rapport = deploiementModif.Rapport;
+                deploiement.Interface = deploiementModif.Interface;
+                deploiement.Job = deploiementModif.Job;
+
+                context.SubmitChanges();
+
+            }
+        }
+
+        public static void SupprimerDeploiement(int id)
         {
             using (GDA_Context context = new GDA_Context())
             {
                 var deploiement = context.Deploiements.FirstOrDefault(x => x.Id == id);
 
-                deploiement.DateSuppression = DateTime.Now;
+                context.Deploiements.DeleteOnSubmit(deploiement);
 
                 context.SubmitChanges();
             }
-        }*/
+        }
 
     }
 }

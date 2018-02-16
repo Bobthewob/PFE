@@ -1,0 +1,209 @@
+﻿@using STM.GDA.Web.Models
+
+@section Styles {
+    <link href="@Url.Content("~/Content/ComposantModifier.css")" rel="stylesheet" type="text/css" />
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@model STM.GDA.Web.Models.DeploiementModel
+<div class="container">
+    @Html.ActionLink("Retour à la liste", "Index")
+    <form id="formModification">
+        <div class="col-md-6">
+
+            <h3>Modification</h3>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.DateDeploiement)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    <div class="form-group">
+                        <div class='input-group date'>
+                            @Html.EditorFor(m => m.DateDeploiement, new { htmlAttributes = new { @class = "form-control" } })
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.DateDeploiement, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Composant.Nom)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DropDownListFor(m => m.Composant.Id, (IEnumerable<SelectListItem>)ViewBag.ListeComposants, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold" W>
+                    @Html.DisplayNameFor(m => m.Environnement)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DropDownListFor(m => m.Environnement.Id, (IEnumerable<SelectListItem>)ViewBag.ListeEnvrionnements, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.PremierDeploiement)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.EditorFor(m => m.PremierDeploiement)
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.BrancheTag)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.EditorFor(m => m.BrancheTag, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.UrlDestination)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.EditorFor(m => m.UrlDestination, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.PortailGroupe)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.EditorFor(m => m.PortailGroupe, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.PortailDescription)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.EditorFor(m => m.PortailDescription, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Details)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.EditorFor(m => m.Details, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+
+            <h3>Déploiements nécéssaires</h3>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Web)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.EditorFor(m => m.Web)
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.BD)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.EditorFor(m => m.BD)
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Rapport)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.EditorFor(m => m.Rapport)
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Interface)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.EditorFor(m => m.Interface)
+                </div>
+            </div>
+
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Job)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.EditorFor(m => m.Job)
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 marging-top align-right">
+            <button type="button" id="btnSauvegarder" class="btn btn-primary">Sauvegarder</button>
+            <button type="button" id="btnAnnuler" class="btn btn-warning">Annuler</button>
+        </div>
+
+    </form>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        console.log(@Html.Raw(Json.Encode(Model.DateDeploiement)));
+        $('.input-group.date').datetimepicker({
+            format: 'MM-DD-YYYY HH:mm'
+        }).data("DateTimePicker").date(@Html.Raw(Json.Encode(Model.DateDeploiement)));
+
+        $('#composants').selectize();
+    });
+
+    $("#btnAnnuler").click(function () {
+        window.location.href = '@Url.Action("Details", "Deploiement", new { id = @Html.Raw(Json.Encode(Model.Id)) })';
+    });
+
+    $("#btnSauvegarder").click(function () {
+        if ($('#formModification').valid()) {
+           CallController(
+                "@Url.Action("Modifier", "Deploiement")",
+                {
+                    deploiement: {
+                        Id: @Html.Raw(Json.Encode(Model.Id)),
+                        Composant: { Id: $("#Composant_Id").val(), Nom: null },
+                        PremierDeploiement: $("#PremierDeploiement").is(':checked'),
+                        DateDeploiement: $("#DateDeploiement").val(),
+                        BrancheTag: $("#BrancheTag").val(),
+                        URLDestination: $("#UrlDestination").val(),
+                        PortailGroupe: $("#PortailGroupe").val(),
+                        PortailDescription: $("#PortailDescription").val(),
+                        Details: $("#Details").val(),
+                        Environnement: { Id: $("#Environnement_Id").val(), Nom: null },
+                        DerniereMAJ: $("#DerniereMAJ").val(),
+                        Web: $("#Web").is(':checked'),
+                        BD: $("#BD").is(':checked'),
+                        Rapport: $("#Rapport").is(':checked'),
+                        Interface: $("#Interface").is(':checked'),
+                        Job: $("#Job").is(':checked')
+                    }
+                }
+            );
+        }
+    });
+</script>

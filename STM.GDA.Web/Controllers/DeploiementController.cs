@@ -67,10 +67,34 @@ namespace STM.GDA.Web.Controllers
             return Redirect("Details", "Deploiement", new { id = deploiement.Id });
         }
 
-       /* public ActionResult Supprimer(int id)
+         public ActionResult Supprimer(int id)
+         {
+             DeploiementBL.SupprimerDeploiement(id);
+             return Redirect("Index", "Deploiement", null);
+         }
+
+        public ActionResult Modifier(int id)
         {
-            DeploiementBL.SupprimerDeploiement(id);
-            return Redirect("Index", "Deploiement", null);
-        }*/
+            var deploiement = DeploiementBL.GetDeploiement(id);
+
+            ViewBag.ListeComposants = ComposantBL.GetList().Select(x => x.ToSelectListItem());
+            ViewBag.ListeEnvrionnements = EnvironnementBL.GetDefaultEnvironnements().Select(x => x.ToSelectListItem()); ;
+
+            if (deploiement == null)
+            {
+                return View("Error");
+            }
+            else
+            {
+                return View("Modifier", deploiement);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Modifier(DeploiementModel deploiement)
+        {
+            DeploiementBL.ModifierDeploiement(deploiement);
+            return Redirect("Details", "Deploiement", new { id = deploiement.Id });
+        }
     }
 }

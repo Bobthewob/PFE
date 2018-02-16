@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace STM.GDA.Web.Models
 {
-    public class ComposantListeModel : IComposant
+    public class ComposantListeModel
     {
         public int Id { get; set; }
 

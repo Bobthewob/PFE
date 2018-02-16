@@ -52,8 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IComposant.cs" />
-    <Compile Include="Models\Composant.cs" />
     <Compile Include="GDA_Context.cs" />
     <Compile Include="GDA_DataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

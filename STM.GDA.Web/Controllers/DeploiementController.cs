@@ -55,7 +55,7 @@ namespace STM.GDA.Web.Controllers
         {
             var deploiement = new DeploiementModel();
             ViewBag.ListeComposants = ComposantBL.GetList().Select(x => x.ToSelectListItem());
-            ViewBag.ListeEnvrionnements = EnvironnementBL.GetDefaultEnvironnements().Select(x => x.ToSelectListItem()); ;
+            ViewBag.ListeEnvironnements = EnvironnementBL.GetDefaultEnvironnements().Select(x => x.ToSelectListItem()); ;
 
             return View("Creer", deploiement);
         }

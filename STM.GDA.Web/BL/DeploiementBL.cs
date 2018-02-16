@@ -10,7 +10,7 @@ namespace STM.GDA.Web.BL
 {
     public static class DeploiementBL
     {
-        public static List<DeploiementListeModel> GetList(int take, int offset, string filtre)
+        public static List<DeploiementListeModel> GetList(int take = int.MaxValue -1, int offset = 0, string filtre = null)
         {
             using (GDA_Context context = new GDA_Context())
             {

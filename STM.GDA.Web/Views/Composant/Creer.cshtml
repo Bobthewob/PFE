@@ -9,7 +9,7 @@
 <div class="container">
     @Html.ActionLink("Retour à la liste", "Index")
     <form id="formCreation">
-        <div class="col-md-5">
+        <div class="col-md-6">
             <h3>Création</h3>
             <div class="value row">
                 <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
@@ -119,7 +119,7 @@
             </div>
         </div>
 
-        <div class="col-md-7 no-pad">
+        <div class="col-md-6 no-pad">
             <div class="col-md-12">
                 @Html.Partial("_ModifierTechnologies", Model.Technologies)
             </div>
@@ -127,11 +127,11 @@
             <div class="col-md-12">
                 @Html.Action("GetModifierDependances", new { composant = Model })
             </div>
+        </div>
 
-            <div class="col-md-12 marging-top align-right">
-                <button type="button" id="btnCreer" class="btn btn-primary">Créer</button>
-                <button type="button" id="btnAnnuler" class="btn btn-warning">Annuler</button>
-            </div>
+        <div class="col-md-12 marging-top align-right">
+            <button type="button" id="btnCreer" class="btn btn-primary">Créer</button>
+            <button type="button" id="btnAnnuler" class="btn btn-warning">Annuler</button>
         </div>
 
     </form>

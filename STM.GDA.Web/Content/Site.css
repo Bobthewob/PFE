@@ -3,6 +3,14 @@
 	background-color: #f6f6f6;
 }
 
+textarea {
+    resize: vertical;
+}
+
+.form-group {
+    margin-bottom: 0;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;

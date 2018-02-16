@@ -1,17 +1,17 @@
-﻿using System;
+﻿using STM.GDA.DataAccess;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace STM.GDA.Web.Models
 {
-    public class ComposantListeModel
+    public class ComposantListeModel : IComposant
     {
         public int Id { get; set; }
 
         public string Nom { get; set; }
 
-        public string Abrevriation { get; set; }
+        public string Abreviation { get; set; }
+
+        public string DisplayString { get; set; }
 
         public string Description { get; set; }
 
@@ -23,6 +23,5 @@ namespace STM.GDA.Web.Models
 
         public bool DernierComposantAffiche { get; set; } = false;
 
-        public string AbreviationNom => Abrevriation + " - " + Nom;
     }
 }

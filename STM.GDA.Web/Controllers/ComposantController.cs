@@ -38,7 +38,7 @@ namespace STM.GDA.Web.Controllers
 
         public ActionResult Details(int id)
         {
-            var composant = ComposantBL.GetComposant(id);            
+            var composant = ComposantBL.GetComposant(id);
 
             if (composant == null)
             {

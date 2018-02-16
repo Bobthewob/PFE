@@ -1,4 +1,5 @@
-﻿using STM.GDA.Web.Configuration;
+﻿using STM.GDA.DataAccess;
+using STM.GDA.Web.Configuration;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +10,7 @@ using System.Web.Mvc;
 
 namespace STM.GDA.Web.Models
 {
-    public class ComposantModel
+    public class ComposantModel : IComposant
     {
         public int Id { get; set; }
 
@@ -19,7 +20,8 @@ namespace STM.GDA.Web.Models
 
         [StringLength(25)]
         public string Abreviation { get; set; }
-
+        
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
         [StringLength(25)]

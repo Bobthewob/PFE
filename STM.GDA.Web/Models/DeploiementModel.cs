@@ -22,7 +22,7 @@ namespace STM.GDA.Web.Models
         [Required(ErrorMessage = "Une date est requise")]
         [DisplayName("Date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime DateDeploiement { get; set; }
+        public DateTime DateDeploiement { get; set; } = DateTime.Now;
 
         [StringLength(25)]
         public string AbreviationComposant { get; set; }
@@ -52,19 +52,19 @@ namespace STM.GDA.Web.Models
         public bool PremierDeploiement { get; set; }
 
         [DisplayName("Web")]
-        public bool Web { get; set; }
+        public bool Web { get; set; } = true;
 
         [DisplayName("BD")]
-        public bool BD { get; set; }
+        public bool BD { get; set; } = true;
 
         [DisplayName("Rapport")]
-        public bool Rapport { get; set; }
+        public bool Rapport { get; set; } = true;
 
         [DisplayName("Interface")]
-        public bool Interface { get; set; }
+        public bool Interface { get; set; } = true;
 
         [DisplayName("Job")]
-        public bool Job { get; set; }
+        public bool Job { get; set; } = true;
 
     }
 }

@@ -3,184 +3,184 @@
 }
 
 @model STM.GDA.Web.Models.ComposantModel
-	<div class="container">
-		@Html.ActionLink("Retour à la liste", "Index") <br>
-		<div class="col-md-5">
-			<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							Confirmation de suppression
-						</div>
-						<div class="modal-body">
-							Êtes-vous certain de vouloir supprimer ce composant?
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-							<button type="button" id="btnSupprimerConfirmer" class="btn btn-danger btn-ok">Supprimer</button>
-						</div>
-					</div>
-				</div>
-			</div>
+    <div class="container">
+        @Html.ActionLink("Retour à la liste", "Index") <br>
+        <div class="col-md-6">
+            <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            Confirmation de suppression
+                        </div>
+                        <div class="modal-body">
+                            Êtes-vous certain de vouloir supprimer ce composant?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                            <button type="button" id="btnSupprimerConfirmer" class="btn btn-danger btn-ok">Supprimer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-			<h3>Détails</h3>
+            <h3>Détails</h3>
 
-			<div class="value row">
-				<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-					@Html.DisplayNameFor(m => m.Nom)
-				</div>
-				<div class="col-xs-12 col-sm-9 col-md-8">
-					@Html.DisplayFor(m => m.Nom)
-				</div>
-			</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Nom)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.Nom)
+                </div>
+            </div>
 
-			<div class="value row">
-				<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-					@Html.DisplayNameFor(m => m.Abreviation)
-				</div>
-				<div class="col-xs-12 col-sm-9 col-md-8">
-					@Html.DisplayFor(m => m.Abreviation)
-				</div>
-			</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Abreviation)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.Abreviation)
+                </div>
+            </div>
 
-			<div class="value row">
-				<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-					@Html.DisplayNameFor(m => m.Version)
-				</div>
-				<div class="col-xs-12 col-sm-9 col-md-8">
-					@Html.DisplayFor(m => m.Version)
-				</div>
-			</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Version)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.Version)
+                </div>
+            </div>
 
-			<div class="value row">
-				<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-					@Html.DisplayNameFor(m => m.Description)
-				</div>
-				<div class="col-xs-12 col-sm-9 col-md-8">
-					@Html.DisplayFor(m => m.Description)
-				</div>
-			</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Description)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.Description)
+                </div>
+            </div>
 
-			<div class="value row">
-				<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-					@Html.DisplayNameFor(m => m.Type)
-				</div>
-				<div class="col-xs-12 col-sm-9 col-md-8">
-					@Html.DisplayFor(m => m.Type.Nom)
-				</div>
-			</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Type)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.Type.Nom)
+                </div>
+            </div>
 
-			<div class="value row">
-				<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-					@Html.DisplayNameFor(m => m.Responsables)
-				</div>
-				<div class="col-xs-12 col-sm-9 col-md-8">
-					@foreach (var responsable in Model.Responsables)
-				    {
-					    <span class="tag">@Html.DisplayFor(m => responsable.Nom)</span>
-			        }
-				</div>
-			</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Responsables)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @foreach (var responsable in Model.Responsables)
+                {
+                    <span class="tag">@Html.DisplayFor(m => responsable.Nom)</span>
+            }
+                </div>
+            </div>
 
-			<div class="value row">
-				<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-					@Html.DisplayNameFor(m => m.Clients)
-				</div>
-				<div class="col-xs-12 col-sm-9 col-md-8">
-					@foreach (var client in Model.Clients)
-				    {
-					    <span class="tag">@Html.DisplayFor(m => client.Nom)</span>
-			        }
-				</div>
-			</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.Clients)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @foreach (var client in Model.Clients)
+                {
+                    <span class="tag">@Html.DisplayFor(m => client.Nom)</span>
+            }
+                </div>
+            </div>
 
-			<div class="value row">
-				<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-					@Html.DisplayNameFor(m => m.NomBD)
-				</div>
-				<div class="col-xs-12 col-sm-9 col-md-8">
-					@Html.DisplayFor(m => m.NomBD)
-				</div>
-			</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.NomBD)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.NomBD)
+                </div>
+            </div>
 
-			<div class="value row">
-				<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-					@Html.DisplayNameFor(m => m.SourceControlPath)
-				</div>
-				<div class="col-xs-12 col-sm-9 col-md-8">
-					@Html.DisplayFor(m => m.SourceControlPath)
-				</div>
-			</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.SourceControlPath)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.SourceControlPath)
+                </div>
+            </div>
 
-			<div class="value row">
-				<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-					@Html.DisplayNameFor(m => m.BC)
-				</div>
-				<div class="col-xs-12 col-sm-9 col-md-8">
-					@Html.DisplayFor(m => m.BC)
-				</div>
-			</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.BC)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.BC)
+                </div>
+            </div>
 
-			<div class="value row">
-				<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-					@Html.DisplayNameFor(m => m.BW)
-				</div>
-				<div class="col-xs-12 col-sm-9 col-md-8">
-					@Html.DisplayFor(m => m.BW)
-				</div>
-			</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.BW)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.BW)
+                </div>
+            </div>
 
-			<div class="value row">
-				<div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-					@Html.DisplayNameFor(m => m.DerniereMAJ)
-				</div>
-				<div class="col-xs-12 col-sm-9 col-md-8">
-					@Html.DisplayFor(m => m.DerniereMAJ)
-				</div>
-			</div>
-		</div>
+            <div class="value row">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                    @Html.DisplayNameFor(m => m.DerniereMAJ)
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    @Html.DisplayFor(m => m.DerniereMAJ)
+                </div>
+            </div>
+        </div>
 
-		<div class="col-md-7 no-pad">
-			<div class="col-md-12">
-				<h3>Technologies</h3>
-				@if (@Model.Technologies.Count() == 0)
-			    {
-				    <p>Il n'y a présentement aucune technologie pour cette application.</p>
-		        }
-		        else
-		        {
-			        <div class="row">
-				        <div class="full-height col-sm-9 col-sm-push-3">
-					        @foreach (var techologie in Model.Technologies)
-				            {
-					        <span class="tag">@Html.DisplayFor(m => techologie.Nom)</span>
-			                }
-				        </div>
-			        </div>
-	            }
-			</div>
+        <div class="col-md-6 no-pad">
+            <div class="col-md-12">
+                <h3>Technologies</h3>
+                @if (@Model.Technologies.Count() == 0)
+            {
+                <p>Il n'y a présentement aucune technologie pour cette application.</p>
+        }
+        else
+        {
+            <div class="row">
+                <div class="full-height col-sm-9 col-sm-push-3">
+                    @foreach (var techologie in Model.Technologies)
+                {
+                    <span class="tag">@Html.DisplayFor(m => techologie.Nom)</span>
+            }
+                </div>
+            </div>
+    }
+            </div>
 
-			<div class="col-md-12">
-				<h3>Dépendances</h3>
-				<div class="row">
-					<div class="col-xs-12 col-sm-3 sm-right-align bold">
-						Environnement
-					</div>
-					<div class="col-xs-12 col-sm-9">
-						@Html.DropDownList("ddlEnvironnement", Model.EnvironnementsItems, new { @class = "form-control" })
-					</div>
-				</div>
-				<div id="divDependance" class="marging-top full-height">
-					@{ Html.RenderAction("GetDetailsDependances", new { composant = Model }); }
-				</div>
-			</div>
+            <div class="col-md-12">
+                <h3>Dépendances</h3>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-3 sm-right-align bold">
+                        Environnement
+                    </div>
+                    <div class="col-xs-12 col-sm-9">
+                        @Html.DropDownList("ddlEnvironnement", Model.EnvironnementsItems, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div id="divDependance" class="marging-top full-height">
+                    @{ Html.RenderAction("GetDetailsDependances", new { composant = Model }); }
+                </div>
+            </div>
+        </div>
 
-			<div class="col-md-12 align-right padding-top">
-				<button type="button" id="btnModifier" class="btn btn-primary">Modifier</button>
-				<button type="button" id="btnSupprimer" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete">Supprimer</button>
-			</div>
-		</div>
-	</div>
+        <div class="col-md-12 align-right padding-top">
+            <button type="button" id="btnModifier" class="btn btn-primary">Modifier</button>
+            <button type="button" id="btnSupprimer" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete">Supprimer</button>
+        </div>
+    </div>
 
 <script>
     var currentEnvironnement = $("#divDependance div:first");

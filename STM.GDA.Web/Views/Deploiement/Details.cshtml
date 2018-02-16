@@ -6,7 +6,7 @@
 <div class="container">
     @Html.ActionLink("Retour à la liste", "Index") 
     <br>
-    <div class="col-md-5">
+    <div class="col-md-6">
         <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -37,19 +37,28 @@
 
         <div class="value row">
             <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                @Html.DisplayNameFor(m => m.PremierDeploiement)
+                @Html.DisplayNameFor(m => m.Composant)
             </div>
             <div class="col-xs-12 col-sm-9 col-md-8">
-                @Html.DisplayFor(m => m.PremierDeploiement)
+                @Html.DisplayFor(m => m.Composant.Nom)
             </div>
         </div>
 
         <div class="value row">
             <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                @Html.DisplayNameFor(m => m.Composant)
+                @Html.DisplayNameFor(m => m.Environnement)
             </div>
             <div class="col-xs-12 col-sm-9 col-md-8">
-                @Html.DisplayFor(m => m.Composant.Nom)
+                @Html.DisplayFor(m => m.Environnement.Nom)
+            </div>
+        </div>
+
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                @Html.DisplayNameFor(m => m.PremierDeploiement)
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                @Html.DisplayFor(m => m.PremierDeploiement)
             </div>
         </div>
 
@@ -100,62 +109,52 @@
 
     </div>
 
-    <div class="col-md-7 no-pad">
-        <div class="col-md-12">
-            <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.Environnement)
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DisplayFor(m => m.Environnement.Nom)
-                </div>
+    <div class="col-md-6">
+
+        <h3>Déploiements nécéssaires</h3>
+
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                @Html.DisplayNameFor(m => m.Web)
             </div>
-
-            <h3>Déploiements nécéssaires</h3>
-
-            <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.Web)
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DisplayFor(m => m.Web)
-                </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                @Html.DisplayFor(m => m.Web)
             </div>
+        </div>
 
-            <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.BD)
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DisplayFor(m => m.BD)
-                </div>
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                @Html.DisplayNameFor(m => m.BD)
             </div>
-
-            <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.Rapport)
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DisplayFor(m => m.Rapport)
-                </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                @Html.DisplayFor(m => m.BD)
             </div>
+        </div>
 
-            <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.Interface)
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DisplayFor(m => m.Interface)
-                </div>
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                @Html.DisplayNameFor(m => m.Rapport)
             </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                @Html.DisplayFor(m => m.Rapport)
+            </div>
+        </div>
 
-            <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.Job)
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DisplayFor(m => m.Job)
-                </div>
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                @Html.DisplayNameFor(m => m.Interface)
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                @Html.DisplayFor(m => m.Interface)
+            </div>
+        </div>
+
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                @Html.DisplayNameFor(m => m.Job)
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                @Html.DisplayFor(m => m.Job)
             </div>
         </div>
      </div>

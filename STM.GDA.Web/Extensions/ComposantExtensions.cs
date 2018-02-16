@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using System.Linq;
 using MoreLinq;
 using System.Web;
+using System.Web.Mvc;
+using System.Text;
 
 namespace STM.GDA.Web.Extensions
 {
     public static class ComposantExtensions
     {
+
         public static ComposantListeModel ToComposantListeModel(this Composant composant)
         {
             return new ComposantListeModel
             {
                 Id = composant.Id,
                 Nom = composant.Nom,
-                Abrevriation = composant.Abreviation,
+                Abreviation = composant.Abreviation,
+                DisplayString = composant.ToDisplayString(),
                 Description = composant.Description,
                 Version = composant.Version,
                 Technologies = composant.ComposantTechnologies.Select(comp => new EtiquetteModel
@@ -77,6 +81,24 @@ namespace STM.GDA.Web.Extensions
                     Jobs = GetDependaceComposant(composant, Constantes.DEPENDANCE_JOB)
                 }
             };
+        }
+
+        public static SelectListItem ToSelectListItem(this IComposant composant)
+        {
+            return new SelectListItem { Value = composant.Id.ToString(), Text = composant.ToDisplayString() };
+        }
+
+        public static string ToDisplayString(this IComposant composant)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (!String.IsNullOrWhiteSpace(composant.Abreviation))
+            {
+                sb.Append(composant.Abreviation);
+                sb.Append(" - ");
+            }
+            sb.Append(composant.Nom);
+
+            return sb.ToString();
         }
 
         private static List<DependanceModel> GetDependaceComposant(Composant composant, int typeDependance)

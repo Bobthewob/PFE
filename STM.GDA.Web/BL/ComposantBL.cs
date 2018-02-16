@@ -11,7 +11,7 @@ namespace STM.GDA.Web.BL
 {
     public static class ComposantBL
     {
-        public static List<ComposantListeModel> GetList(int take, int offset, string filtre)
+        public static List<ComposantListeModel> GetList(int take = int.MaxValue -1, int offset = 0, string filtre = null)
         {
             using (GDA_Context context = new GDA_Context())
             {

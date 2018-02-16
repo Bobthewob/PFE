@@ -14,8 +14,11 @@ namespace STM.GDA.Web.Extensions
             return new DeploiementListeModel
             {
                 Id = deploiement.Id,
-                NomComposant = deploiement.Composant.Nom,
-                AbrevriationComposant = deploiement.Composant.Abreviation,
+                Composant = new ComposantBase
+                {
+                    Nom = deploiement.Composant.Nom,
+                    Abreviation = deploiement.Composant.Abreviation
+                },
                 DateDeploiement = deploiement.Date,
                 Environnement = deploiement.Environnement.Nom   
             };
@@ -26,9 +29,12 @@ namespace STM.GDA.Web.Extensions
             return new DeploiementModel
             {
                 Id = deploiement.Id,
-                Composant = new EtiquetteModel { Id = deploiement.Composant.Id, Nom = deploiement.Composant.Nom },
+                Composant = new ComposantBase
+                {
+                    Nom = deploiement.Composant.Nom,
+                    Abreviation = deploiement.Composant.Abreviation
+                },
                 Environnement = new EtiquetteModel { Id = deploiement.Environnement.Id, Nom = deploiement.Environnement.Nom },
-                AbreviationComposant = deploiement.Composant.Abreviation,
                 PremierDeploiement = deploiement.PremierDeploiement,
                 DateDeploiement = deploiement.Date,
                 BrancheTag = deploiement.BrancheTag,

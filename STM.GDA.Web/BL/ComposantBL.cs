@@ -37,6 +37,14 @@ namespace STM.GDA.Web.BL
             }
         }
 
+        public static List<ComposantBase> GetListComposantBase()
+        {
+            using (GDA_Context context = new GDA_Context())
+            {
+                return context.Composants.Select(x => x.ToComposantBaseModel()).ToList();
+            }
+        }
+
         public static void CreerComposant(ComposantModel nouveauComposant)
         {
             using (GDA_Context context = new GDA_Context())

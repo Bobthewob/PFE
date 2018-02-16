@@ -21,7 +21,6 @@ namespace STM.GDA.Web.Extensions
                 Id = composant.Id,
                 Nom = composant.Nom,
                 Abreviation = composant.Abreviation,
-                DisplayString = composant.ToDisplayString(),
                 Description = composant.Description,
                 Version = composant.Version,
                 Technologies = composant.ComposantTechnologies.Select(comp => new EtiquetteModel
@@ -83,22 +82,20 @@ namespace STM.GDA.Web.Extensions
             };
         }
 
-        public static SelectListItem ToSelectListItem(this ComposantListeModel composant)
+        public static ComposantBase ToComposantBaseModel(this Composant composant)
         {
-            return new SelectListItem { Value = composant.Id.ToString(), Text = composant.DisplayString };
+            return new ComposantBase
+            {
+                Id = composant.Id,
+                Nom = composant.Nom,
+                Abreviation = composant.Abreviation,
+                Version = composant.Version
+            };
         }
 
-        public static string ToDisplayString(this Composant composant)
+        public static SelectListItem ToSelectListItem(this ComposantBase composant)
         {
-            StringBuilder sb = new StringBuilder();
-            if (!String.IsNullOrWhiteSpace(composant.Abreviation))
-            {
-                sb.Append(composant.Abreviation);
-                sb.Append(" - ");
-            }
-            sb.Append(composant.Nom);
-
-            return sb.ToString();
+            return new SelectListItem { Value = composant.Id.ToString(), Text = composant.NomAbreviatation };
         }
 
         private static List<DependanceModel> GetDependaceComposant(Composant composant, int typeDependance)

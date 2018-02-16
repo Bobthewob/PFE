@@ -37,7 +37,7 @@
                     @Html.DisplayNameFor(m => m.Composant)
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DropDownListFor(m => m.Composant.Id, (IEnumerable<SelectListItem>)ViewBag.ListeComposants, new { style = "width: 100%;" })
+                    @Html.DropDownListFor(m => m.Composant.Id, (IEnumerable<SelectListItem>)ViewBag.ListeComposants, "", new { style = "width: 100%;" })
                     @Html.ValidationMessageFor(m => m.Composant.Id, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -172,7 +172,7 @@
         }).data("DateTimePicker").date(moment());
 
         $('#Composant_Id').selectize({
-            placeholder: 'Sélectionnez le composant',
+            placeholder: 'Sélectionnez un composant',
             sortField: 'text'
         });
     });
@@ -182,7 +182,7 @@
     });
 
     $("#btnCreer").click(function () {
-        if ($('#formCreation').valid()) {
+        if ($('#formCreation').valid() && validateComposant()) {
            CallController(
                 "@Url.Action("Creer", "Deploiement")",
                 {
@@ -207,4 +207,18 @@
             );
         }
     });
+
+    $("#Composant_Id").on("change", function () {
+        validateComposant();
+    })
+
+    function validateComposant() {
+        if ($("#Composant_Id").val() == null || $("#Composant_Id").val() == "") {
+            $("[data-valmsg-for='Composant.Id']").text("Un composant est requis");
+            return false;
+        } else {
+            $("[data-valmsg-for='Composant.Id']").text("");
+            return true;
+        }
+    }
 </script>

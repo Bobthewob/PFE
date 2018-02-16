@@ -10,22 +10,10 @@ using System.Web.Mvc;
 
 namespace STM.GDA.Web.Models
 {
-    public class ComposantModel
-    {
-        public int Id { get; set; }
-
-        [Required(ErrorMessage = "Un nom est requis")]
-        [StringLength(100)]
-        public string Nom { get; set; }
-
-        [StringLength(25)]
-        public string Abreviation { get; set; }
-        
+    public class ComposantModel : ComposantBase
+    {        
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
-
-        [StringLength(25)]
-        public string Version { get; set; }
 
         public EtiquetteModel Type { get; set; }
 

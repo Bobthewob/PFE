@@ -10,9 +10,7 @@ namespace STM.GDA.Web.Models
     {
         public int Id { get; set; }
 
-        public string NomComposant { get; set; }
-
-        public string AbrevriationComposant { get; set; }
+        public ComposantBase Composant { get; set; } = new ComposantBase();
 
         public string Environnement { get; set; }
 
@@ -20,7 +18,5 @@ namespace STM.GDA.Web.Models
         public DateTime DateDeploiement { get; set; }
 
         public bool DernierDeploiementAffiche { get; set; } = false;
-
-        public string AbreviationNomComposant => AbrevriationComposant + " - " + NomComposant;
     }
 }

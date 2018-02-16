@@ -11,9 +11,8 @@ namespace STM.GDA.Web.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Un composant est requis")]
         [DisplayName("Nom du composant déployé")]
-        public EtiquetteModel Composant { get; set; }
+        public ComposantBase Composant { get; set; } = new ComposantBase();
 
         [Required(ErrorMessage = "Un environnement est requis")]
         public EtiquetteModel Environnement { get; set; }
@@ -22,9 +21,6 @@ namespace STM.GDA.Web.Models
         [DisplayName("Date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DateDeploiement { get; set; } = DateTime.Now;
-
-        [StringLength(25)]
-        public string AbreviationComposant { get; set; }
 
         [DisplayName("Branche/Tag")]
         public string BrancheTag { get; set; }

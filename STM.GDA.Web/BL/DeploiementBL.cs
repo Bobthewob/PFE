@@ -43,7 +43,7 @@ namespace STM.GDA.Web.BL
                     ComposantId = nouveauDeploiement.Composant.Id,
                     PremierDeploiement = nouveauDeploiement.PremierDeploiement,
                     Date = nouveauDeploiement.DateDeploiement,
-                    BrancheTag = nouveauDeploiement.BranchTag,
+                    BrancheTag = nouveauDeploiement.BrancheTag,
                     URLDestination = nouveauDeploiement.UrlDestination,
                     PortailGroupe = nouveauDeploiement.PortailGroupe,
                     PortailDescription = nouveauDeploiement.PortailDescription,
@@ -60,8 +60,22 @@ namespace STM.GDA.Web.BL
                 context.Deploiements.InsertOnSubmit(deploiement);
 
                 context.SubmitChanges();
+
+                nouveauDeploiement.Id = deploiement.Id; //Set the newly inserted id
             }
         }
+
+        /*public static void SupprimerDeploiement(int id)
+        {
+            using (GDA_Context context = new GDA_Context())
+            {
+                var deploiement = context.Deploiements.FirstOrDefault(x => x.Id == id);
+
+                deploiement.DateSuppression = DateTime.Now;
+
+                context.SubmitChanges();
+            }
+        }*/
 
     }
 }

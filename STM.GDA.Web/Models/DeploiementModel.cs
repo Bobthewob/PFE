@@ -12,7 +12,6 @@ namespace STM.GDA.Web.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Un composant est requis")]
-        [StringLength(100)]
         [DisplayName("Nom du composant déployé")]
         public EtiquetteModel Composant { get; set; }
 
@@ -29,7 +28,7 @@ namespace STM.GDA.Web.Models
 
         [DisplayName("Branche/Tag")]
         [StringLength(25)]
-        public string BranchTag { get; set; }
+        public string BrancheTag { get; set; }
 
         [DisplayName("URL/Destination")]
         [StringLength(255)]

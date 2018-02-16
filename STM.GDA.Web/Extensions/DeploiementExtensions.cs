@@ -31,7 +31,7 @@ namespace STM.GDA.Web.Extensions
                 AbreviationComposant = deploiement.Composant.Abreviation,
                 PremierDeploiement = deploiement.PremierDeploiement,
                 DateDeploiement = deploiement.Date,
-                BranchTag = deploiement.BrancheTag,
+                BrancheTag = deploiement.BrancheTag,
                 UrlDestination = deploiement.URLDestination,
                 PortailGroupe = deploiement.PortailGroupe,
                 PortailDescription = deploiement.PortailDescription,

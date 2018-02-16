@@ -32,20 +32,18 @@
                 </div>
             </div>
 
+
             <div class="value row">
                 <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
                     @Html.DisplayNameFor(m => m.Composant.Nom)
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DropDownListFor(
-                             m => m.Composant,
-                             (IEnumerable<SelectListItem>)ViewBag.Composants,
-                             new { @id = "composants", style = "width: 100%;" })
+                    @Html.DropDownListFor(m => m.Composant.Id, (IEnumerable<SelectListItem>)ViewBag.ListeComposants, new { @class = "form-control" })
                 </div>
             </div>
 
             <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold" W>
                     @Html.DisplayNameFor(m => m.Environnement)
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-8">
@@ -64,10 +62,10 @@
 
             <div class="value row">
                 <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.BranchTag)
+                    @Html.DisplayNameFor(m => m.BrancheTag)
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.EditorFor(m => m.BranchTag, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(m => m.BrancheTag, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
 
@@ -182,23 +180,25 @@
 
     $("#btnCreer").click(function () {
         if ($('#formCreation').valid()) {
-            CallController(
+           CallController(
                 "@Url.Action("Creer", "Deploiement")",
                 {
                     deploiement: {
-                        Nom: $("#Nom").val(),
-                        Abreviation: $("#Abreviation").val(),
-                        Version: $("#Version").val(),
-                        Description: $("#Description").val(),
-                        Type: { Id: $("#Type_Id").val(), Nom: null },
-                        Responsables: getSelectedItems("ResponsablesSelectionnes"),
-                        Clients: getSelectedItems("ClientsSelectionnes"),
-                        NomBD: $("#NomBD").val(),
-                        SourceControlPath: $("#SourceControlPath").val(),
-                        BC: $("#BC").val(),
-                        BW: $("#BW").val(),
-                        Technologies: getSelectedItems("TechnologiesSelectionnees"),
-                        Dependances: getDependanceEnvironnement()
+                       Composant: { Id: $("#Composant_Id").val(), Nom: null },
+                       PremierDeploiement: $("#PremierDeploiement").is(':checked'),
+                        Date: $("#Date").val(),
+                        BrancheTag: $("#BrancheTag").val(),
+                        URLDestination: $("#UrlDestination").val(),
+                        PortailGroupe: $("#PortailGroupe").val(),
+                        PortailDescription: $("#PortailDescription").val(),
+                        Details: $("#Details").val(),
+                        Environnement: { Id: $("#Environnement_Id").val(), Nom: null },
+                        DerniereMAJ: $("#DerniereMAJ").val(),
+                        Web: $("#Web").is(':checked'),
+                        BD: $("#BD").is(':checked'),
+                        Rapport: $("#Rapport").is(':checked'),
+                        Interface: $("#Interface").is(':checked'),
+                        Job: $("#Job").is(':checked')         
                     }
                 }
             );

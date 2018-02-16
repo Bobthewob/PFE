@@ -1,4 +1,5 @@
 ﻿using STM.GDA.Web.BL;
+using STM.GDA.Web.Configuration;
 using STM.GDA.Web.Extensions;
 using STM.GDA.Web.Models;
 using System;
@@ -9,7 +10,7 @@ using System.Web.Mvc;
 
 namespace STM.GDA.Web.Controllers
 {
-    public class DeploiementController : Controller
+    public class DeploiementController : BaseController
     {
         // GET: Deploiement
         public ActionResult Index()
@@ -53,13 +54,25 @@ namespace STM.GDA.Web.Controllers
 
         public ActionResult Creer()
         {
-            //Creating the default environnements
-            var deploiement = new DeploiementModel();
-            ViewBag.Composants = ComposantBL.GetList().Select(x => x.ToSelectListItem());
 
-            ViewBag.ListeEnvrionnements = EnvironnementBL.GetAllEnvironnements().Select(x => x.ToSelectListItem()); ;
+            var deploiement = new DeploiementModel();
+            ViewBag.ListeComposants = ComposantBL.GetList().Select(x => x.ToSelectListItem());
+            ViewBag.ListeEnvrionnements = EnvironnementBL.GetDefaultEnvironnements().Select(x => x.ToSelectListItem()); ;
 
             return View("Creer", deploiement);
         }
+
+        [HttpPost]
+        public ActionResult Creer(DeploiementModel deploiement)
+        {
+            DeploiementBL.CreerDeploiement(deploiement);
+            return Redirect("Details", "Deploiement", new { id = deploiement.Id });
+        }
+
+       /* public ActionResult Supprimer(int id)
+        {
+            DeploiementBL.SupprimerDeploiement(id);
+            return Redirect("Index", "Deploiement", null);
+        }*/
     }
 }

@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace STM.GDA.Web.Models
 {
-    public class ComposantModel : IComposant
+    public class ComposantModel
     {
         public int Id { get; set; }
 

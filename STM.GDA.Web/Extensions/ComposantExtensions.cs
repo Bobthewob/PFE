@@ -83,12 +83,12 @@ namespace STM.GDA.Web.Extensions
             };
         }
 
-        public static SelectListItem ToSelectListItem(this IComposant composant)
+        public static SelectListItem ToSelectListItem(this ComposantListeModel composant)
         {
-            return new SelectListItem { Value = composant.Id.ToString(), Text = composant.ToDisplayString() };
+            return new SelectListItem { Value = composant.Id.ToString(), Text = composant.DisplayString };
         }
 
-        public static string ToDisplayString(this IComposant composant)
+        public static string ToDisplayString(this Composant composant)
         {
             StringBuilder sb = new StringBuilder();
             if (!String.IsNullOrWhiteSpace(composant.Abreviation))

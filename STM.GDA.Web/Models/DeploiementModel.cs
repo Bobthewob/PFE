@@ -27,11 +27,10 @@ namespace STM.GDA.Web.Models
         public string AbreviationComposant { get; set; }
 
         [DisplayName("Branche/Tag")]
-        [StringLength(25)]
         public string BrancheTag { get; set; }
 
         [DisplayName("URL/Destination")]
-        [StringLength(255)]
+        [StringLength(100)]
         public string UrlDestination { get; set; }
 
         [DisplayName("Portail groupe")]

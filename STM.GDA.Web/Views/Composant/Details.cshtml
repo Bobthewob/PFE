@@ -3,27 +3,10 @@
 }
 
 @model STM.GDA.Web.Models.ComposantModel
-    <div class="container">
+	<div class="container">
         @Html.ActionLink("Retour à la liste", "Index") <br>
         <div class="col-md-6">
-            <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            Confirmation de suppression
-                        </div>
-                        <div class="modal-body">
-                            Êtes-vous certain de vouloir supprimer ce composant?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                            <button type="button" id="btnSupprimerConfirmer" class="btn btn-danger btn-ok">Supprimer</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h3>Détails</h3>
+			<h3>Détails</h3>
 
             <div class="value row">
                 <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
@@ -178,11 +161,11 @@
 
         <div class="col-md-12 align-right padding-top">
             <button type="button" id="btnModifier" class="btn btn-primary">Modifier</button>
-            <button type="button" id="btnSupprimer" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete">Supprimer</button>
+            <button type="button" id="btnSupprimer" class="btn btn-danger" onclick="showDeleteDialog('Composant')">Supprimer</button>
         </div>
     </div>
 
-<script>
+	<script>
     var currentEnvironnement = $("#divDependance div:first");
     currentEnvironnement.addClass("currentEnvironnement");
 
@@ -197,12 +180,12 @@
 
     $("#btnModifier").click(function () {
         window.location.href = '@Url.Action("Modifier", "Composant", new { id = @Html.Raw(Json.Encode(Model.Id)) })';
-    });
+	});
 
 	$("#btnSupprimerConfirmer").click(function () {
 		CallController(
 			"@Url.Action("Supprimer", "Composant")",
 			{ Id: @Html.Raw(Json.Encode(Model.Id)) }
-        );
-    });
-</script>
+		);
+	});
+	</script>

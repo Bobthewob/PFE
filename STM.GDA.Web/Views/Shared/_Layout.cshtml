@@ -14,7 +14,7 @@
 	<link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
 </head>
 <body>
-    <div class="navbar navbar-fixed-top">
+	<div class="navbar navbar-fixed-top">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 				<span class="icon-bar"></span>
@@ -26,22 +26,42 @@
 					<img alt="List View" src="@Url.Content("~/Image/header-logo.png")"><span class="logo-text">GDA</span>
 				</a>
 			</div>
-			<!-- @Html.ActionLink("GDA", "Index", "Composant", new { area = "" }, new { @class = "navbar-brand" }) -->
 		</div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Applications et services", "Index", "Composant")</li>
-                <li>@Html.ActionLink("Déploiements", "Index" ,"Deploiement")</li>
-
-            </ul>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - PFE</p>
-        </footer>
-    </div>    
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li>@Html.ActionLink("Applications et services", "Index", "Composant")</li>
+				<li>@Html.ActionLink("Déploiements", "Index", "Deploiement")</li>
+			</ul>
+		</div>
+	</div>
+	<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					Confirmation de suppression
+				</div>
+				<div class="modal-body">
+					Êtes-vous certain de vouloir supprimer ce <span id="modal-delete-name"></span>?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+					<button type="button" id="btnSupprimerConfirmer" class="btn btn-danger btn-ok">Supprimer</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container body-content">
+		@RenderBody()
+		<hr />
+		<footer>
+			<p>&copy; @DateTime.Now.Year - PFE</p>
+		</footer>
+	</div>
+	<script>
+		function showDeleteDialog(model) {
+			$("#modal-delete-name").text(model.toLowerCase());
+			$("#confirm-delete").modal("toggle");
+		}
+	</script>
 </body>
 </html>

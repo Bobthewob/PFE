@@ -41,7 +41,7 @@ namespace STM.GDA.Web.BL
         {
             using (GDA_Context context = new GDA_Context())
             {
-                return context.Composants.Select(x => x.ToComposantBaseModel()).ToList();
+                return context.Composants.Where(x => x.DateSuppression == null).Select(x => x.ToComposantBaseModel()).ToList();
             }
         }
 

@@ -53,7 +53,7 @@
 
             <div class="value row">
                 <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.PremierDeploiement)
+                    @Html.LabelFor(m => m.PremierDeploiement)
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-8">
                     @Html.EditorFor(m => m.PremierDeploiement)
@@ -112,7 +112,7 @@
 
             <div class="value row">
                 <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.Web)
+                    @Html.LabelFor(m => m.Web)
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-8">
                     @Html.EditorFor(m => m.Web)
@@ -121,7 +121,7 @@
 
             <div class="value row">
                 <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.BD)
+                    @Html.LabelFor(m => m.BD)
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-8">
                     @Html.EditorFor(m => m.BD)
@@ -130,7 +130,7 @@
 
             <div class="value row">
                 <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.Rapport)
+                    @Html.LabelFor(m => m.Rapport)
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-8">
                     @Html.EditorFor(m => m.Rapport)
@@ -139,7 +139,7 @@
 
             <div class="value row">
                 <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.Interface)
+                    @Html.LabelFor(m => m.Interface)
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-8">
                     @Html.EditorFor(m => m.Interface)
@@ -148,7 +148,7 @@
 
             <div class="value row">
                 <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.Job)
+                    @Html.LabelFor(m => m.Job)
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-8">
                     @Html.EditorFor(m => m.Job)
@@ -167,10 +167,9 @@
 <script>
 
     $(document).ready(function () {
-        console.log(@Html.Raw(Json.Encode(Model.DateDeploiement)));
         $('.input-group.date').datetimepicker({
-            format: 'MM-DD-YYYY HH:mm'
-        }).data("DateTimePicker").date(@Html.Raw(Json.Encode(Model.DateDeploiement)));
+            format: 'YYYY-MM-DD h:mm'
+        }).data("DateTimePicker").date();
 
         $('#composants').selectize();
     });

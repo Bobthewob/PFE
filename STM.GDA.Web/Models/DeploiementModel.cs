@@ -19,8 +19,8 @@ namespace STM.GDA.Web.Models
 
         [Required(ErrorMessage = "Une date est requise")]
         [DisplayName("Date")]
-        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:dd/MM/yyyy H:mm}")]
-        public DateTime DateDeploiement { get; set; } = DateTime.Now;
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy h:mm}", ApplyFormatInEditMode = false)]
+        public DateTime DateDeploiement { get; set; }
 
         [DisplayName("Branche/Tag")]
         public string BrancheTag { get; set; }
@@ -37,6 +37,7 @@ namespace STM.GDA.Web.Models
         public string PortailDescription { get; set; }
 
         [DisplayName("Détails supplémentaires")]
+        [DataType(DataType.MultilineText)]
         public string Details { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]

@@ -14,7 +14,7 @@ namespace STM.GDA.Web.Models
 
         public string Environnement { get; set; }
 
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy H:mm}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy H:mm}")]
         public DateTime DateDeploiement { get; set; }
 
         public bool DernierDeploiementAffiche { get; set; } = false;

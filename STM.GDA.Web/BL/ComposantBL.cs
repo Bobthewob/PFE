@@ -114,6 +114,7 @@ namespace STM.GDA.Web.BL
                 context.ComposantEnvironnements.DeleteAllOnSubmit(context.ComposantEnvironnements.Where(x => x.ComposantId == id));
                 context.ComposantResponsables.DeleteAllOnSubmit(context.ComposantResponsables.Where(x => x.ComposantId == id));
                 context.ComposantTechnologies.DeleteAllOnSubmit(context.ComposantTechnologies.Where(x => x.ComposantId == id));
+                context.Deploiements.DeleteAllOnSubmit(context.Deploiements.Where(x => x.ComposantId == id));
 
                 context.Composants.DeleteOnSubmit(composant);
 

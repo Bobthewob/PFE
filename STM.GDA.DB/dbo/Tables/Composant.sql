@@ -10,8 +10,6 @@
 	[BC] VARCHAR(MAX) NULL,
 	[BW] VARCHAR(MAX) NULL,
 	[DerniereMAJ] DATETIME NOT NULL,
-	[DateCreation] DATETIME NOT NULL,
-	[DateSuppression] DATETIME NULL,
 	[ComposantTypeId] INT NOT NULL,
 	CONSTRAINT [PK_Composant] PRIMARY KEY CLUSTERED ([Id] ASC) WITH (FILLFACTOR = 90), 
     CONSTRAINT [FK_Composant_ComposantType] FOREIGN KEY ([ComposantTypeId]) REFERENCES [ComposantType]([Id])

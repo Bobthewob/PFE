@@ -15,7 +15,7 @@ namespace STM.GDA.Web.BL
         {
             using (GDA_Context context = new GDA_Context())
             {
-                var query = context.Composants.Where(x => x.DateSuppression == null).Select(x => x);
+                var query = context.Composants.Select(x => x);
 
                 if (!String.IsNullOrEmpty(filtre))
                 {
@@ -41,7 +41,7 @@ namespace STM.GDA.Web.BL
         {
             using (GDA_Context context = new GDA_Context())
             {
-                return context.Composants.Where(x => x.DateSuppression == null).Select(x => x.ToComposantBaseModel()).ToList();
+                return context.Composants.Select(x => x.ToComposantBaseModel()).ToList();
             }
         }
 
@@ -60,8 +60,7 @@ namespace STM.GDA.Web.BL
                     SourceControlPath = nouveauComposant.SourceControlPath,
                     BC = nouveauComposant.BC,
                     BW = nouveauComposant.BW,
-                    DerniereMAJ = DateTime.Now,
-                    DateCreation = DateTime.Now
+                    DerniereMAJ = DateTime.Now
                 };
 
                 context.Composants.InsertOnSubmit(composant);
@@ -110,7 +109,13 @@ namespace STM.GDA.Web.BL
             {
                 var composant = context.Composants.FirstOrDefault(x => x.Id == id);
 
-                composant.DateSuppression = DateTime.Now;
+                context.ComposantClients.DeleteAllOnSubmit(context.ComposantClients.Where(x => x.ComposantId == id));
+                context.ComposantDependances.DeleteAllOnSubmit(context.ComposantDependances.Where(x => x.ComposantId == id));
+                context.ComposantEnvironnements.DeleteAllOnSubmit(context.ComposantEnvironnements.Where(x => x.ComposantId == id));
+                context.ComposantResponsables.DeleteAllOnSubmit(context.ComposantResponsables.Where(x => x.ComposantId == id));
+                context.ComposantTechnologies.DeleteAllOnSubmit(context.ComposantTechnologies.Where(x => x.ComposantId == id));
+
+                context.Composants.DeleteOnSubmit(composant);
 
                 context.SubmitChanges();
             }

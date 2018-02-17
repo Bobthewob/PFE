@@ -22,35 +22,34 @@
 
 <a id="scroll-up" href="#" class="btn btn-primary btn-lg scroll-up" role="button"><span class="glyphicon glyphicon-chevron-up"></span></a>
 
-
 <script>
+    var pagination;
 
-$(document).ready(function () {
-    //https://bootsnipp.com/snippets/featured/link-to-top-page
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 50) {
-            $('#scroll-up').fadeIn();
-        } else {
-            $('#scroll-up').fadeOut();
+    $(document).ready(function () {
+        //https://bootsnipp.com/snippets/featured/link-to-top-page
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#scroll-up').fadeIn();
+            } else {
+                $('#scroll-up').fadeOut();
+            }
+        });
+
+        $('#scroll-up').click(function () {
+            $('#scroll-up').tooltip('hide');
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+
+        $("#btnCreer").on('click', function (e) {
+            window.location.href = '@Url.Action("Creer", "Deploiement")';
+        });
+
+       if (typeof Pagination === 'function') {
+           pagination = new Pagination(5, $("#deploiements"), $("#txtFiltre"), "@Url.Action("GetDeploiements", "Deploiement")");
         }
     });
-
-    $('#scroll-up').click(function () {
-        $('#scroll-up').tooltip('hide');
-        $('body,html').animate({
-            scrollTop: 0
-        }, 800);
-        return false;
-    });
-
-    $("#btnCreer").on('click', function (e) {
-        window.location.href = '@Url.Action("Creer", "Deploiement")';
-    });
-
-   if (typeof Pagination === 'function') {
-       pagination = new Pagination(5, $("#deploiements"), $("#txtFiltre"), "@Url.Action("GetDeploiements", "Deploiement")");
-    }
-});
-
 </script>
 

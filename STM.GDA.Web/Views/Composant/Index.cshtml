@@ -25,35 +25,32 @@
 <a id="scroll-up" href="#" class="btn btn-primary btn-lg scroll-up" role="button"><span class="glyphicon glyphicon-chevron-up"></span></a>
 
 <script>
-var pagination;
-var filterTimeout; // the timeout function used to delay the filter call to the backend (so if the user is currently typing it does not create multiple call)
-var take = 5;
+    var pagination;
 
-$(document).ready(function () {
-    //https://bootsnipp.com/snippets/featured/link-to-top-page
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 50) {
-            $('#scroll-up').fadeIn();
-        } else {
-            $('#scroll-up').fadeOut();
+    $(document).ready(function () {
+        //https://bootsnipp.com/snippets/featured/link-to-top-page
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#scroll-up').fadeIn();
+            } else {
+                $('#scroll-up').fadeOut();
+            }
+        });
+
+        $('#scroll-up').click(function () {
+            $('#scroll-up').tooltip('hide');
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+
+        $("#btnCreer").on('click', function (e) {
+            window.location.href = '@Url.Action("Creer", "Composant")';
+        });
+
+        if (typeof Pagination === 'function') {
+            pagination = new Pagination(5, $("#composants"), $("#txtFiltre"), "@Url.Action("GetComposants", "Composant")");
         }
     });
-
-    $('#scroll-up').click(function () {
-        $('#scroll-up').tooltip('hide');
-        $('body,html').animate({
-            scrollTop: 0
-        }, 800);
-        return false;
-    });
-
-    $("#btnCreer").on('click', function (e) {
-        window.location.href = '@Url.Action("Creer", "Composant")';
-    });
-
-    if (typeof Pagination === 'function') {
-        pagination = new Pagination(5, $("#composants"), $("#txtFiltre"), "@Url.Action("GetComposants", "Composant")");
-    }
-});
-
 </script>

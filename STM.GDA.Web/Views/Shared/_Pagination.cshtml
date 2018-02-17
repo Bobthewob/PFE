@@ -17,12 +17,12 @@
         function Pagination(prendre, conteneur, filtreElement, action) {
             this.prendre = prendre;
             this.ecart = 0;
-            this.conteneur = conteneur; //Le conteneur (élément html) dans lequel les éléments filtrés vont être placé
-            this.filtreElement = filtreElement //Le champs qui contient la chaine sur laquel on filtre les éléments
+            this.conteneur = conteneur; //Le conteneur (élément html) dans lequel les éléments filtrés vont être placés
+            this.filtreElement = filtreElement //Le champs qui contient la chaîne sur laquelle on filtre les éléments
             this.action = action; //La route qui retourne la liste des éléments
-            this.tourniquetDelais = null; // La fonction qui délais l'affichage du tourniquet pour ne pas que cela clignote
-            this.filtrageDelais = null; // La fonction qui délais les appels serveurs lors de la modification du champs de filtrage
-            this.appelCourant = null; //contient la requete courante
+            this.tourniquetDelais = null; // La fonction qui délaie l'affichage du tourniquet pour ne pas que cela clignote
+            this.filtrageDelais = null; // La fonction qui délaie les appels serveurs lors de la modification du champs de filtrage
+            this.appelCourant = null; //contient la requête courante
 
             this.InscriptionChampsFiltre(this.filtreElement, "input");
             this.filtrerListe(true);
@@ -69,7 +69,7 @@
                 this.appelCourant = CallController(
                     this.action,
                     { filtre: this.filtreElement.val(), take: this.prendre },
-                    this //le context dans laquel les méthodes de retour(.done) vont être, ici on veut avoir encore acces au information de notre objet
+                    this //le context dans lequel les méthodes de retour(.done) vont être, ici on veut avoir encore accès aux informations de notre objet
                 ).done(function (result) {
                     this.ecart = this.ecart + this.prendre;
                     token = false;

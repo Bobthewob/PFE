@@ -77,9 +77,7 @@ namespace STM.GDA.Web.Controllers
         {
             var deploiement = DeploiementBL.GetDeploiement(id);
 
-            ViewBag.DateDeploiement = DateTime.ParseExact(deploiement.DateDeploiement.ToString(), "M/dd/yyyy hh:mm:ss tt",
-                System.Globalization.CultureInfo.InvariantCulture
-                ).ToString("yyyy-MM-dd H:mm");
+            ViewBag.DateDeploiement = deploiement.getStandardAppDate();
             ViewBag.ListeComposants = ComposantBL.GetList().Select(x => x.ToSelectListItem());
             ViewBag.ListeEnvrionnements = EnvironnementBL.GetDefaultEnvironnements().Select(x => x.ToSelectListItem()); ;
 

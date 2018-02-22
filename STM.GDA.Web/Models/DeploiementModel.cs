@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace STM.GDA.Web.Models
@@ -61,5 +62,23 @@ namespace STM.GDA.Web.Models
         [DisplayName("Job")]
         public bool Job { get; set; } = true;
 
+        public string getStandardAppDate()
+        {
+            var pattern = "";
+
+            switch (this.DateDeploiement.ToString()) {
+                case var strDate when new Regex(@"[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)").IsMatch(strDate):
+                    pattern = "yyyy-MM-dd h:mm:ss tt";
+                    break;
+                case var strDate when new Regex(@"[0-9]{1,2}\/[0-9]{2}\/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)").IsMatch(strDate):
+                    pattern = "M/dd/yyyy hh:mm:ss tt";
+                    break;
+            }
+            
+
+            return DateTime.ParseExact(this.DateDeploiement.ToString(), pattern,
+                System.Globalization.CultureInfo.InvariantCulture
+                ).ToString("yyyy-MM-dd H:mm"); ;
+        } 
     }
 }

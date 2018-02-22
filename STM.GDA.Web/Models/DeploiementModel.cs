@@ -78,7 +78,7 @@ namespace STM.GDA.Web.Models
 
             return DateTime.ParseExact(this.DateDeploiement.ToString(), pattern,
                 System.Globalization.CultureInfo.InvariantCulture
-                ).ToString("yyyy-MM-dd H:mm"); ;
+                ).ToString("yyyy-MM-dd H:mm");
         } 
     }
 }

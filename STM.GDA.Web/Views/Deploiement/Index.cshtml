@@ -15,128 +15,41 @@
         </div>
     </div>
 
-    <div id="listeDeploiement"></div>
+    <div id="deploiements"></div>
 
-    <div id="listeDeploiementPiedDePage">
-        <p id="filtreAucuneCorrespondance" style="display:none;">Rien ne correspond à cette recherche</p>
-        <button id="afficherPlus" type="button" class="btn btn-default petitMilieu" style="display:none;">Afficher Plus</button>
-        <div id="tourniquetChargement" class="chargement" style="display:none;"></div>
-    </div>
+    @Html.Partial("_Pagination")
 </div>
 
 <a id="scroll-up" href="#" class="btn btn-primary btn-lg scroll-up" role="button"><span class="glyphicon glyphicon-chevron-up"></span></a>
 
-
 <script>
-var offset = 0; //current pagination offset
-var take = 5; //how much we want to load for each ajax call
-var currentAjaxFetch; //the current ajax query, we don't want it to complete if we lauch a new search with a new filter for example
-var filterTimeout; // the timeout function used to delay the filter call to the backend (so if the user is currently typing it does not create multiple call)
-var spinnerTimeout; // the timeout function used to delay the display of the spinner or else it would flicker.
+    var pagination;
 
-$(document).ready(function () {
-    //https://bootsnipp.com/snippets/featured/link-to-top-page
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 50) {
-            $('#scroll-up').fadeIn();
-        } else {
-            $('#scroll-up').fadeOut();
-        }
-    });
-
-    $('#scroll-up').click(function () {
-        $('#scroll-up').tooltip('hide');
-        $('body,html').animate({
-            scrollTop: 0
-        }, 800);
-        return false;
-    });
-
-    $("#txtFiltre").on('input', function (e) {
-        if (currentFetch)
-            currentFetch.abort("new filter called");
-
-        if (filterTimeout !== null) {
-            clearTimeout(filterTimeout);
-        }
-
-        $("#listeDeploiement").html("");
-        $("#afficherPlus").hide();
-        $("#filtreAucuneCorrespondance").hide();
-        $("#tourniquetChargement").show();
-
-        filterTimeout = setTimeout(function () {
-            filtrerListe($("#txtFiltre").val(), true);
-        }, 300);
-    });
-
-    $("#afficherPlus").on('click', function (e) {
-        if (currentFetch)
-            currentFetch.abort("new filter called");
-
-        filtrerListe($("#txtFiltre").val(), false);
-    });
-
-    $("#btnCreer").on('click', function (e) {
-        window.location.href = '@Url.Action("Creer", "Deploiement")';
-    });
-
-    $("#tourniquetChargement").show();
-    filtrerListe("", true);
-});
-
-function filtrerListe(filtre, resetPagination) {
-    if (resetPagination) {
-        var token = true;
-        offset = 0;
-
-        if (spinnerTimeout !== null) {
-            clearTimeout(spinnerTimeout);
-        }
-
-        spinnerTimeout = setTimeout(function () {
-            if (token) {
-                $("#tourniquetChargement").show();
-            }
-        }, 1000, token);
-
-        currentFetch = CallController(
-            "@Url.Action("GetDeploiements", "Deploiement")",
-            { filtre: filtre, take: take }
-        ).done(function (result) {
-            offset = offset + take;
-            token = false;
-            $("#tourniquetChargement").hide();
-
-            if (result.status === "All_Loaded") {
-                $("#filtreAucuneCorrespondance").show();
+    $(document).ready(function () {
+        //https://bootsnipp.com/snippets/featured/link-to-top-page
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#scroll-up').fadeIn();
             } else {
-                $("#listeDeploiement").html(result);
-
-                if (!$("#listeDeploiement").find(".dernier-element").length)
-                    $("#afficherPlus").show();
+                $('#scroll-up').fadeOut();
             }
         });
-    }
-    else {
-        $("#tourniquetChargement").show();
-        $("#afficherPlus").hide();
 
-        currentFetch = CallController(
-            "@Url.Action("GetDeploiements", "Deploiement")",
-            { filtre: filtre, take: take, offset: offset }
-        ).done(function (result) {
-            if (result.status !== "All_Loaded") { //as long as we haven't loaded all elements we keep going
-                $("#listeDeploiement").append(result); //add the new element at the end of the list
-                offset = offset + take;
-
-                $("#tourniquetChargement").hide();
-
-                if (!$("#listeDeploiement").find(".dernier-element").length)
-                    $("#afficherPlus").show();
-            }
+        $('#scroll-up').click(function () {
+            $('#scroll-up').tooltip('hide');
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
         });
-    }
-}
+
+        $("#btnCreer").on('click', function (e) {
+            window.location.href = '@Url.Action("Creer", "Deploiement")';
+        });
+
+       if (typeof Pagination === 'function') {
+           pagination = new Pagination(5, $("#deploiements"), $("#txtFiltre"), "@Url.Action("GetDeploiements", "Deploiement")");
+        }
+    });
 </script>
 

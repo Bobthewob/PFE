@@ -19,7 +19,7 @@ namespace STM.GDA.Web.Models
 
         [Required(ErrorMessage = "Une date est requise")]
         [DisplayName("Date")]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy h:mm}", ApplyFormatInEditMode = false)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy H:mm}", ApplyFormatInEditMode = false)]
         public DateTime DateDeploiement { get; set; }
 
         [DisplayName("Branche/Tag")]

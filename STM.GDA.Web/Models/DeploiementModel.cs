@@ -70,8 +70,8 @@ namespace STM.GDA.Web.Models
                 case var strDate when new Regex(@"[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)").IsMatch(strDate):
                     pattern = "yyyy-MM-dd h:mm:ss tt";
                     break;
-                case var strDate when new Regex(@"[0-9]{1,2}\/[0-9]{2}\/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)").IsMatch(strDate):
-                    pattern = "M/dd/yyyy hh:mm:ss tt";
+                case var strDate when new Regex(@"[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (AM|PM)").IsMatch(strDate):
+                    pattern = "M/d/yyyy h:mm:ss tt";
                     break;
             }
             

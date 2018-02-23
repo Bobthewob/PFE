@@ -8,6 +8,10 @@ label {
     display: inline-block;
 }
 
+.divComposant.deployed {
+	background: #ECECEC;
+}
+
 .divComposant {
 	background: #fff;
 	color: #007EB6;

@@ -66,12 +66,12 @@ function getAllItems(control) {
 
 // control: Control that contains options tags
 // Returns all the text items in the control
-function getAllTextItems(control) {
-    var values = $("#" + control + " option").toArray();
+function getSelectizeOptions(selectize) {
+    var values = selectize.options;
     var allTextItems = [];
 
-    values.forEach(function (item) {
-        allTextItems.push(item.text);
+    Object.keys(values).forEach(function (key) {
+        allTextItems.push(values[key].text);
     });
 
     return allTextItems;
@@ -79,7 +79,8 @@ function getAllTextItems(control) {
 
 //Uses the base selectizeAdd method but prevents duplicate values based on text input
 function selectizeAdd(input, control) {
-    var controlItems = getAllTextItems(control);
+    var selectize = $('#' + control)[0].selectize;
+    var controlItems = getSelectizeOptions(selectize);
 
     if (!controlItems.includes(input)) {
         return {

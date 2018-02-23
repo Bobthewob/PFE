@@ -45,7 +45,7 @@ function getSelectedItems(control) {
     var selectedItems = [];
 
     selectedValues.forEach(function (item) {
-        selectedItems.push({ Id: item.value, Nom: item.text })
+        selectedItems.push({ Id: item.value, Nom: item.text });
     });
 
     return selectedItems;
@@ -58,7 +58,7 @@ function getAllItems(control) {
     var AllItems = [];
 
     Values.forEach(function (item) {
-        AllItems.push({ Id: item.value, Nom: item.text })
+        AllItems.push({ Id: item.value, Nom: item.text });
     });
 
     return AllItems;
@@ -86,10 +86,9 @@ function selectizeAdd(input, control) {
         return {
             value: input,
             text: input
-        }
+        };
     }
     else {
-        var selectize = $('#' + control)[0].selectize;
         selectize.setTextboxValue('');
         return false;
     }

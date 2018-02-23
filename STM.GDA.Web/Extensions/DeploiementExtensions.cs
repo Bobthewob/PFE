@@ -24,6 +24,21 @@ namespace STM.GDA.Web.Extensions
             };
         }
 
+        public static DeploiementListeModel ToDeploiementListeModel(this GetSortableDeploiementsResult deploiement)
+        {
+            return new DeploiementListeModel
+            {
+                Id = deploiement.Id ?? 0,
+                Composant = new ComposantBase
+                {
+                    Nom = deploiement.ComposantNom,
+                    Abreviation = deploiement.ComposantAbreviation
+                },
+                DateDeploiement = deploiement.Date ?? DateTime.MinValue,
+                Environnement = deploiement.EnvironnementNom
+            };
+        }
+
         public static DeploiementModel ToDeploiementModel(this Deploiement deploiement)
         {
             return new DeploiementModel

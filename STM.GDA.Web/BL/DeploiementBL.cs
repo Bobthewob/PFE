@@ -14,29 +14,24 @@ namespace STM.GDA.Web.BL
         {
             using (GDA_Context context = new GDA_Context())
             {
-                var query = context.Deploiements.Select(x => x).Where(x => x.Date > DateTime.Now);
+                DateTime now = DateTime.Now;
+                var query = context.GetSortableDeploiements(now);
 
                 if (!String.IsNullOrEmpty(filtre))
                 {
-                    query = query.Where(x => x.Composant.Nom.ToLower().Contains(filtre) ||
-                            x.Environnement.Nom.ToLower().Contains(filtre));
+                    query = query.Where(
+                        d => d.ComposantNom.ToLower().Contains(filtre) ||
+                             d.ComposantAbreviation.ToLower().Contains(filtre) ||
+                             d.EnvironnementNom.ToLower().Contains(filtre));
                 }
-
-                var list_undeployed = query.OrderBy(x => x.Date).ToList();
-
-                query = context.Deploiements.Select(x => x).Where(x => x.Date <= DateTime.Now);
-
-                if (!String.IsNullOrEmpty(filtre))
-                {
-                    query = query.Where(x => x.Composant.Nom.ToLower().Contains(filtre) ||
-                            x.Environnement.Nom.ToLower().Contains(filtre));
-                }
-
-                var list_deployed = query.OrderByDescending(x => x.Date).ToList();
-
-                var list = list_undeployed.Concat(list_deployed).Skip(offset).Take(take + 1).Select(x => x.ToDeploiementListeModel()).ToList();
-
-                return list;
+                
+                return query
+                    .OrderBy(d => d.EstPasse)
+                    .ThenBy(d => d.EcartMinutes)
+                    .Skip(offset)
+                    .Take(take + 1)
+                    .Select(d => d.ToDeploiementListeModel())
+                    .ToList();
             }
         }
 

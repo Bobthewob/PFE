@@ -220,6 +220,12 @@ namespace STM.GDA.DataAccess
 				return this.GetTable<Technologie>();
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetSortableDeploiements", IsComposable=true)]
+		public IQueryable<GetSortableDeploiementsResult> GetSortableDeploiements([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> datetime)
+		{
+			return this.CreateMethodCallQuery<GetSortableDeploiementsResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), datetime);
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.__RefactorLog")]
@@ -3285,6 +3291,392 @@ namespace STM.GDA.DataAccess
 		{
 			this.SendPropertyChanging();
 			entity.Technologie = null;
+		}
+	}
+	
+	public partial class GetSortableDeploiementsResult
+	{
+		
+		private System.Nullable<int> _Id;
+		
+		private System.Nullable<int> _ComposantId;
+		
+		private string _ComposantNom;
+		
+		private string _ComposantAbreviation;
+		
+		private System.Nullable<int> _EnvironnementId;
+		
+		private string _EnvironnementNom;
+		
+		private System.Nullable<System.DateTime> _Date;
+		
+		private string _BrancheTag;
+		
+		private string _URLDestination;
+		
+		private string _PortailGroupe;
+		
+		private string _PortailDescription;
+		
+		private string _Details;
+		
+		private System.Nullable<System.DateTime> _DerniereMAJ;
+		
+		private System.Nullable<bool> _PremierDeploiement;
+		
+		private System.Nullable<bool> _Web;
+		
+		private System.Nullable<bool> _BD;
+		
+		private System.Nullable<bool> _Rapport;
+		
+		private System.Nullable<bool> _Interface;
+		
+		private System.Nullable<bool> _Job;
+		
+		private System.Nullable<bool> _EstPasse;
+		
+		private System.Nullable<int> _EcartMinutes;
+		
+		public GetSortableDeploiementsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int")]
+		public System.Nullable<int> Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComposantId", DbType="Int")]
+		public System.Nullable<int> ComposantId
+		{
+			get
+			{
+				return this._ComposantId;
+			}
+			set
+			{
+				if ((this._ComposantId != value))
+				{
+					this._ComposantId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComposantNom", DbType="VarChar(100)")]
+		public string ComposantNom
+		{
+			get
+			{
+				return this._ComposantNom;
+			}
+			set
+			{
+				if ((this._ComposantNom != value))
+				{
+					this._ComposantNom = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComposantAbreviation", DbType="VarChar(25)")]
+		public string ComposantAbreviation
+		{
+			get
+			{
+				return this._ComposantAbreviation;
+			}
+			set
+			{
+				if ((this._ComposantAbreviation != value))
+				{
+					this._ComposantAbreviation = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EnvironnementId", DbType="Int")]
+		public System.Nullable<int> EnvironnementId
+		{
+			get
+			{
+				return this._EnvironnementId;
+			}
+			set
+			{
+				if ((this._EnvironnementId != value))
+				{
+					this._EnvironnementId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EnvironnementNom", DbType="VarChar(25)")]
+		public string EnvironnementNom
+		{
+			get
+			{
+				return this._EnvironnementNom;
+			}
+			set
+			{
+				if ((this._EnvironnementNom != value))
+				{
+					this._EnvironnementNom = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this._Date = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BrancheTag", DbType="VarChar(MAX)")]
+		public string BrancheTag
+		{
+			get
+			{
+				return this._BrancheTag;
+			}
+			set
+			{
+				if ((this._BrancheTag != value))
+				{
+					this._BrancheTag = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URLDestination", DbType="VarChar(100)")]
+		public string URLDestination
+		{
+			get
+			{
+				return this._URLDestination;
+			}
+			set
+			{
+				if ((this._URLDestination != value))
+				{
+					this._URLDestination = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PortailGroupe", DbType="VarChar(100)")]
+		public string PortailGroupe
+		{
+			get
+			{
+				return this._PortailGroupe;
+			}
+			set
+			{
+				if ((this._PortailGroupe != value))
+				{
+					this._PortailGroupe = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PortailDescription", DbType="VarChar(MAX)")]
+		public string PortailDescription
+		{
+			get
+			{
+				return this._PortailDescription;
+			}
+			set
+			{
+				if ((this._PortailDescription != value))
+				{
+					this._PortailDescription = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Details", DbType="VarChar(MAX)")]
+		public string Details
+		{
+			get
+			{
+				return this._Details;
+			}
+			set
+			{
+				if ((this._Details != value))
+				{
+					this._Details = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DerniereMAJ", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DerniereMAJ
+		{
+			get
+			{
+				return this._DerniereMAJ;
+			}
+			set
+			{
+				if ((this._DerniereMAJ != value))
+				{
+					this._DerniereMAJ = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PremierDeploiement", DbType="Bit")]
+		public System.Nullable<bool> PremierDeploiement
+		{
+			get
+			{
+				return this._PremierDeploiement;
+			}
+			set
+			{
+				if ((this._PremierDeploiement != value))
+				{
+					this._PremierDeploiement = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Web", DbType="Bit")]
+		public System.Nullable<bool> Web
+		{
+			get
+			{
+				return this._Web;
+			}
+			set
+			{
+				if ((this._Web != value))
+				{
+					this._Web = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BD", DbType="Bit")]
+		public System.Nullable<bool> BD
+		{
+			get
+			{
+				return this._BD;
+			}
+			set
+			{
+				if ((this._BD != value))
+				{
+					this._BD = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rapport", DbType="Bit")]
+		public System.Nullable<bool> Rapport
+		{
+			get
+			{
+				return this._Rapport;
+			}
+			set
+			{
+				if ((this._Rapport != value))
+				{
+					this._Rapport = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Interface", DbType="Bit")]
+		public System.Nullable<bool> Interface
+		{
+			get
+			{
+				return this._Interface;
+			}
+			set
+			{
+				if ((this._Interface != value))
+				{
+					this._Interface = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Job", DbType="Bit")]
+		public System.Nullable<bool> Job
+		{
+			get
+			{
+				return this._Job;
+			}
+			set
+			{
+				if ((this._Job != value))
+				{
+					this._Job = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EstPasse", DbType="Bit")]
+		public System.Nullable<bool> EstPasse
+		{
+			get
+			{
+				return this._EstPasse;
+			}
+			set
+			{
+				if ((this._EstPasse != value))
+				{
+					this._EstPasse = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EcartMinutes", DbType="Int")]
+		public System.Nullable<int> EcartMinutes
+		{
+			get
+			{
+				return this._EcartMinutes;
+			}
+			set
+			{
+				if ((this._EcartMinutes != value))
+				{
+					this._EcartMinutes = value;
+				}
+			}
 		}
 	}
 }

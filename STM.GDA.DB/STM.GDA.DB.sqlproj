@@ -67,6 +67,7 @@
     <Folder Include="dbo\Views" />
     <Folder Include="dbo\Scripts" />
     <Folder Include="dbo\Triggers" />
+    <Folder Include="dbo\Functions" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Security\Permissions.sql" />
@@ -88,6 +89,7 @@
     <Build Include="dbo\Triggers\TriggerDeleteClient.sql" />
     <Build Include="dbo\Triggers\TriggerDeleteResponsable.sql" />
     <Build Include="dbo\Triggers\TriggerDeleteDependance.sql" />
+    <Build Include="dbo\Functions\GetSortedDeploiements.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dev.Compare.scmp" />

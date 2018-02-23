@@ -7,4 +7,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="[FK_ComposantDependance_Environnement]" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="cc1fd1f9-c632-432c-8559-c4398ed6fcda" ChangeDateTime="02/23/2018 04:30:32">
+    <Property Name="ElementName" Value="[dbo].[GetSortedDeploiements]" />
+    <Property Name="ElementType" Value="SqlInlineTableValuedFunction" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[GetSortableDeploiements]" />
+  </Operation>
 </Operations>

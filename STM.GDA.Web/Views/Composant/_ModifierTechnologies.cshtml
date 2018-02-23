@@ -12,7 +12,9 @@
     $(document).ready(function () {
         $('#TechnologiesSelectionnees').selectize({
             plugins: ['remove_button'],
-            create: true,
+            create: function (input) {
+                return selectizeAdd(input, 'TechnologiesSelectionnees');
+            },
             persist: false,
             placeholder: "Ajouter des technologies",
             render: {

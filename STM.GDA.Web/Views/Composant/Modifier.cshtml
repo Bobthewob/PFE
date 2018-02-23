@@ -140,7 +140,9 @@
     $(document).ready(function () {
         $('#ClientsSelectionnes').selectize({
             plugins: ['remove_button'],
-            create: true,
+            create: function (input) {
+                return selectizeAdd(input, 'ClientsSelectionnes');
+            },
             persist: false,
             placeholder: "Sélectionnez un ou plusieurs clients",
             render: {
@@ -152,7 +154,9 @@
 
         $('#ResponsablesSelectionnes').selectize({
             plugins: ['remove_button'],
-            create: true,
+            create: function(input) {
+                return selectizeAdd(input, 'ResponsablesSelectionnes');
+            },
             persist: false,
             placeholder: "Sélectionnez un ou plusieurs responsables",
             render: {

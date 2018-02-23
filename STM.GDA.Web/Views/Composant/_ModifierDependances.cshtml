@@ -151,9 +151,12 @@
         currentEnvironnement.addClass("currentEnvironnement");
 
         currentEnvironnement.find("select").each(function () {
+            var controlId = this.id;
             $(this).selectize({
                 plugins: ['remove_button'],
-                create: true,
+                create: function(input) {
+                    return selectizeAdd(input, controlId);
+                },
                 persist: false,
                 placeholder: "Sélectionnez une ou plusieurs dépendance",
                 render: {

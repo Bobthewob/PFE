@@ -20,7 +20,15 @@ namespace STM.GDA.Web.BL
                 if (!String.IsNullOrEmpty(filtre))
                 {
                     query = query.Where(x => x.Nom.ToLower().Contains(filtre) ||
+                            x.Abreviation.ToLower().Contains(filtre) ||
                             x.Description.ToLower().Contains(filtre) ||
+                            x.SourceControlPath.ToLower().Contains(filtre) ||
+                            x.BC.ToLower().Contains(filtre) ||
+                            x.BW.ToLower().Contains(filtre) ||
+                            x.Nom.ToLower().Contains(filtre) ||
+                            x.ComposantType.Nom.Contains(filtre) ||
+                            x.ComposantClients.Any(c => c.Client.Nom.ToLower().Contains(filtre)) ||
+                            x.ComposantResponsables.Any(r => r.Responsable.Nom.ToLower().Contains(filtre)) ||
                             x.ComposantTechnologies.Any(t => t.Technologie.Nom.ToLower().Contains(filtre)) ||
                             x.ComposantDependances.Any(d => d.Dependance.Nom.ToLower().Contains(filtre)));
                 }

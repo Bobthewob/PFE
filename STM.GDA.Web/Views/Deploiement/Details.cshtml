@@ -153,7 +153,7 @@
 		</div>
     </div>
 
-<script>
+	<script>
 
     $("#btnModifier").click(function () {
         window.location.href = '@Url.Action("Modifier", "Deploiement", new { id = @Html.Raw(Json.Encode(Model.Id)) })';
@@ -164,5 +164,18 @@
 			"@Url.Action("Supprimer", "Deploiement")",
 			{ Id: @Html.Raw(Json.Encode(Model.Id)) }
         );
+	});
+
+	$("#btnGenererTexte").click(function () {
+		CallController(
+			"@Url.Action("GenererTexteDescriptif", "Deploiement")",
+			{ Deploiement: @Html.Raw(Json.Encode(Model)) }
+        ).done(function(data) {
+			//get the file name for download
+			if (data.nomFichier != "") {
+				//use window.location.href for redirect to download action for download the file
+				window.location.href = "@Url.Action("TelechargerTexteDescriptif", "Deploiement")" + "?fichier=" + data.nomFichier;
+			}
+		});
     });
-</script>
+	</script>

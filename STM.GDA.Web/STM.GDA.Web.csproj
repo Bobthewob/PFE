@@ -163,6 +163,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ComposantController.cs" />
     <Compile Include="Controllers\DeploiementController.cs" />
+    <Compile Include="CustomFilters\DeleteFileAttribute.cs" />
     <Compile Include="Extensions\DependanceExtension.cs" />
     <Compile Include="Extensions\DeploiementExtensions.cs" />
     <Compile Include="Extensions\EnvironnementExtensions.cs" />

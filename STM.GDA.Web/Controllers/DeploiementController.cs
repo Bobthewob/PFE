@@ -1,10 +1,13 @@
 ﻿using STM.GDA.Web.BL;
 using STM.GDA.Web.Configuration;
+using STM.GDA.Web.CustomFilters;
 using STM.GDA.Web.Extensions;
 using STM.GDA.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -97,5 +100,29 @@ namespace STM.GDA.Web.Controllers
             DeploiementBL.ModifierDeploiement(deploiement);
             return Redirect("Details", "Deploiement", new { id = deploiement.Id });
         }
-    }
+
+        public JsonResult GenererTexteDescriptif(DeploiementModel deploiement)
+        {
+			var nomFichier = "Deploiement_" + deploiement.Composant.Nom.Replace(" ", string.Empty);
+
+			string fullPath = Path.Combine(Server.MapPath("~"), nomFichier);
+
+			using (var stream = new MemoryStream(Encoding.ASCII.GetBytes("Test")))
+			{
+				FileStream fichier = new FileStream(fullPath, FileMode.Create, FileAccess.Write);
+				stream.WriteTo(fichier);
+				fichier.Close();
+			}
+
+			return Json(new { nomFichier = nomFichier });
+		}
+
+		[DeleteFile]
+		public ActionResult TelechargerTexteDescriptif(string fichier)
+		{
+			string fullPath = Path.Combine(Server.MapPath("~"), fichier);
+
+			return File(fullPath, "text/plain", fichier+".txt");
+		}
+	}
 }

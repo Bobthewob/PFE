@@ -90,11 +90,13 @@
     <Build Include="dbo\Triggers\TriggerDeleteResponsable.sql" />
     <Build Include="dbo\Triggers\TriggerDeleteDependance.sql" />
     <Build Include="dbo\Functions\GetSortedDeploiements.sql" />
+    <Build Include="dbo\Views\VComposants_FTS.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dev.Compare.scmp" />
     <None Include="Dev.STM.GDA.DB.publish.xml" />
     <None Include="dbo\Scripts\Initialisation.sql" />
+    <None Include="dbo\Scripts\Indexes.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="STM.GDA.DB.refactorlog" />

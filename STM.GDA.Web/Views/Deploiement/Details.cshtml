@@ -3,157 +3,157 @@
 }
 
 @model STM.GDA.Web.Models.DeploiementModel
-    <div class="container">
-        @Html.ActionLink("Retour à la liste", "Index")
-        <br>
-        <div class="col-md-6">
-            <h3>Consulter un déploiement</h3>
+<div class="container">
+    @Html.ActionLink("Retour à la liste", "Index")
+    <br>
+    <div class="col-md-6">
+        <h3>Consulter un déploiement</h3>
 
-            <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.DateDeploiement)
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DisplayFor(m => m.DateDeploiement)
-                </div>
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                @Html.DisplayNameFor(m => m.DateDeploiement)
             </div>
-
-            <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.Composant)
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DisplayFor(m => m.Composant.Nom)
-                </div>
-            </div>
-
-            <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.Environnement)
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DisplayFor(m => m.Environnement.Nom)
-                </div>
-            </div>
-
-            <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.PremierDeploiement)
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DisplayFor(m => m.PremierDeploiement)
-                </div>
-            </div>
-
-            <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.BrancheTag)
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DisplayFor(m => m.BrancheTag)
-                </div>
-            </div>
-
-            <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.UrlDestination)
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DisplayFor(m => m.UrlDestination)
-                </div>
-            </div>
-
-            <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.PortailGroupe)
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DisplayFor(m => m.PortailGroupe)
-                </div>
-            </div>
-
-            <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.PortailDescription)
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DisplayFor(m => m.PortailDescription)
-                </div>
-            </div>
-
-            <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.Details)
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DisplayFor(m => m.Details)
-                </div>
-            </div>
-
-        </div>
-
-        <div class="col-md-6">
-
-            <h3>Déploiements nécéssaires</h3>
-
-            <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.Web)
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DisplayFor(m => m.Web)
-                </div>
-            </div>
-
-            <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.BD)
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DisplayFor(m => m.BD)
-                </div>
-            </div>
-
-            <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.Rapport)
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DisplayFor(m => m.Rapport)
-                </div>
-            </div>
-
-            <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.Interface)
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DisplayFor(m => m.Interface)
-                </div>
-            </div>
-
-            <div class="value row">
-                <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
-                    @Html.DisplayNameFor(m => m.Job)
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-8">
-                    @Html.DisplayFor(m => m.Job)
-                </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                @Html.DisplayFor(m => m.DateDeploiement)
             </div>
         </div>
-		<div class="col-md-12 padding-top">
-			<div class="col-md-6 align-left">
-				<button type="button" id="btnGenererTexte" class="btn btn-default">Générer le texte descriptif</button>
-				<button type="button" id="btnAjouterCalendrier" class="btn btn-default">Ajouter à mon calendrier</button>
-			</div>
-			<div class="col-md-6 align-right">
-				<button type="button" id="btnModifier" class="btn btn-primary">Modifier</button>
-				<button type="button" id="btnSupprimer" class="btn btn-danger" onclick="showDeleteDialog('Déploiement')">Supprimer</button>
-			</div>
-		</div>
+
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                @Html.DisplayNameFor(m => m.Composant)
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                @Html.DisplayFor(m => m.Composant.Nom)
+            </div>
+        </div>
+
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                @Html.DisplayNameFor(m => m.Environnement)
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                @Html.DisplayFor(m => m.Environnement.Nom)
+            </div>
+        </div>
+
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                @Html.DisplayNameFor(m => m.PremierDeploiement)
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                @Html.DisplayFor(m => m.PremierDeploiement)
+            </div>
+        </div>
+
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                @Html.DisplayNameFor(m => m.BrancheTag)
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                @Html.DisplayFor(m => m.BrancheTag)
+            </div>
+        </div>
+
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                @Html.DisplayNameFor(m => m.UrlDestination)
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                @Html.DisplayFor(m => m.UrlDestination)
+            </div>
+        </div>
+
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                @Html.DisplayNameFor(m => m.PortailGroupe)
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                @Html.DisplayFor(m => m.PortailGroupe)
+            </div>
+        </div>
+
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                @Html.DisplayNameFor(m => m.PortailDescription)
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                @Html.DisplayFor(m => m.PortailDescription)
+            </div>
+        </div>
+
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                @Html.DisplayNameFor(m => m.Details)
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                @Html.DisplayFor(m => m.Details)
+            </div>
+        </div>
+
     </div>
 
-	<script>
+    <div class="col-md-6">
+
+        <h3>Déploiements nécéssaires</h3>
+
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                @Html.DisplayNameFor(m => m.Web)
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                @Html.DisplayFor(m => m.Web)
+            </div>
+        </div>
+
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                @Html.DisplayNameFor(m => m.BD)
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                @Html.DisplayFor(m => m.BD)
+            </div>
+        </div>
+
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                @Html.DisplayNameFor(m => m.Rapport)
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                @Html.DisplayFor(m => m.Rapport)
+            </div>
+        </div>
+
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                @Html.DisplayNameFor(m => m.Interface)
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                @Html.DisplayFor(m => m.Interface)
+            </div>
+        </div>
+
+        <div class="value row">
+            <div class="col-xs-12 col-sm-3 col-md-4 sm-right-align bold">
+                @Html.DisplayNameFor(m => m.Job)
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                @Html.DisplayFor(m => m.Job)
+            </div>
+        </div>
+    </div>
+	<div class="col-md-12 padding-top">
+		<div class="col-md-6 align-left">
+			<button type="button" id="btnGenererTexte" class="btn btn-default">Générer le texte descriptif</button>
+			<button type="button" id="btnAjouterCalendrier" class="btn btn-default">Ajouter à mon calendrier</button>
+		</div>
+		<div class="col-md-6 align-right">
+			<button type="button" id="btnModifier" class="btn btn-primary">Modifier</button>
+			<button type="button" id="btnSupprimer" class="btn btn-danger" onclick="showDeleteDialog('Déploiement')">Supprimer</button>
+		</div>
+	</div>
+</div>
+
+<script>
 
     $("#btnModifier").click(function () {
         window.location.href = '@Url.Action("Modifier", "Deploiement", new { id = @Html.Raw(Json.Encode(Model.Id)) })';
@@ -166,16 +166,17 @@
         );
 	});
 
-	$("#btnGenererTexte").click(function () {
+    $("#btnGenererTexte").click(function () {
 		CallController(
 			"@Url.Action("GenererTexteDescriptif", "Deploiement")",
-			{ Deploiement: @Html.Raw(Json.Encode(Model)) }
+            {
+                Deploiement: @Html.Raw(Json.Encode(Model)),
+                Date: "@Html.Raw(Model.DateDeploiement)"
+            }
         ).done(function(data) {
-			//get the file name for download
 			if (data.nomFichier != "") {
-				//use window.location.href for redirect to download action for download the file
 				window.location.href = "@Url.Action("TelechargerTexteDescriptif", "Deploiement")" + "?fichier=" + data.nomFichier;
 			}
 		});
     });
-	</script>
+</script>

@@ -46,6 +46,7 @@ namespace STM.GDA.Web.Extensions
                 Id = deploiement.Id,
                 Composant = new ComposantBase
                 {
+                    Id = deploiement.Composant.Id,
                     Nom = deploiement.Composant.Nom,
                     Abreviation = deploiement.Composant.Abreviation
                 },

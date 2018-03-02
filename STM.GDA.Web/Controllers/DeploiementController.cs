@@ -101,13 +101,14 @@ namespace STM.GDA.Web.Controllers
             return Redirect("Details", "Deploiement", new { id = deploiement.Id });
         }
 
-        public JsonResult GenererTexteDescriptif(DeploiementModel deploiement)
+        public JsonResult GenererTexteDescriptif(DeploiementModel deploiement, DateTime date)
         {
+            deploiement.DateDeploiement = date;
 			var nomFichier = "Deploiement_" + deploiement.Composant.Nom.Replace(" ", string.Empty);
 
 			string fullPath = Path.Combine(Server.MapPath("~"), nomFichier);
 
-			using (var stream = new MemoryStream(Encoding.ASCII.GetBytes("Test")))
+			using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(DeploiementBL.GetTexteDescriptif(deploiement))))
 			{
 				FileStream fichier = new FileStream(fullPath, FileMode.Create, FileAccess.Write);
 				stream.WriteTo(fichier);

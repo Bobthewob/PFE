@@ -113,5 +113,101 @@ namespace STM.GDA.Web.BL
             }
         }
 
+        public static string GetTexteDescriptif(DeploiementModel deploiement)
+        {
+            var composantInfo = ComposantBL.GetComposant(deploiement.Composant.Id);
+            var dependancesWeb = composantInfo.Dependances.Web.Where(x => x.EnvironnementId == deploiement.Environnement.Id).Select(x => x.Etiquette.Nom);
+            var dependancesBDs = composantInfo.Dependances.BDs.Where(x => x.EnvironnementId == deploiement.Environnement.Id).Select(x => x.Etiquette.Nom);
+            var dependancesRapports = composantInfo.Dependances.Rapports.Where(x => x.EnvironnementId == deploiement.Environnement.Id).Select(x => x.Etiquette.Nom);
+            var dependancesInterfaces = composantInfo.Dependances.Interfaces.Where(x => x.EnvironnementId == deploiement.Environnement.Id).Select(x => x.Etiquette.Nom);
+            var dependancesJobs = composantInfo.Dependances.Jobs.Where(x => x.EnvironnementId == deploiement.Environnement.Id).Select(x => x.Etiquette.Nom);
+
+            string text = "Nom de l'application ou du service : " + composantInfo.Nom + "\r\n";
+            text += "Environnement : " + deploiement.Environnement.Nom + "\r\n";
+            text += "Date du déploiement : " + deploiement.DateDeploiement.ToString() + "\r\n";
+            text += "Premier déploiement : " + (deploiement.PremierDeploiement ? "Oui" : "Non") + "\r\n";
+            text += "Source control path : " + composantInfo.SourceControlPath+ "\r\n";
+            text += "Branche/Tag : " + deploiement.BrancheTag + "\r\n";
+            text += "Url de destination : " + deploiement.UrlDestination + "\r\n";
+            text += "Portail groupe : " + deploiement.PortailGroupe + "\r\n";
+            text += "Portail description : " + deploiement.PortailDescription + "\r\n";
+            text += "Détails supplémentaires : " + deploiement.Details + "\r\n\r\n";
+
+            text += "Déploiements nécessaires\r\n";
+
+            if (deploiement.Web)
+            {
+                text += "\r\nDéploiement web\r\n";
+
+                if (dependancesWeb.Any())
+                {
+                    text += "Dépendances : " + string.Join(",", dependancesWeb) + "\r\n";
+                }
+                else
+                {
+                    text += "Il n'y a pas de dépendances web associées à cette application ou à ce service\r\n";
+                }
+            }
+
+            if (deploiement.BD)
+            {
+                text += "\r\nDéploiement de base de données\r\n";
+
+                if (dependancesBDs.Any())
+                {
+                    text += "Nom de la base de données : " + composantInfo.NomBD + "\r\n";
+                    text += "Dépendances : " + string.Join(",", dependancesBDs) + "\r\n";
+                }
+                else
+                {
+                    text += "Il n'y a pas de base de données associées à cette application ou à ce service\r\n";
+                }
+            }
+
+            if (deploiement.Rapport)
+            {
+                text += "\r\nDéploiement de rapports\r\n";
+
+                if (dependancesRapports.Any())
+                {
+                    text += "Dépendances : " + string.Join(",", dependancesRapports) + "\r\n";
+                }
+                else
+                {
+                    text += "Il n'y a pas de rapports associés à cette application ou à ce service\r\n";
+                }
+            }
+
+            if (deploiement.Interface)
+            {
+                text += "\r\nDéploiement d'interfaces\r\n";
+
+                if (dependancesInterfaces.Any())
+                {
+                    text += "Dépendances : " + string.Join(",", dependancesInterfaces) + "\r\n";
+                }
+                else
+                {
+                    text += "Il n'y a pas d'interfaces associées à cette application ou à ce service\r\n";
+                }
+            }
+
+            if (deploiement.Job)
+            {
+                text += "\r\nDéploiement de jobs\r\n";
+
+                if (dependancesJobs.Any())
+                {
+                    text += "Dépendances : " + string.Join(",", dependancesJobs) + "\r\n";
+                }
+                else
+                {
+                    text += "Il n'y a pas de jobs associés à cette application ou à ce service\r\n";
+                }
+            }
+
+            return text;
+        }
+
     }
 }

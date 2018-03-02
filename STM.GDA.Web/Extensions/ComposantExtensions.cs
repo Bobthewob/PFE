@@ -95,7 +95,7 @@ namespace STM.GDA.Web.Extensions
 
         public static SelectListItem ToSelectListItem(this ComposantBase composant)
         {
-            return new SelectListItem { Value = composant.Id.ToString(), Text = composant.NomAbreviatation };
+            return new SelectListItem { Value = composant.Id.ToString(), Text = composant.NomAbreviation };
         }
 
         private static List<DependanceModel> GetDependaceComposant(Composant composant, int typeDependance)

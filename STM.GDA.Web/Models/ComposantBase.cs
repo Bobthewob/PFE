@@ -22,7 +22,7 @@ namespace STM.GDA.Web.Models
         [StringLength(25)]
         public string Version { get; set; }
 
-        public string NomAbreviatation
+        public string NomAbreviation
         {
             get
             {

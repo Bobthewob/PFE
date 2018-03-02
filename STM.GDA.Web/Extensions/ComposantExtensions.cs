@@ -36,6 +36,54 @@ namespace STM.GDA.Web.Extensions
             };
         }
 
+        public static CSVComposantListeModel ToCSVComposantListeModel(this Composant composant)
+        {
+            
+            
+
+            return new CSVComposantListeModel
+            {
+                Id = composant.Id,
+                Nom = composant.Nom,
+                Abreviation = composant.Abreviation,
+                Version = composant.Version,
+                Description = composant.Description,
+                NomBD = composant.NomBD,
+                SourceControlPath = composant.SourceControlPath,
+                DerniereMAJ = composant.DerniereMAJ.ToString(),
+                Type = composant.ComposantType.Nom,
+                Clients = string.Join(", ", composant.ComposantClients.Select(x => x.Client.Nom).ToArray()),
+                EnvironnementsProductionWeb = ,
+                EnvironnementsProductionBDs = ,
+                EnvironnementsProductionRapports = ,
+                EnvironnementsProductionInterfaces = ,
+                EnvironnementsProductionJobs = ,
+                EnvironnementsProductionExtermes = ,
+                EnvironnementsDeveloppementWeb = ,
+                EnvironnementsDeveloppementBDs = ,
+                EnvironnementsDeveloppementRapports = ,
+                EnvironnementsDeveloppementInterfaces = ,
+                EnvironnementsDeveloppementJobs = ,
+                EnvironnementsDeveloppementExtermes = ,
+                EnvironnementsQAWeb = ,
+                EnvironnementsQABDs = ,
+                EnvironnementsQARapports = ,
+                EnvironnementsQAInterfaces = ,
+                EnvironnementsQAJobs = ,
+                EnvironnementsQAExtermes = ,
+                EnvironnementsPreProductiontWeb = ,
+                EnvironnementsPreProductiontBDs = ,
+                EnvironnementsPreProductiontRapports = ,
+                EnvironnementsPreProductiontInterfaces = ,
+                EnvironnementsPreProductiontJobs = ,
+                EnvironnementsPreProductiontExtermes = ,
+                Responsables = string.Join(", ", composant.ComposantResponsables.Select(x => x.Responsable.Nom).ToArray()),
+                Technologies = string.Join(", ", composant.ComposantTechnologies.Select(x => x.Technologie.Nom).ToArray()),
+                
+
+            };
+        }
+
         public static ComposantModel ToComposantModel(this Composant composant)
         {
             return new ComposantModel

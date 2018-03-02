@@ -133,6 +133,7 @@ namespace STM.GDA.Web.Controllers
             using (var streamWriter = new StreamWriter(memoryStream))
             using (var csvWriter = new CsvHelper.CsvWriter(streamWriter))
             {
+                csvWriter.Configuration.Delimiter = ";";
                 csvWriter.WriteRecords(records);
                 streamWriter.Flush();
                 return memoryStream.ToArray();

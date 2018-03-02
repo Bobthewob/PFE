@@ -11,6 +11,21 @@ namespace STM.GDA.Web.BL
 {
     public static class ComposantBL
     {
+        public static List<ComposantListeModel> GetCSVList(string filtre = null)
+        {
+            using (GDA_Context context = new GDA_Context())
+            {
+                var query = context.Composants.Select(x => x);
+
+                if (!String.IsNullOrEmpty(filtre))
+                {
+                    query = query.FilterQuery(filtre);
+                }
+
+                return query.Select(x => x.ToCSVComposantListeModel()).ToList();
+            }
+        }
+
         public static List<ComposantListeModel> GetList(int take = int.MaxValue -1, int offset = 0, string filtre = null)
         {
             using (GDA_Context context = new GDA_Context())
@@ -18,8 +33,17 @@ namespace STM.GDA.Web.BL
                 var query = context.Composants.Select(x => x);
 
                 if (!String.IsNullOrEmpty(filtre))
-                { 
-                    query = query.Where(x => x.Nom.ToLower().Contains(filtre) ||
+                {
+                    query = query.FilterQuery(filtre);
+                }
+
+                return query.Skip(offset).Take(take + 1).Select(x => x.ToComposantListeModel()).ToList();
+            }
+        }
+
+        private static IQueryable<Composant> FilterQuery(this IQueryable<Composant> query, string filtre)
+        {
+            return query.Where(x => x.Nom.ToLower().Contains(filtre) ||
                             x.Abreviation.ToLower().Contains(filtre) ||
                             x.Description.ToLower().Contains(filtre) ||
                             x.SourceControlPath.ToLower().Contains(filtre) ||
@@ -32,10 +56,6 @@ namespace STM.GDA.Web.BL
                             x.ComposantResponsables.Any(r => r.Responsable.Nom.ToLower().Contains(filtre)) ||
                             x.ComposantTechnologies.Any(t => t.Technologie.Nom.ToLower().Contains(filtre)) ||
                             x.ComposantDependances.Any(d => d.Dependance.Nom.ToLower().Contains(filtre)));
-                }
-
-                return query.Skip(offset).Take(take + 1).Select(x => x.ToComposantListeModel()).ToList();
-            }
         }
 
         public static ComposantModel GetComposant(int id)

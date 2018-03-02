@@ -188,8 +188,8 @@
                 Date: "@Html.Raw(Model.DateDeploiement)"
             }
         ).done(function (data) {
-            if (data.status = "Created") {
-                showDeleteDialog('Déploiement');
+            if (data.status === "Created") {
+                showInformationDialog('Le déploiement a été ajouté à votre calendrier.');
 			}
 		});
     });

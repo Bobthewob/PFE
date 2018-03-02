@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 
 namespace STM.GDA.Web.Controllers
 {
@@ -114,6 +115,28 @@ namespace STM.GDA.Web.Controllers
             ViewBag.ListeDependancesAutres = DependanceBL.GetDependances(Constantes.DEPENDANCE_AUTRES).Select(x => x.ToSelectListItem());
 
             return PartialView("_ModifierDependances", composant);
+        }
+
+        public FileStreamResult GenererCSVCourt(string filtre)
+        {
+            //Creating the default environnements
+            IEnumerable<ComposantListeModel> composants = ComposantBL.GetList(filtre: filtre);
+
+            var result = EcrireCsvDansMemoire(composants);
+            var memoryStream = new MemoryStream(result);
+            return new FileStreamResult(memoryStream, "text/csv") { FileDownloadName = "export.csv" };
+        }
+
+        public byte[] EcrireCsvDansMemoire(IEnumerable<ComposantListeModel> records)
+        {
+            using (var memoryStream = new MemoryStream())
+            using (var streamWriter = new StreamWriter(memoryStream))
+            using (var csvWriter = new CsvHelper.CsvWriter(streamWriter))
+            {
+                csvWriter.WriteRecords(records);
+                streamWriter.Flush();
+                return memoryStream.ToArray();
+            }
         }
     }
 }   

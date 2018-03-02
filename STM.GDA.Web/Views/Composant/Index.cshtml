@@ -43,7 +43,11 @@
                 scrollTop: 0
             }, 800);
             return false;
-        });
+		});
+
+		$("#btnExportCourt").on('click', function (e) {
+			window.location.href ='@Url.Action("GenererCSVCourt", "Composant")' + "?filtre=" + $("#txtFiltre").val();
+		});
 
         $("#btnCreer").on('click', function (e) {
             window.location.href = '@Url.Action("Creer", "Composant")';

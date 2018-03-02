@@ -118,7 +118,13 @@ namespace STM.GDA.Web.Controllers
 			return Json(new { nomFichier = nomFichier });
 		}
 
-		[DeleteFile]
+        public JsonResult AjouterCalendrier(DeploiementModel deploiement, DateTime date)
+        {
+            DeploiementBL.AjouterCalendrier(deploiement, date);
+            return Json(new { status = "Created"});
+        }
+
+        [DeleteFile]
 		public ActionResult TelechargerTexteDescriptif(string fichier)
 		{
 			string fullPath = Path.Combine(Server.MapPath("~"), fichier);

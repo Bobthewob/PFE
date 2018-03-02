@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.Office.Interop.Outlook;
 
 namespace STM.GDA.Web.BL
 {
@@ -207,6 +208,20 @@ namespace STM.GDA.Web.BL
             }
 
             return text;
+        }
+
+        //https://www.codeproject.com/Tips/84321/Setting-up-an-MS-Outlook-Appointment-C
+        public static void AjouterCalendrier(DeploiementModel deploiement, DateTime date)
+        {
+            Application outlookApp = new Application(); // creates new outlook app
+            AppointmentItem oAppointment = (AppointmentItem)outlookApp.CreateItem(OlItemType.olAppointmentItem); // creates a new
+            oAppointment.Subject = "Déploiement " + deploiement.Composant.Nom + ""; // set the subject
+            oAppointment.Start = Convert.ToDateTime(date); // Set the start date 
+            oAppointment.End = Convert.ToDateTime(date.AddHours(1) ); // End date 
+            oAppointment.ReminderSet = true; // Set the reminder
+            oAppointment.ReminderMinutesBeforeStart = 15; // reminder time
+            oAppointment.BusyStatus = OlBusyStatus.olBusy;
+            oAppointment.Save();
         }
 
     }

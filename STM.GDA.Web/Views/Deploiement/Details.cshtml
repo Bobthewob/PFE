@@ -179,4 +179,18 @@
 			}
 		});
     });
+
+    $("#btnAjouterCalendrier").click(function () {
+		CallController(
+			"@Url.Action("AjouterCalendrier", "Deploiement")",
+            {
+                Deploiement: @Html.Raw(Json.Encode(Model)),
+                Date: "@Html.Raw(Model.DateDeploiement)"
+            }
+        ).done(function (data) {
+            if (data.status = "Created") {
+                showDeleteDialog('Déploiement');
+			}
+		});
+    });
 </script>

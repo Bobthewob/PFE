@@ -127,7 +127,7 @@ namespace STM.GDA.Web.BL
             text += "Environnement : " + deploiement.Environnement.Nom + "\r\n";
             text += "Date du déploiement : " + deploiement.DateDeploiement.ToString() + "\r\n";
             text += "Premier déploiement : " + (deploiement.PremierDeploiement ? "Oui" : "Non") + "\r\n";
-            text += "Source control path : " + composantInfo.SourceControlPath+ "\r\n";
+            text += "Source control path : " + composantInfo.SourceControlPath + "\r\n";
             text += "Branche/Tag : " + deploiement.BrancheTag + "\r\n";
             text += "Url de destination : " + deploiement.UrlDestination + "\r\n";
             text += "Portail groupe : " + deploiement.PortailGroupe + "\r\n";

@@ -1,11 +1,14 @@
-﻿using STM.GDA.DataAccess;
-using System.Collections.Generic;
-
-namespace STM.GDA.Web.Models
+﻿namespace STM.GDA.Web.Models
 {
-    public class CSVComposantListeModel : ComposantBase
-    {
-        public string Description;
+    public class CSVComposantListeModelLong
+	{
+		public string Nom { get; set; }
+
+		public string Abreviation { get; set; }
+
+		public string Version { get; set; }
+
+		public string Description { get; set; }
 
         public string NomBD { get; set; }
 
@@ -15,11 +18,13 @@ namespace STM.GDA.Web.Models
 
         public string Type { get; set; }
 
-        public string Clients { get; set; }
+		public string Responsables { get; set; }
 
-        public string Dependances { get; set; }
+		public string Clients { get; set; }
 
-        public string EnvironnementsProductionWeb { get; set; }
+		public string Technologies { get; set; }
+
+		public string EnvironnementsProductionWeb { get; set; }
 
         public string EnvironnementsProductionBDs { get; set; }
 
@@ -29,7 +34,7 @@ namespace STM.GDA.Web.Models
 
         public string EnvironnementsProductionJobs { get; set; }
 
-        public string EnvironnementsProductionExtermes { get; set; }
+        public string EnvironnementsProductionExternes { get; set; }
 
         public string EnvironnementsDeveloppementWeb { get; set; }
 
@@ -41,7 +46,7 @@ namespace STM.GDA.Web.Models
 
         public string EnvironnementsDeveloppementJobs { get; set; }
 
-        public string EnvironnementsDeveloppementExtermes { get; set; }
+        public string EnvironnementsDeveloppementExternes { get; set; }
 
         public string EnvironnementsQAWeb { get; set; }
 
@@ -53,7 +58,7 @@ namespace STM.GDA.Web.Models
 
         public string EnvironnementsQAJobs { get; set; }
 
-        public string EnvironnementsQAExtermes { get; set; }
+        public string EnvironnementsQAExternes { get; set; }
 
         public string EnvironnementsPreProductiontWeb { get; set; }
 
@@ -65,10 +70,6 @@ namespace STM.GDA.Web.Models
 
         public string EnvironnementsPreProductiontJobs { get; set; }
 
-        public string EnvironnementsPreProductiontExtermes { get; set; }
-
-        public string Responsables { get; set; }
-
-        public string Technologies { get; set; }
+        public string EnvironnementsPreProductiontExternes { get; set; }
     }
 }

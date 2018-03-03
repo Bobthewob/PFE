@@ -11,7 +11,7 @@ namespace STM.GDA.Web.BL
 {
     public static class ComposantBL
     {
-        public static List<ComposantListeModel> GetCSVList(string filtre = null)
+        public static List<T> GetCSVList<T>(string filtre = null)
         {
             using (GDA_Context context = new GDA_Context())
             {
@@ -22,8 +22,17 @@ namespace STM.GDA.Web.BL
                     query = query.FilterQuery(filtre);
                 }
 
-                return query.Select(x => x.ToCSVComposantListeModel()).ToList();
-            }
+				if (typeof(T) == typeof(CSVComposantListeModelLong))
+				{
+					return query.Select(x => (T)Convert.ChangeType(x.ToCSVComposantListeModelLong(), typeof(T))).ToList();
+				}
+				else if (typeof(T) == typeof(CSVComposantListeModelCourt))
+				{
+					return query.Select(x => (T)Convert.ChangeType(x.ToCSVComposantListeModelCourt(), typeof(T))).ToList();
+				}
+
+				throw new NotSupportedException($"Type : {typeof(T).Name} is not supported.");
+			}
         }
 
         public static List<ComposantListeModel> GetList(int take = int.MaxValue -1, int offset = 0, string filtre = null)

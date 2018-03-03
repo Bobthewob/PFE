@@ -119,24 +119,39 @@ namespace STM.GDA.Web.Controllers
 
         public FileStreamResult GenererCSVCourt(string filtre)
         {
-            //Creating the default environnements
-            IEnumerable<ComposantListeModel> composants = ComposantBL.GetList(filtre: filtre);
-
-            var result = EcrireCsvDansMemoire(composants);
-            var memoryStream = new MemoryStream(result);
-            return new FileStreamResult(memoryStream, "text/csv") { FileDownloadName = "export.csv" };
+            IEnumerable<CSVComposantListeModelCourt> composants = ComposantBL.GetCSVList<CSVComposantListeModelCourt>(filtre: filtre);
+            return EcrireCsvDansMemoire(composants, "ComposantsExportCourt.csv", filtre);
         }
 
-        public byte[] EcrireCsvDansMemoire(IEnumerable<ComposantListeModel> records)
+		public FileStreamResult GenererCSVLong(string filtre)
+		{
+			IEnumerable<CSVComposantListeModelLong> composants = ComposantBL.GetCSVList<CSVComposantListeModelLong>(filtre: filtre);
+			return EcrireCsvDansMemoire(composants, "ComposantsExportLong.csv", filtre);
+		}
+
+		public FileStreamResult EcrireCsvDansMemoire<T>(IEnumerable<T> records, string fileName, string filtre)
         {
-            using (var memoryStream = new MemoryStream())
-            using (var streamWriter = new StreamWriter(memoryStream))
-            using (var csvWriter = new CsvHelper.CsvWriter(streamWriter))
-            {
-                csvWriter.WriteRecords(records);
-                streamWriter.Flush();
-                return memoryStream.ToArray();
-            }
-        }
+			using (var memoryStream = new MemoryStream())
+			{
+				using (var streamWriter = new StreamWriter(memoryStream))
+				{
+					if (!string.IsNullOrEmpty(filtre))
+					{
+						streamWriter.WriteLine($"Filtre : {filtre}");
+						streamWriter.WriteLine();
+					}
+
+					using (var csvWriter = new CsvHelper.CsvWriter(streamWriter))
+					{
+						csvWriter.Configuration.Delimiter = ";";
+						csvWriter.WriteRecords(records);
+
+						streamWriter.Flush();
+					}
+				}
+
+				return new FileStreamResult(new MemoryStream(memoryStream.ToArray()), "text/csv") { FileDownloadName = fileName };
+			}		
+		}
     }
 }   

@@ -7,7 +7,13 @@ namespace STM.GDA.Web.Configuration
 {
     public static class Constantes
     {
-        public const int ENVIRONNEMENT_PRODUCTION = 4;
+		public const int ENVIRONNEMENT_DEVELOPPEMENT = 1;
+
+		public const int ENVIRONNEMENT_QA = 2;
+
+		public const int ENVIRONNEMENT_PREPRODUCTION = 3;
+
+		public const int ENVIRONNEMENT_PRODUCTION = 4;
 
         public const int DEPENDANCE_WEB = 1;
 

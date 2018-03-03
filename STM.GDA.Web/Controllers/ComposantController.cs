@@ -120,31 +120,38 @@ namespace STM.GDA.Web.Controllers
         public FileStreamResult GenererCSVCourt(string filtre)
         {
             IEnumerable<CSVComposantListeModelCourt> composants = ComposantBL.GetCSVList<CSVComposantListeModelCourt>(filtre: filtre);
-            return EcrireCsvDansMemoire(composants, "ComposantsExportCourt.csv");
+            return EcrireCsvDansMemoire(composants, "ComposantsExportCourt.csv", filtre);
         }
 
 		public FileStreamResult GenererCSVLong(string filtre)
 		{
 			IEnumerable<CSVComposantListeModelLong> composants = ComposantBL.GetCSVList<CSVComposantListeModelLong>(filtre: filtre);
-			return EcrireCsvDansMemoire(composants, "ComposantsExportLong.csv");
+			return EcrireCsvDansMemoire(composants, "ComposantsExportLong.csv", filtre);
 		}
 
-		public FileStreamResult EcrireCsvDansMemoire<T>(IEnumerable<T> records, string fileName)
+		public FileStreamResult EcrireCsvDansMemoire<T>(IEnumerable<T> records, string fileName, string filtre)
         {
-			MemoryStream stream;
-
 			using (var memoryStream = new MemoryStream())
-            using (var streamWriter = new StreamWriter(memoryStream))
-            using (var csvWriter = new CsvHelper.CsvWriter(streamWriter))
-            {
-                csvWriter.Configuration.Delimiter = ";";
-                csvWriter.WriteRecords(records);
-                streamWriter.Flush();
+			{
+				using (var streamWriter = new StreamWriter(memoryStream))
+				{
+					if (!string.IsNullOrEmpty(filtre))
+					{
+						streamWriter.WriteLine($"Filtre : {filtre}");
+						streamWriter.WriteLine();
+					}
 
-				stream = new MemoryStream(memoryStream.ToArray());
-			}
+					using (var csvWriter = new CsvHelper.CsvWriter(streamWriter))
+					{
+						csvWriter.Configuration.Delimiter = ";";
+						csvWriter.WriteRecords(records);
 
-			return new FileStreamResult(stream, "text/csv") { FileDownloadName = fileName };
+						streamWriter.Flush();
+					}
+				}
+
+				return new FileStreamResult(new MemoryStream(memoryStream.ToArray()), "text/csv") { FileDownloadName = fileName };
+			}		
 		}
     }
 }   

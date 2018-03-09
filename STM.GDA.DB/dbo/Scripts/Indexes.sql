@@ -15,10 +15,10 @@ CREATE FULLTEXT INDEX ON [dbo].[VComposants_FTS] (
 	[BC],
 	[BW],
 	[SourceControlPath],
-	[NomClient],
-	[NomResponsable],
-	[NomTechnologie],
-	[NomDependance]) 
+	[Clients],
+	[Responsables],
+	[Technologies],
+	[Dependances]) 
 KEY INDEX [IX_UniqueVComposant] ON [FullTextCatalog] WITH CHANGE_TRACKING AUTO
 
 GO	

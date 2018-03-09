@@ -91,6 +91,10 @@
     <Build Include="dbo\Triggers\TriggerDeleteDependance.sql" />
     <Build Include="dbo\Functions\GetSortedDeploiements.sql" />
     <Build Include="dbo\Views\VComposants_FTS.sql" />
+    <Build Include="dbo\Functions\GetComposantTechnologies.sql" />
+    <Build Include="dbo\Functions\GetComposantResponsables.sql" />
+    <Build Include="dbo\Functions\GetComposantClients.sql" />
+    <Build Include="dbo\Functions\GetComposantDependances.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dev.Compare.scmp" />

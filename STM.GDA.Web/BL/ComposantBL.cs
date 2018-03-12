@@ -9,9 +9,9 @@ using System.Web;
 
 namespace STM.GDA.Web.BL
 {
-    public static class ComposantBL
+    public class ComposantBL : IComposantBL
     {
-        public static List<T> GetCSVList<T>(string filtre = null)
+        public List<T> GetCSVList<T>(string filtre = null)
         {
             using (GDA_Context context = new GDA_Context())
             {
@@ -19,7 +19,7 @@ namespace STM.GDA.Web.BL
 
                 if (!String.IsNullOrEmpty(filtre))
                 {
-                    query = query.FilterQuery(filtre);
+                    query = FilterQuery(query, filtre);
                 }
 
 				if (typeof(T) == typeof(CSVComposantListeModelLong))
@@ -35,7 +35,7 @@ namespace STM.GDA.Web.BL
 			}
         }
 
-        public static List<ComposantListeModel> GetList(int take = int.MaxValue -1, int offset = 0, string filtre = null)
+        public List<ComposantListeModel> GetList(int take = int.MaxValue -1, int offset = 0, string filtre = null)
         {
             using (GDA_Context context = new GDA_Context())
             {
@@ -43,14 +43,14 @@ namespace STM.GDA.Web.BL
 
                 if (!String.IsNullOrEmpty(filtre))
                 {
-                    query = query.FilterQuery(filtre);
+                    query = FilterQuery(query, filtre);
                 }
 
                 return query.Skip(offset).Take(take + 1).Select(x => x.ToComposantListeModel()).ToList();
             }
         }
 
-        private static IQueryable<Composant> FilterQuery(this IQueryable<Composant> query, string filtre)
+        private IQueryable<Composant> FilterQuery(IQueryable<Composant> query, string filtre)
         {
             return query.Where(x => x.Nom.ToLower().Contains(filtre) ||
                             x.Abreviation.ToLower().Contains(filtre) ||
@@ -67,7 +67,7 @@ namespace STM.GDA.Web.BL
                             x.ComposantDependances.Any(d => d.Dependance.Nom.ToLower().Contains(filtre)));
         }
 
-        public static ComposantModel GetComposant(int id)
+        public ComposantModel GetComposant(int id)
         {
             using (GDA_Context context = new GDA_Context())
             {
@@ -75,7 +75,7 @@ namespace STM.GDA.Web.BL
             }
         }
 
-        public static List<ComposantBase> GetListComposantBase()
+        public List<ComposantBase> GetListComposantBase()
         {
             using (GDA_Context context = new GDA_Context())
             {
@@ -83,7 +83,7 @@ namespace STM.GDA.Web.BL
             }
         }
 
-        public static void CreerComposant(ComposantModel nouveauComposant)
+        public void CreerComposant(ComposantModel nouveauComposant)
         {
             using (GDA_Context context = new GDA_Context())
             {
@@ -115,7 +115,7 @@ namespace STM.GDA.Web.BL
             }
         }
 
-        public static void ModifierComposant(ComposantModel composantModif)
+        public void ModifierComposant(ComposantModel composantModif)
         {
             using (GDA_Context context = new GDA_Context())
             {
@@ -141,7 +141,7 @@ namespace STM.GDA.Web.BL
             }
         }
 
-        public static void SupprimerComposant(int id)
+        public void SupprimerComposant(int id)
         {
             using (GDA_Context context = new GDA_Context())
             {

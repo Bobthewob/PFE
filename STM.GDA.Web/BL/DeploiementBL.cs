@@ -4,7 +4,6 @@ using STM.GDA.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Microsoft.Office.Interop.Outlook;
 
 namespace STM.GDA.Web.BL
@@ -116,7 +115,7 @@ namespace STM.GDA.Web.BL
 
         public static string GetTexteDescriptif(DeploiementModel deploiement)
         {
-            var composantInfo = ComposantBL.GetComposant(deploiement.Composant.Id);
+            var composantInfo = new ComposantBL().GetComposant(deploiement.Composant.Id);
             var dependancesWeb = composantInfo.Dependances.Web.Where(x => x.EnvironnementId == deploiement.Environnement.Id).Select(x => x.Etiquette.Nom);
             var dependancesBDs = composantInfo.Dependances.BDs.Where(x => x.EnvironnementId == deploiement.Environnement.Id).Select(x => x.Etiquette.Nom);
             var dependancesRapports = composantInfo.Dependances.Rapports.Where(x => x.EnvironnementId == deploiement.Environnement.Id).Select(x => x.Etiquette.Nom);

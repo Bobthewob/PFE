@@ -15,8 +15,22 @@ namespace STM.GDA.Web.Controllers
 {
     public class DeploiementController : BaseController
     {
-        // GET: Deploiement
-        public ActionResult Index()
+		private IComposantBL composantbl;
+
+		public IComposantBL Composantbl
+		{
+			get
+			{
+				if (composantbl == null)
+					return new ComposantBL();
+
+				return composantbl;
+			}
+			set { composantbl = value; }
+		}
+
+		// GET: Deploiement
+		public ActionResult Index()
         {
             return View();
         }
@@ -57,7 +71,7 @@ namespace STM.GDA.Web.Controllers
         public ActionResult Creer()
         {
             var deploiement = new DeploiementModel();
-            ViewBag.ListeComposants = ComposantBL.GetListComposantBase().Select(x => x.ToSelectListItem());
+            ViewBag.ListeComposants = Composantbl.GetListComposantBase().Select(x => x.ToSelectListItem());
             ViewBag.ListeEnvironnements = EnvironnementBL.GetDefaultEnvironnements().Select(x => x.ToSelectListItem()); ;
 
             return View("Creer", deploiement);
@@ -81,7 +95,7 @@ namespace STM.GDA.Web.Controllers
             var deploiement = DeploiementBL.GetDeploiement(id);
 
             ViewBag.DateDeploiement = deploiement.getStandardAppDate();
-            ViewBag.ListeComposants = ComposantBL.GetList().Select(x => x.ToSelectListItem());
+            ViewBag.ListeComposants = new ComposantBL().GetList().Select(x => x.ToSelectListItem());
             ViewBag.ListeEnvrionnements = EnvironnementBL.GetDefaultEnvironnements().Select(x => x.ToSelectListItem()); ;
 
             if (deploiement == null)

@@ -23,7 +23,7 @@ namespace STM.GDA.Web.Test
 		public void TestGetComposantsEmpty()
 		{
 			//arrange
-			controller.Composantbl = new MockBLComposants(0);
+			controller.ComposantBL = new MockBLComposants(0);
 
 			//act
 			var view = controller.GetComposants("", 5, 0);
@@ -42,7 +42,7 @@ namespace STM.GDA.Web.Test
 		public void TestGetComposantsNotEnd(int nbOfElement, int take)
 		{
 			//arrange
-			controller.Composantbl = new MockBLComposants(nbOfElement);
+			controller.ComposantBL = new MockBLComposants(nbOfElement);
 
 			//act
 			var view = controller.GetComposants("", take, 0);
@@ -61,7 +61,7 @@ namespace STM.GDA.Web.Test
 		public void TestGetComposantsEnd(int nbOfElement, int take)
 		{
 			//arrange
-			controller.Composantbl = new MockBLComposants(nbOfElement);
+			controller.ComposantBL = new MockBLComposants(nbOfElement);
 
 			//act
 			var view = controller.GetComposants("", take, 0);

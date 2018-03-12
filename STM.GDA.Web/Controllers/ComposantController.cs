@@ -11,17 +11,17 @@ namespace STM.GDA.Web.Controllers
 {
     public class ComposantController : BaseController
     {
-		private IComposantBL composantbl;
+		private IComposantBL _ComposantBL;
 
-		public IComposantBL Composantbl
+		public IComposantBL ComposantBL
 		{
 			get {
-				if(composantbl == null)
+				if(_ComposantBL == null)
 					return new ComposantBL();
 
-				return composantbl;
+				return _ComposantBL;
 			}
-			set { composantbl = value; }
+			set { _ComposantBL = value; }
 		}
 
 		public ActionResult Index()
@@ -31,7 +31,7 @@ namespace STM.GDA.Web.Controllers
 
         public ActionResult GetComposants(string filtre, int take, int offset = 0)
         {
-			IEnumerable<ComposantListeModel> composants = Composantbl.GetList(take, offset, filtre);
+			IEnumerable<ComposantListeModel> composants = ComposantBL.GetList(take, offset, filtre);
 
             if (!composants.Any())
             {
@@ -48,7 +48,7 @@ namespace STM.GDA.Web.Controllers
 
         public ActionResult Details(int id)
         {
-            var composant = Composantbl.GetComposant(id);
+            var composant = ComposantBL.GetComposant(id);
 
             if (composant == null)
             {
@@ -77,19 +77,19 @@ namespace STM.GDA.Web.Controllers
         [HttpPost]
         public ActionResult Creer(ComposantModel composant)
         {
-            Composantbl.CreerComposant(composant);
+            ComposantBL.CreerComposant(composant);
             return Redirect("Details", "Composant", new { id = composant.Id });
         }
 
         public ActionResult Supprimer(int id)
         {
-            Composantbl.SupprimerComposant(id);
+            ComposantBL.SupprimerComposant(id);
             return Redirect("Index", "Composant", null);
         }
 
         public ActionResult Modifier(int id)
         {
-            var composant = Composantbl.GetComposant(id);
+            var composant = ComposantBL.GetComposant(id);
 
             ViewBag.ListeTypes = TypeBL.GetAllTypes().Select(x => x.ToSelectListItem());
             ViewBag.ListeClients = ClientBL.GetAllClients().Select(x => x.ToSelectListItem());
@@ -109,7 +109,7 @@ namespace STM.GDA.Web.Controllers
         [HttpPost]
         public ActionResult Modifier(ComposantModel composant)
         {
-            Composantbl.ModifierComposant(composant);
+            ComposantBL.ModifierComposant(composant);
             return Redirect("Details", "Composant", new { id = composant.Id });
         }
 
@@ -128,13 +128,13 @@ namespace STM.GDA.Web.Controllers
 
         public FileStreamResult GenererCSVCourt(string filtre)
         {
-            IEnumerable<CSVComposantListeModelCourt> composants = Composantbl.GetCSVList<CSVComposantListeModelCourt>(filtre: filtre);
+            IEnumerable<CSVComposantListeModelCourt> composants = ComposantBL.GetCSVList<CSVComposantListeModelCourt>(filtre: filtre);
             return EcrireCsvDansMemoire(composants, "ComposantsExportCourt.csv", filtre);
         }
 
 		public FileStreamResult GenererCSVLong(string filtre)
 		{
-			IEnumerable<CSVComposantListeModelLong> composants = Composantbl.GetCSVList<CSVComposantListeModelLong>(filtre: filtre);
+			IEnumerable<CSVComposantListeModelLong> composants = ComposantBL.GetCSVList<CSVComposantListeModelLong>(filtre: filtre);
 			return EcrireCsvDansMemoire(composants, "ComposantsExportLong.csv", filtre);
 		}
 

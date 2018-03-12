@@ -8,25 +8,24 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Web;
 using System.Web.Mvc;
 
 namespace STM.GDA.Web.Controllers
 {
     public class DeploiementController : BaseController
     {
-		private IComposantBL composantbl;
+		private IComposantBL _ComposantBL;
 
-		public IComposantBL Composantbl
+		public IComposantBL ComposantBL
 		{
 			get
 			{
-				if (composantbl == null)
+				if (_ComposantBL == null)
 					return new ComposantBL();
 
-				return composantbl;
+				return _ComposantBL;
 			}
-			set { composantbl = value; }
+			set { _ComposantBL = value; }
 		}
 
 		// GET: Deploiement
@@ -38,8 +37,6 @@ namespace STM.GDA.Web.Controllers
         public ActionResult GetDeploiements(string filtre, int take, int offset = 0)
         {
             IEnumerable<DeploiementListeModel> deploiements = DeploiementBL.GetList(take, offset, filtre);
-
-            //System.Threading.Thread.Sleep(1000); //use to test loading spinner on new filter
 
             if (!deploiements.Any())
             {
@@ -71,7 +68,7 @@ namespace STM.GDA.Web.Controllers
         public ActionResult Creer()
         {
             var deploiement = new DeploiementModel();
-            ViewBag.ListeComposants = Composantbl.GetListComposantBase().Select(x => x.ToSelectListItem());
+            ViewBag.ListeComposants = ComposantBL.GetListComposantBase().Select(x => x.ToSelectListItem());
             ViewBag.ListeEnvironnements = EnvironnementBL.GetDefaultEnvironnements().Select(x => x.ToSelectListItem()); ;
 
             return View("Creer", deploiement);

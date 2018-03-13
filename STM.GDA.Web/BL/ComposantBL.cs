@@ -19,7 +19,7 @@ namespace STM.GDA.Web.BL
 
                 if (!String.IsNullOrEmpty(filtre))
                 {
-                    query = FilterQuery(query, filtre);
+                    query = FilterQuery(query, filtre.ToLowerInvariant());
                 }
 
 				if (typeof(T) == typeof(CSVComposantListeModelLong))

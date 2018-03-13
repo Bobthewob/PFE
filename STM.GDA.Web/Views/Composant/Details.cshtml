@@ -166,8 +166,11 @@
 </div>
 
 <script>
-    var currentEnvironnement = $("#divDependance div:first");
-    currentEnvironnement.addClass("currentEnvironnement");
+	var currentEnvironnement;
+
+	$(document).ready(function () {
+		$("#ddlEnvironnement").trigger("change");
+	});
 
     $("#ddlEnvironnement").on("change", function () {
         if (currentEnvironnement) {
@@ -178,8 +181,8 @@
         currentEnvironnement.addClass("currentEnvironnement");
     });
 
-    $("#btnModifier").click(function () {
-        window.location.href = '@Url.Action("Modifier", "Composant", new { id = @Html.Raw(Json.Encode(Model.Id)) })';
+	$("#btnModifier").click(function () {
+		window.location.href = '@Url.Action("Modifier", "Composant", new { id = @Html.Raw(Json.Encode(Model.Id)) })' + "?idEnvironnement=" + $("#ddlEnvironnement").val();
     });
 
     $("#btnSupprimerConfirmer").click(function () {

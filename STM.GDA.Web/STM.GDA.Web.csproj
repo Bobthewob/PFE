@@ -175,7 +175,6 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ComposantController.cs" />
     <Compile Include="Controllers\DeploiementController.cs" />
-    <Compile Include="CustomFilters\DeleteFileAttribute.cs" />
     <Compile Include="Extensions\DependanceExtension.cs" />
     <Compile Include="Extensions\DeploiementExtensions.cs" />
     <Compile Include="Extensions\EnvironnementExtensions.cs" />
@@ -212,7 +211,6 @@
     <Content Include="Content\ComposantDetails.css" />
     <Content Include="Content\ComposantCreer.css" />
     <Content Include="Content\ComposantModifier.css" />
-    <Content Include="Content\Selectize.css" />
     <Content Include="Content\Selectize\css\selectize.bootstrap2.css" />
     <Content Include="Content\Selectize\css\selectize.bootstrap3.css" />
     <Content Include="Content\Selectize\css\selectize.css" />
@@ -244,6 +242,7 @@
     <Content Include="Content\Selectize\less\plugins\dropdown_header.less" />
     <Content Include="Content\Selectize\less\plugins\drag_drop.less" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Image\header-logo.png" />
     <Content Include="Image\loading_spinner.gif" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />

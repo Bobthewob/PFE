@@ -1,16 +1,14 @@
-﻿using STM.GDA.DataAccess;
-using STM.GDA.Web.Configuration;
+﻿using STM.GDA.Web.Configuration;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace STM.GDA.Web.Models
 {
-    public class ComposantModel : ComposantBase
+	public class ComposantModel : ComposantBase
     {        
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
@@ -33,7 +31,9 @@ namespace STM.GDA.Web.Models
 
         public string BW { get; set; }
 
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+		public int EnvironnementSelectionne { get; set; } = 0;
+
+		[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DerniereMAJ { get; set; }
 
         public List<EtiquetteModel> Technologies { get; set; } = new List<EtiquetteModel>();
@@ -44,12 +44,12 @@ namespace STM.GDA.Web.Models
         {
             get
             {
-                return Environnements.Select(x => new SelectListItem
-                {
-                    Value = x.Etiquette.Id.ToString(),
-                    Text = x.Etiquette.Nom,
-                    Selected = x.Ordre == 1
-                }).ToList();
+				return Environnements.Select(x => new SelectListItem
+				{
+					Value = x.Etiquette.Id.ToString(),
+					Text = x.Etiquette.Nom,
+					Selected = (EnvironnementSelectionne == 0) ? x.Ordre == 1 : EnvironnementSelectionne == x.Etiquette.Id
+				}).ToList();
             }
         }
 

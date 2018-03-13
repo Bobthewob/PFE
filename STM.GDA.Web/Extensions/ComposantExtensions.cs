@@ -60,6 +60,8 @@ namespace STM.GDA.Web.Extensions
 				SourceControlPath = composant.SourceControlPath,
 				DerniereMAJ = composant.DerniereMAJ.ToString(),
 				Type = composant.ComposantType.Nom,
+				BC = composant.BC,
+				BW = composant.BW,
 				Clients = string.Join(", ", composant.ComposantClients.Select(x => x.Client.Nom).ToArray()),
 				EnvironnementsProductionWeb = GetDependanceEnvironnementComposant(composant, Constantes.DEPENDANCE_WEB, Constantes.ENVIRONNEMENT_PRODUCTION),
 				EnvironnementsProductionBDs = GetDependanceEnvironnementComposant(composant, Constantes.DEPENDANCE_BD, Constantes.ENVIRONNEMENT_PRODUCTION),

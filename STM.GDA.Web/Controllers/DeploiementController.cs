@@ -1,6 +1,5 @@
 ﻿using STM.GDA.Web.BL;
 using STM.GDA.Web.Configuration;
-using STM.GDA.Web.CustomFilters;
 using STM.GDA.Web.Extensions;
 using STM.GDA.Web.Models;
 using System;
@@ -101,21 +100,11 @@ namespace STM.GDA.Web.Controllers
             return Redirect("Details", "Deploiement", new { id = deploiement.Id });
         }
 
-        public JsonResult GenererTexteDescriptif(DeploiementModel deploiement, DateTime date)
+        public FileStreamResult GenererTexteDescriptif(int idDeploiement)
         {
-            deploiement.DateDeploiement = date;
-			var nomFichier = "Deploiement_" + deploiement.Composant.Nom.Replace(" ", string.Empty);
+			var deploiement = DeploiementBL.GetDeploiement(idDeploiement);
 
-			string fullPath = Path.Combine(Server.MapPath("~"), nomFichier);
-
-			using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(DeploiementBL.GetTexteDescriptif(deploiement))))
-			{
-				FileStream fichier = new FileStream(fullPath, FileMode.Create, FileAccess.Write);
-				stream.WriteTo(fichier);
-				fichier.Close();
-			}
-
-			return Json(new { nomFichier = nomFichier });
+			return new FileStreamResult(new MemoryStream(Encoding.UTF8.GetBytes(DeploiementBL.GenererTexteDescriptif(deploiement))), "text/plain") { FileDownloadName = "Deploiement_"+deploiement.Composant.Nom+".txt" };
 		}
 
         public JsonResult AjouterCalendrier(DeploiementModel deploiement, DateTime date)
@@ -123,13 +112,5 @@ namespace STM.GDA.Web.Controllers
             DeploiementBL.AjouterCalendrier(deploiement, date);
             return Json(new { status = "Created"});
         }
-
-        [DeleteFile]
-		public ActionResult TelechargerTexteDescriptif(string fichier)
-		{
-			string fullPath = Path.Combine(Server.MapPath("~"), fichier);
-
-			return File(fullPath, "text/plain", fichier+".txt");
-		}
 	}
 }

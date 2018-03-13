@@ -37,7 +37,7 @@ namespace STM.GDA.Web.Controllers
             return PartialView("_Liste", composants.Take(take).ToList());
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int id, int idEnvironnement = 0)
         {
             var composant = ComposantBL.GetComposant(id);
 
@@ -47,6 +47,7 @@ namespace STM.GDA.Web.Controllers
             }
             else
             {
+				composant.EnvironnementSelectionne = idEnvironnement;
                 return View("Details", composant);
             }
         }
@@ -78,14 +79,9 @@ namespace STM.GDA.Web.Controllers
             return Redirect("Index", "Composant", null);
         }
 
-        public ActionResult Modifier(int id)
+        public ActionResult Modifier(int id, int idEnvironnement)
         {
-            var composant = ComposantBL.GetComposant(id);
-
-            ViewBag.ListeTypes = TypeBL.GetAllTypes().Select(x => x.ToSelectListItem());
-            ViewBag.ListeClients = ClientBL.GetAllClients().Select(x => x.ToSelectListItem());
-            ViewBag.ListeResponsables = ResponsableBL.GetAllResponsables().Select(x => x.ToSelectListItem());
-            ViewBag.ListeTechnologies = TechnologieBL.GetAllTechnologies().Select(x => x.ToSelectListItem());
+            var composant = ComposantBL.GetComposant(id);			
 
             if (composant == null)
             {
@@ -93,7 +89,13 @@ namespace STM.GDA.Web.Controllers
             }
             else
             {
-                return View("Modifier", composant);
+				composant.EnvironnementSelectionne = idEnvironnement;
+
+				ViewBag.ListeTypes = TypeBL.GetAllTypes().Select(x => x.ToSelectListItem());
+				ViewBag.ListeClients = ClientBL.GetAllClients().Select(x => x.ToSelectListItem());
+				ViewBag.ListeResponsables = ResponsableBL.GetAllResponsables().Select(x => x.ToSelectListItem());
+				ViewBag.ListeTechnologies = TechnologieBL.GetAllTechnologies().Select(x => x.ToSelectListItem());
+				return View("Modifier", composant);
             }
         }
 
@@ -101,7 +103,7 @@ namespace STM.GDA.Web.Controllers
         public ActionResult Modifier(ComposantModel composant)
         {
             ComposantBL.ModifierComposant(composant);
-            return Redirect("Details", "Composant", new { id = composant.Id });
+            return Redirect("Details", "Composant", new { id = composant.Id, idEnvironnement = composant.EnvironnementSelectionne });
         }
 
         public ActionResult GetDetailsDependances(ComposantModel composant)

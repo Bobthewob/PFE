@@ -166,18 +166,8 @@
         );
 	});
 
-    $("#btnGenererTexte").click(function () {
-		CallController(
-			"@Url.Action("GenererTexteDescriptif", "Deploiement")",
-            {
-                Deploiement: @Html.Raw(Json.Encode(Model)),
-                Date: "@Html.Raw(Model.DateDeploiement)"
-            }
-        ).done(function(data) {
-			if (data.nomFichier != "") {
-				window.location.href = "@Url.Action("TelechargerTexteDescriptif", "Deploiement")" + "?fichier=" + data.nomFichier;
-			}
-		});
+	$("#btnGenererTexte").click(function () {
+		window.location.href = '@Url.Action("GenererTexteDescriptif", "Deploiement")' + "?idDeploiement=" +@Html.Raw(Json.Encode(Model.Id));
     });
 
     $("#btnAjouterCalendrier").click(function () {

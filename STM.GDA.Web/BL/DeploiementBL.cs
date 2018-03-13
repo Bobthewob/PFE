@@ -114,7 +114,7 @@ namespace STM.GDA.Web.BL
             }
         }
 
-        public static string GetTexteDescriptif(DeploiementModel deploiement)
+        public static string GenererTexteDescriptif(DeploiementModel deploiement)
         {
             var composantInfo = ComposantBL.GetComposant(deploiement.Composant.Id);
             var dependancesWeb = composantInfo.Dependances.Web.Where(x => x.EnvironnementId == deploiement.Environnement.Id).Select(x => x.Etiquette.Nom);
@@ -128,8 +128,10 @@ namespace STM.GDA.Web.BL
             text += "Date du déploiement : " + deploiement.DateDeploiement.ToString() + "\r\n";
             text += "Premier déploiement : " + (deploiement.PremierDeploiement ? "Oui" : "Non") + "\r\n";
             text += "Source control path : " + composantInfo.SourceControlPath + "\r\n";
-            text += "Branche/Tag : " + deploiement.BrancheTag + "\r\n";
-            text += "Url de destination : " + deploiement.UrlDestination + "\r\n";
+            text += "BC : " + composantInfo.BC + "\r\n";
+			text += "BW : " + composantInfo.BW + "\r\n";
+			text += "Branche/Tag : " + deploiement.BrancheTag + "\r\n";
+			text += "Url de destination : " + deploiement.UrlDestination + "\r\n";
             text += "Portail groupe : " + deploiement.PortailGroupe + "\r\n";
             text += "Portail description : " + deploiement.PortailDescription + "\r\n";
             text += "Détails supplémentaires : " + deploiement.Details + "\r\n\r\n";

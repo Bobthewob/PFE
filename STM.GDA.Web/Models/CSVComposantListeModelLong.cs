@@ -22,6 +22,10 @@
 
 		public string Clients { get; set; }
 
+		public string BC { get; set; }
+
+		public string BW { get; set; }
+
 		public string Technologies { get; set; }
 
 		public string EnvironnementsProductionWeb { get; set; }

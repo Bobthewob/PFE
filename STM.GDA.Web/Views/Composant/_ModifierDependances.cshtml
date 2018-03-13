@@ -95,7 +95,7 @@
     var currentEnvironnement;
 
     $(document).ready(function () {
-        changeEnvironnement(0);
+		changeEnvironnement($("#ddlEnvironnement").prop('selectedIndex'));
     });
 
     $("#ddlEnvironnement").on("change", function () { //initialize all the chosen in the first environnement selected

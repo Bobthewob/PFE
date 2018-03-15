@@ -168,7 +168,7 @@
     });
 
     $("#btnAnnuler").click(function () {
-        window.location.href = '@Url.Action("Details", "Composant", new { id = @Html.Raw(Json.Encode(Model.Id)) })';
+        window.location.href = '@Url.Action("Details", "Composant", new { id = @Html.Raw(Json.Encode(Model.Id)) })' + "?idEnvironnement=" + $("#ddlEnvironnement").val();
     });
 
     $("#btnSauvegarder").click(function () {

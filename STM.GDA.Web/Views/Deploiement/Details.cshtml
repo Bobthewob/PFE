@@ -180,7 +180,10 @@
         ).done(function (data) {
             if (data.status === "Created") {
                 showInformationDialog('Le déploiement a été ajouté à votre calendrier.');
-			}
+            }
+            else if (data.status === "Error") {
+                showInformationDialog('Une erreur est survenue.');
+            }
 		});
     });
 </script>

@@ -120,7 +120,15 @@ namespace STM.GDA.Web.Controllers
 
         public JsonResult AjouterCalendrier(DeploiementModel deploiement, DateTime date)
         {
-            DeploiementBL.AjouterCalendrier(deploiement, date);
+            try
+            {
+                DeploiementBL.AjouterCalendrier(deploiement, date);
+            }
+            catch (Exception)
+            {
+                return Json(new { status = "Error" });
+            }
+            
             return Json(new { status = "Created"});
         }
 	}

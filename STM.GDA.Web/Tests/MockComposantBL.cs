@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace STM.GDA.Web.BL
 {
-	public class MockBLComposants : IComposantBL
+	public class MockComposantBL : IComposantBL
 	{
 		public List<ComposantListeModel> composants { get; set; }
 
-		public MockBLComposants(int _nbOfElements)
+		public MockComposantBL(int _nbOfElements)
 		{
 			composants = new List<ComposantListeModel>();
 

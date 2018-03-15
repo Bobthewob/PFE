@@ -167,7 +167,7 @@
     <Compile Include="BL\DependanceBL.cs" />
     <Compile Include="BL\DeploiementBL.cs" />
     <Compile Include="BL\EnvironnementBL.cs" />
-    <Compile Include="Test\MockBLComposants.cs" />
+    <Compile Include="Tests\MockComposantBL.cs" />
     <Compile Include="BL\ResponsableBL.cs" />
     <Compile Include="BL\TechnologieBL.cs" />
     <Compile Include="BL\TypeBL.cs" />
@@ -186,7 +186,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="IComposantBL.cs" />
+    <Compile Include="Interfaces\IComposantBL.cs" />
     <Compile Include="Models\CSVComposantListeModelCourt.cs" />
     <Compile Include="Models\CSVComposantListeModelLong.cs" />
     <Compile Include="Models\ComposantBase.cs" />
@@ -199,7 +199,7 @@
     <Compile Include="Models\EnvironnementModel.cs" />
     <Compile Include="Models\EtiquetteModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test\ComposantTest.cs" />
+    <Compile Include="Tests\ComposantTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-datepicker.css" />
